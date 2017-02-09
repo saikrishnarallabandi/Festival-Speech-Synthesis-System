@@ -10,4 +10,8 @@
 /test_make_rules/1.1.1.1/Wed Apr  4 11:55:32 2001//
 /vc_common_make_rules/1.2/Wed Sep 29 08:24:16 2004//
 /vc_config_make_rules-dist/1.3/Fri Apr 30 11:05:23 2010//
-D
+D/compilers////
+D/configs////
+D/modules////
+D/rules////
+D/systems////

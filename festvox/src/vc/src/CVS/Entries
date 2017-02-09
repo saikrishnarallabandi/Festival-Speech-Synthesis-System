@@ -1,2 +1,22 @@
 /Makefile/1.1.1.1/Sun Jun 14 17:05:48 2009//
-D
+D/analysis////
+D/cov2dia////
+D/dtw////
+D/extdim////
+D/extfrm////
+D/f0map////
+D/f0stats////
+D/gmm////
+D/gmmmap////
+D/gmmpara////
+D/include////
+D/jdmat////
+D/lib////
+D/mlpg////
+D/sp////
+D/sub////
+D/synthesis////
+D/utt2f0////
+D/vq////
+D/vqlbl////
+D/win////

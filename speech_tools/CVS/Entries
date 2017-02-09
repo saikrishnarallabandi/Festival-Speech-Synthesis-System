@@ -8,4 +8,24 @@
 /install-sh/1.1/Wed Apr  4 13:11:27 2001//
 /missing/1.1/Wed Apr  4 13:11:27 2001//
 /mkinstalldirs/1.1/Wed Apr  4 13:11:27 2001//
-D
+D/audio////
+D/base_class////
+D/bin////
+D/config////
+D/doc////
+D/grammar////
+D/include////
+D/intonation////
+D/java////
+D/lib////
+D/ling_class////
+D/main////
+D/rxp////
+D/scripts////
+D/sigpr////
+D/siod////
+D/speech_class////
+D/stats////
+D/testsuite////
+D/utils////
+D/wrappers////

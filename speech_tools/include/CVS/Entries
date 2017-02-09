@@ -94,4 +94,9 @@
 /siod.h/1.3/Tue Jan 14 17:14:40 2003//
 /siod_defs.h/1.3/Mon May 24 11:47:48 2004//
 /siod_est.h/1.3/Wed Oct 16 18:01:01 2013//
-D
+D/instantiate////
+D/ling_class////
+D/rxp////
+D/sigpr////
+D/unix////
+D/win32////
