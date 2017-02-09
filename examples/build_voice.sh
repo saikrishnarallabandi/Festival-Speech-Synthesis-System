@@ -1,8 +1,9 @@
-$VOX=$1
-wav_folder=$2
-txt_file=$3
+$lang=$1
+$VOX=$2
+wav_folder=$3
+txt_file=$4
 
-
+cd $lang
 mkdir cmu_indic_tel_$VOX
 cd cmu_indic_tel_$VOX
 ../../../festvox/src/clustergen/setup_cg_indic cmu indic tel $VOX   # Ideally this should start as $FESTVOXDIR/src/clustergen/...
