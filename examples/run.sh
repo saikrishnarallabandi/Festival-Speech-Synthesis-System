@@ -1,3 +1,7 @@
+#!/bin/bash
+
+#./bin/get_wavs recording/*.wav
+#./bin/prune_silence wav/*.wav
 
 ./bin/do_build build_prompts etc/txt.done.data
 ./bin/do_build label etc/txt.done.data
@@ -15,4 +19,7 @@
 
 ./bin/do_clustergen cg_test resynth cgp etc/txt.done.data.test
 ./bin/do_clustergen cg_test tts tts etc/txt.done.data.test
+
+nohup ./bin/build_cg_rfs_voice
+
 
