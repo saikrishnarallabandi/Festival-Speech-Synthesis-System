@@ -1,0 +1,24 @@
+/Makefile/1.2/Wed Jul 21 21:54:31 2004//
+/debugging.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/descriptions/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/dmalloc.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/editline.mak/1.2/Sat Dec 28 12:42:14 2002//
+/efence.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/esd_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/freebsd16_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/irix_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/linux16_audio.mak/1.2/Sun Nov 16 13:20:30 2008//
+/macosx_audio.mak/1.1/Thu Mar  2 07:30:01 2006//
+/mplayer_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/nas_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/native_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/ols.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/psola_tm.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/scfg.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/siod.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/sun16_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/tcl.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/wagon.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/wfst.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/win32_audio.mak/1.1.1.1/Wed Apr  4 11:55:20 2001//
+D

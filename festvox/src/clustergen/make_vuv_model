@@ -1,0 +1,106 @@
+#!/bin/sh
+#####################################################-*-mode:shell-script-*-
+##                                                                       ##
+##                     Carnegie Mellon University                        ##
+##                         Copyright (c) 2013                            ##
+##                        All Rights Reserved.                           ##
+##                                                                       ##
+##  Permission is hereby granted, free of charge, to use and distribute  ##
+##  this software and its documentation without restriction, including   ##
+##  without limitation the rights to use, copy, modify, merge, publish,  ##
+##  distribute, sublicense, and/or sell copies of this work, and to      ##
+##  permit persons to whom this work is furnished to do so, subject to   ##
+##  the following conditions:                                            ##
+##   1. The code must retain the above copyright notice, this list of    ##
+##      conditions and the following disclaimer.                         ##
+##   2. Any modifications must be clearly marked as such.                ##
+##   3. Original authors' names are not deleted.                         ##
+##   4. The authors' names are not used to endorse or promote products   ##
+##      derived from this software without specific prior written        ##
+##      permission.                                                      ##
+##                                                                       ##
+##  CARNEGIE MELLON UNIVERSITY AND THE CONTRIBUTORS TO THIS WORK         ##
+##  DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING      ##
+##  ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT   ##
+##  SHALL CARNEGIE MELLON UNIVERSITY NOR THE CONTRIBUTORS BE LIABLE      ##
+##  FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    ##
+##  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN   ##
+##  AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,          ##
+##  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF       ##
+##  THIS SOFTWARE.                                                       ##
+##                                                                       ##
+###########################################################################
+##                                                                       ##
+##  A model to predict voice from the v flag and context                 ##
+##                                                                       ##
+##  For slt (with sptk F0) the best cart model is only a little better   ##
+##  than a single rule (v < 5.0)                                         ##
+##                                                                       ##
+##  You should set cg:vuv_predict_dump to t in festvox/clustergen.scm    ##
+##  ./bin/do_clustergen cg_test resynth cgpVdump aset.train.train        ##
+##     will dump the vuv prediction features in vuv/                     ##
+##  ./bin/make_vuv_model aset.train.train                                ##
+##     to train the cart tree (saved in vuv/vuv.tree)                    ##
+##  ./bin/do_clustergen cg_test resynth cgpVx etc/txt.done.data.train.test ##
+##     to apply this to a test set                                       ##
+##  ./bin/score_vuv_model etc/txt.done.data.train.test test/cgpVx        ##
+##     to score the test set                                             ##
+##                                                                       ##
+##  Reset cg:vuv_predict_dump to nil in festvox/clustergen.scm           ##
+##  Best tree gives                                                      ##
+##  94.87 p 96.40 r 95.54 f1 95.94 c00 93.61 c01 6.39 c10 4.46 c11 95.54 n 58997
+##  Old (0.5) prediction was
+##  91.47 p 89.42 r 98.30 f1 93.60 c00 79.00 c01 21.00 c10 1.70 c11 98.30 n 58997
+##  New (5.0) rule is                                                    ##
+##  94.61 p 95.89 r 95.67 f1 95.75 c00 92.61 c01  7.39 c10  4.33 c11 95.67 n 58997
+##                                                                       ##
+###########################################################################
+
+if [ ! -d vuv ]
+then
+   mkdir vuv
+fi
+
+awk '{print $2}' $1 |
+while read x
+do
+   ch_track ccoefs/$x.mcep |
+   awk '{if ($NF < 0.5)
+            print 0;
+         else
+            print 1;}' >vuv/$x.v
+
+   paste vuv/$x.v vuv/$x.vuvfeats |
+   awk '{if (NR == 1)
+            nf=NF;
+         if (nf == NF) 
+            print $0}'
+done >vuv/vuv.data
+
+# sed 's/^0/B/;s/^1/NB/' 
+
+cat vuv/vuv.data |
+awk '{if (NR ~ /.*9..$/) print $0}' >vuv/vuv.data.test
+cat vuv/vuv.data |
+awk '{if (NR !~ /.*9..$/) print $0}' >vuv/vuv.data.train
+#./bin/traintest vuv/vuv.data
+
+echo "((vuv 0 1)" >vuv/vuv.desc
+echo " (lisp_v_value float)" >>vuv/vuv.desc
+echo " (p.lisp_v_value float)" >>vuv/vuv.desc
+echo " (n.lisp_v_value float)" >>vuv/vuv.desc
+echo " (lisp_mcep_0 float)" >>vuv/vuv.desc
+echo " (n.lisp_mcep_0 float)" >>vuv/vuv.desc
+echo " (p.lisp_mcep_0 float)" >>vuv/vuv.desc
+echo " (lisp_mcep_1 float)" >>vuv/vuv.desc
+echo " (n.lisp_mcep_1 float)" >>vuv/vuv.desc
+echo " (p.lisp_mcep_1 float)" >>vuv/vuv.desc
+echo " (lisp_mcep_2 float)" >>vuv/vuv.desc
+echo " (n.lisp_mcep_2 float)" >>vuv/vuv.desc
+echo " (p.lisp_mcep_2 float)" >>vuv/vuv.desc
+sed 1d festival/clunits/f0.desc >>vuv/vuv.desc
+
+$ESTDIR/bin/wagon -stepwise -desc vuv/vuv.desc -data vuv/vuv.data.train -test vuv/vuv.data.test -balance 0 -stop 200 -output vuv/vuv.tree
+
+
+

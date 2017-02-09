@@ -1,0 +1,19 @@
+/Makefile/1.3/Sun Aug 15 11:48:31 2010//
+/check_timestamps.pl/1.1/Sun Aug 15 11:47:13 2010//
+/combine_wav.pl/1.1/Sun Aug 15 11:47:13 2010//
+/comp_dcep.pl/1.3/Sun Aug 15 11:48:31 2010//
+/copy_for_testing.pl/1.1/Sun Aug 15 11:47:13 2010//
+/do_islice_v2.sh/1.5/Fri Dec  2 13:12:28 2016//
+/do_seg.pl/1.4/Mon Feb  9 18:12:01 2015//
+/do_seg_old.pl/1.1/Sun Aug 15 11:47:13 2010//
+/ilphseq.pl/1.1/Sun Aug 15 11:47:13 2010//
+/phseq.pl/1.1/Sun Aug 15 11:47:14 2010//
+/phseq.scm/1.4/Fri Dec  2 13:12:28 2016//
+/prepare_prompts.pl/1.1/Sun Aug 15 11:47:14 2010//
+/prepare_prompts_v1.pl/1.1/Sun Aug 15 11:47:14 2010//
+/prmp2int.pl/1.3/Sun Aug 15 11:48:31 2010//
+/scale_feat.pl/1.3/Sun Aug 15 11:48:31 2010//
+/slice_wav.pl/1.2/Sun Feb 10 19:58:26 2013//
+/syllabifier.pm/1.1/Sun Aug 15 11:47:14 2010//
+/test.pl/1.1/Sun Aug 15 11:47:14 2010//
+D

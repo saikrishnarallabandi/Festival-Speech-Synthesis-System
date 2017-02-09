@@ -1,0 +1,231 @@
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;                                                                       ;;
+;;;                Centre for Speech Technology Research                  ;;
+;;;                     University of Edinburgh, UK                       ;;
+;;;                       Copyright (c) 2005, 2006                        ;;
+;;;                        All Rights Reserved.                           ;;
+;;;                                                                       ;;
+;;;  Permission is hereby granted, free of charge, to use and distribute  ;;
+;;;  this software and its documentation without restriction, including   ;;
+;;;  without limitation the rights to use, copy, modify, merge, publish,  ;;
+;;;  distribute, sublicense, and/or sell copies of this work, and to      ;;
+;;;  permit persons to whom this work is furnished to do so, subject to   ;;
+;;;  the following conditions:                                            ;;
+;;;   1. The code must retain the above copyright notice, this list of    ;;
+;;;      conditions and the following disclaimer.                         ;;
+;;;   2. Any modifications must be clearly marked as such.                ;;
+;;;   3. Original authors' names are not deleted.                         ;;
+;;;   4. The authors' names are not used to endorse or promote products   ;;
+;;;      derived from this software without specific prior written        ;;
+;;;      permission.                                                      ;;
+;;;                                                                       ;;
+;;;  THE UNIVERSITY OF EDINBURGH AND THE CONTRIBUTORS TO THIS WORK        ;;
+;;;  DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING      ;;
+;;;  ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT   ;;
+;;;  SHALL THE UNIVERSITY OF EDINBURGH NOR THE CONTRIBUTORS BE LIABLE     ;;
+;;;  FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    ;;
+;;;  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN   ;;
+;;;  AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,          ;;
+;;;  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF       ;;
+;;;  THIS SOFTWARE.                                                       ;;
+;;;                                                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;  Author: Volker Strom
+;;;
+
+
+Expressive Prosody for Unit-selection Speech Synthesis. 
+
+CONTENTS: OVERVIEW
+          TARGET COST
+          USAGE
+          LIST OF FUNCTIONS
+          CALLING HIERARCHY
+
+
+          OVERVIEW
+
+The project aims at adding explicit control of prosody 
+to unit-selection speech synthesis.  For details see
+http://homepages.inf.ed.ac.uk/vstrom/synthesis_post_2004.html
+and the Interspeech 2006 paper "Expressive Prosody for 
+Unit-selection Speech Synthesis"
+
+VOICE_CSTR_RPX_ROGER_MULTISYN_D consists to a large part of 
+children's stories, in which empahisized words are marked 
+either by quotes within quotes or by being in capital letters:
+
+    `Found IT,' the Mouse said: `You know what \"it\" means.'
+
+The largest part is a list of 2880 words, read with four 
+different boundary types, e.g. "act, act, act. act? act!"
+and the last one (with the !) can also be considered 
+emphasized, as Roger was instructed to utter them that way.
+
+Thus, the emphasis flag is derived from orthographic markup.
+Boundary tones are derived from punctuation, POS and the 
+keyword "or".  Additionally, the orthography may be 
+marked up with accentcs (like the star in ToBI accents).
+This is currently supported for VOICE_CSTR_RPX_ROGER_MULTISYN_C
+only, and results were not good.
+
+
+          TARGET COST
+
+Here the default cost functions (from EST_TargetCost.cc) 
+
+  score += add_weight(10.0)*stress_cost();
+  score += add_weight(5.0)*position_in_syllable_cost();
+  score += add_weight(5.0)*position_in_word_cost();
+  score += add_weight(6.0)*partofspeech_cost();
+  score += add_weight(7.0)*position_in_phrase_cost();
+  score += add_weight(4.0)*left_context_cost();
+  score += add_weight(3.0)*right_context_cost();
+  score += add_weight(10.0)*bad_duration_cost();
+  score += add_weight(25.0)*bad_f0_cost();
+
+re-implemented in Scheme, and emphasis, boundary tone and star 
+accent costs are added:
+
+  score += add_weight(32)*expro_emph_cost
+  score += add_weight(32)*expro_btone_cost
+  score += add_weight(32)*expro_star_accent_cost
+
+Three boundary tones are distinguished: continuation rise (at commas),
+interrogative (y/n questions) and terminal (default sentence end). 
+A question is either a probe question (starts with an interrogative 
+pronoun), an alternative question (contains the word "or" preceeded 
+by a comma) or a y/n question (default). See boundary_tones.scm for
+details.
+
+Star accents are marked up by prefixing or suffing a token with an
+asterisk or a plus sign.  Then in all segments belonging to the 
+stressed syllable (of EACH word belonging to the token, maybe a 
+particular word should be selected) the feature 'star_accent is 
+set to 1 or 0.5 resp. (kinda prominence).  For each half phone 
+being a vowel
+
+  cost += fabs(star_accent(cand)-star_accent(targ))
+
+06/02/2007 Syllable feature "accented" added, for HTS voice.  Default 
+is 0, star accent (marked up with asterisk) is 1, emphasised 2, 
+deaccented (marked up with "@") -1.  Functions star_accent_token and
+star_accent_syllable modified.
+
+05/12/2006  expro_blacklisted_cost added which allows to penalize 
+blacklisted units, specified by utterance name and end time (get 
+them from (dum_costs utt)).  This is meant for canned demos.  There 
+is now also expro_target_cost_4blacklist consisting of the default 
+components plus the blacklist cost component.
+
+Global variable "gtcw" is the global target cost weight i.e. the 
+importance over the join cost.
+
+
+          USAGE
+
+(require 'expressive_prosody)
+(du_voice.setTargetCost VOICE_CSTR_RPX_ROGER_MULTISYN_H expro_target_cost)
+(du_voice.setTargetCost VOICE_CSTR_RPX_ROGER_MULTISYN_H expro_target_cost_default)
+
+The former is with emphasis and boundary tones but without ToBI accents.
+
+There have been experiments with +-accents 
+    (expro_target_cost_star targ_seg cand_seg)
+
+and 3-class labels: de-accented, default, accented (you need 
+cstr_rpx_roger_multisyn_g to use that)
+    (expro_target_cost_STAR targ_seg cand_seg)
+
+and these two with the emphasis component switched off
+    (expro_target_cost_star_noemph targ_seg cand_seg)
+    (expro_target_cost_STAR_noemph targ_seg cand_seg)
+
+A pilot listening test suggested that +-accent is better than 3-class
+accentents.  A big listening test (see Volker Strom, Robert Clark, and 
+Simon King. Expressive prosody for unit-selection speech synthesis. In 
+Proc. Interspeech, Pittsburgh, 2006.) showed that adding +-accent 
+improved quality, although the Stanford accent predictor is very simple 
+(it is lexicalised, basically a list of function words, and for a while 
+I thought it fixes problems of our POS tagger e.g. with contractions).
+Since the weight of the other components have not changed since CHATR 
+(as far as I remember) and there are no F0 and duration components, I 
+suspected that POS alone could not take care of "prominence" alone 
+with its small weight.  So I made a fair comparison between 
+expro_target_cost_star and a system without an accent component
+
+    (expro_target_cost_pos_boosted targ_seg cand_seg)
+
+an a pilot listening test suggested the people prefered that 
+over Stanford's accents -- despite our lousy POS tags!
+
+Later I made experiments with slimmed target costs:
+
+    (expro_target_cost_slim1 targ_seg cand_seg)
+    (expro_target_cost_slim2 targ_seg cand_seg)
+    (expro_target_cost_slim3 targ_seg cand_seg)
+    (expro_target_cost_off targ_seg cand_seg)
+
+
+
+
+          LIST OF FUNCTIONS
+
+(add_feature_uid utt)
+(apply_to_utts procedure uttlist)
+(boundary_tones utt)
+(detect_quoting utt context)
+(dump_costs utt fn)
+(expro_bad_duration_cost targ_seg cand_seg)
+(expro_bad_f0_cost targ_seg cand_seg)
+(expro_blacklisted_cost targ_seg cand_seg)
+(expro_btone_cost targ_seg cand_seg)
+(expro_emphasis_unilex utt)
+(expro_emphasis utt)
+(expro_emph_cost targ_seg cand_seg)
+(expro_left_context_cost targ_seg cand_seg)
+(expro_partofspeech_cost targ_seg cand_seg)
+(expro_position_in_phrase_cost targ_seg cand_seg)
+(expro_position_in_syllable_cost targ_seg cand_seg)
+(expro_position_in_word_cost targ_seg cand_seg)
+(expro_right_context_cost targ_seg cand_seg)
+(expro_star_accent_cost targ_seg cand_seg)
+(expro_stress_cost targ_seg cand_seg)
+(expro_target_cost targ_seg cand_seg)
+(expro_target_cost_star targ_seg cand_seg)
+(expro_target_cost_4blacklist targ_seg cand_seg)
+(fabs x)
+(fix_contractions utt)
+(fix_phrase_breaks utt)
+(fix_utterance_final_punc utt)
+(item.Parent ITEM)
+(item.relation.Parent ITEM RELATION)
+(ph_is_nasal_liquid_or_approximant  seg)
+(ph_is_vowel seg)
+(set_btone word_item btone)
+(simple_pos pos)
+(star_accent_syllable utt)
+(star_accent_token utt)
+(Text utt)
+(Word utt)
+
+
+
+          LOADING HIERARCHY
+
+expressive_prosody.scm
++ expro_target_cost.scm
+| + expro_target_cost_components.scm
+|   + expro_util.scm
+|
++ expro_synthesis.scm
+| + fix_contractions.scm
+| + fix_phrase_breaks.scm
+| + detect_quoting.scm
+| + expro_emphasis.scm
+| + boundary_tones.scm
+| + star_accent.scm
+|
++ dump_costs.scm
