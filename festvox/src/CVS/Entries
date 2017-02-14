@@ -1,24 +1,2 @@
 /Makefile/1.8/Fri Jan 22 14:48:46 2016//
-D/clustergen////
-D/db_example////
-D/diphones////
-D/duration////
-D/ehmm////
-D/eval////
-D/general////
-D/grapheme////
-D/hts_build////
-D/interslice////
-D/intonation////
-D/ldom////
-D/lts////
-D/mllr////
-D/phrasyn////
-D/promptselect////
-D/prosody////
-D/spamf0////
-D/st////
-D/unitsel////
-D/vc////
-D/vox_diphone////
-D/vox_files////
+D

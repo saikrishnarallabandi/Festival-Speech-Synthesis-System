@@ -14,18 +14,4 @@
 /install-sh/1.1.1.1/Wed Apr  8 13:18:42 2009//
 /missing/1.1.1.1/Wed Apr  8 13:18:42 2009//
 /mkinstalldirs/1.1.1.1/Wed Apr  8 13:18:42 2009//
-D/android////
-D/config////
-D/doc////
-D/include////
-D/lang////
-D/lib////
-D/main////
-D/palm////
-D/sapi////
-D/src////
-D/testsuite////
-D/tools////
-D/voices////
-D/wince////
-D/windows////
+D

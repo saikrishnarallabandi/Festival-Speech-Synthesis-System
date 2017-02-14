@@ -11,10 +11,4 @@
 /install-sh/1.1/Wed Apr  4 13:12:35 2001//
 /missing/1.1/Wed Apr  4 13:12:35 2001//
 /mkinstalldirs/1.1/Wed Apr  4 13:12:35 2001//
-D/bin////
-D/config////
-D/doc////
-D/examples////
-D/lib////
-D/src////
-D/testsuite////
+D
