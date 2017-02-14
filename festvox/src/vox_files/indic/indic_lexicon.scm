@@ -675,25 +675,24 @@ context"
    ((and (cdr phones) ;; nX followed by velar becomes nG
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "v"))
-    (cons 'N (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
+    (cons 'N (indic_nasal_postfixes (cdr phones))))
    ((and (cdr phones) ;; nX followed by palatal becomes n~
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "p"))
-    (cons 'n~ (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
+    (cons 'n~ (indic_nasal_postfixes (cdr phones))))
    ((and (cdr phones) ;; nX followed by alveolar becomes nr
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "a"))
-    (cons 'nr (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
+    (cons 'nr (indic_nasal_postfixes (cdr phones))))
    ((and (cdr phones) ;; nX followed by dental becomes nB
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "d"))
-    (cons 'nB (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
+    (cons 'nB (indic_nasal_postfixes (cdr phones))))
    ((and (cdr phones) ;; nX followed by labial becomes m
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "l"))
-    (cons 'm (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
-   ((and (cdr phones) ;; all other nX become nB
-         (eq 'nX (car phones)))
+    (cons 'm (indic_nasal_postfixes (cdr phones))))
+   ((eq 'nX (car phones))
     (set! replacement 'nB)
     (if (eq lex:language_variant "kan") ;; Default anuswar in kannada is "m"
         (set! replacement 'm))
@@ -1164,10 +1163,10 @@ Return pronunciation of word not in lexicon."
 		(set! phones (reverse (indic_delete_medial_schwa (reverse phones)))))
         ;; language specific postfixes
 	(cond
-         ((eq lex:language_variant "hin")
+         ((string-equal lex:language_variant "hin")
           (set! phones (hindi_schwa_postfixes phones))
           )
-         ((eq lex:language_variant "tam")
+         ((string-equal lex:language_variant "tam")
           (set! phones (tamil_voicing_postfixes phones))
           (set! phones (tamil_u_postfixes phones))
           (set! phones (tamil_rr_postfixes phones))
