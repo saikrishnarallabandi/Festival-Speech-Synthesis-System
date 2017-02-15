@@ -280,6 +280,18 @@ int cst_cg_dump_voice(const cst_voice *v,const cst_string *filename)
                           get_param_string(v->features,"build_date","unknown"));
     cst_cg_write_voice_feature(fd, "description", 
                           get_param_string(v->features,"description","unknown"));
+    /* These three must be set as string feature 
+       (though are interpreted as floats) */
+    if (get_param_string(v->features,"int_f0_target_mean",NULL))
+        cst_cg_write_voice_feature(fd, "int_f0_target_mean", 
+            get_param_string(v->features,"int_f0_target_mean",NULL));
+    if (get_param_string(v->features,"int_f0_target_stddev",NULL))
+        cst_cg_write_voice_feature(fd, "int_f0_target_stddev", 
+            get_param_string(v->features,"int_f0_target_stddev",NULL));
+    if (get_param_string(v->features,"duration_stretch",NULL))
+        cst_cg_write_voice_feature(fd, "duration_stretch", 
+            get_param_string(v->features,"duration_stretch",NULL));
+        
     cst_cg_write_voice_feature(fd, "copyright", 
                           get_param_string(v->features,"copyright","unknown"));
 
