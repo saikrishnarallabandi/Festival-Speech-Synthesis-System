@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="441.10001"
+   height="500"
+   id="svg2220"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.3.1 r9886"
+   version="1.0"
+   sodipodi:docname="testvox_logo.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2222">
+    <linearGradient
+       id="linearGradient5569"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5571" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="-72.953013"
+     inkscape:cy="85.82085"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     showgrid="false"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2225">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:date>2007-11-01</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Gamma-aspirin</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>cc-by-sa/GFDL</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:description>autotraced by Inkscape</dc:description>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-121.85712,-215.69071)">
+    <path
+       style="fill:#000000"
+       d="m 186.85874,533.15505 0,-100.12768 27.75,0.32374 c 26.89145,0.31371 27.89856,0.3974 32.55161,2.70494 2.64089,1.30967 5.94132,3.87545 7.3343,5.70174 5.40939,7.09207 5.36409,6.3183 5.36409,91.62681 0,53.55334 -0.34961,80.28667 -1.08832,83.22038 -1.36597,5.42475 -5.86781,10.95989 -11.25841,13.84253 -3.96417,2.11986 -5.43947,2.23496 -32.40327,2.5281 l -28.25,0.30712 0,-100.12768 z m 253.51105,98.4126 c -2.19392,-0.80295 -5.67279,-3.10414 -7.73082,-5.11376 -7.09716,-6.93019 -6.85776,-3.48293 -6.55315,-94.36243 l 0.27292,-81.42297 2.21551,-4.14255 c 3.20168,-5.98651 9.53733,-11.03149 15.44471,-12.29839 2.72855,-0.58517 16.10279,-1.05906 29.889,-1.05906 l 24.95078,0 0,100 0,100 -27.25,-0.0705 c -21.26283,-0.055 -28.12642,-0.39123 -31.23895,-1.53038 z M 121.86694,481.41849 c 0.005,-37.83434 0.44023,-70.52042 1.00551,-75.45378 3.09008,-26.9681 19.32516,-68.3487 37.78043,-96.29622 22.04269,-33.38008 48.09611,-56.43876 82.49323,-73.01097 20.81544,-10.02868 40.8985,-15.81651 68.21263,-19.65851 15.05258,-2.11729 52.30775,-1.5793 69.06202,0.99731 40.53104,6.23318 73.73572,20.89133 103.15171,45.53615 32.98291,27.6332 56.75169,64.97962 72.00435,113.13602 6.8297,21.56305 6.62698,18.71175 7.02076,98.75 l 0.35793,72.75 -19.54839,0 -19.54838,0 0,-69.04216 c 0,-58.75728 -0.23318,-70.17105 -1.56533,-76.62041 -5.06056,-24.49975 -23.42363,-62.75083 -39.76749,-82.83743 -22.80943,-28.03278 -49.29813,-46.53136 -81.48948,-56.90877 -29.54228,-9.52344 -67.33262,-11.19373 -100.44842,-4.4397 -43.79564,8.9322 -81.63266,35.2299 -107.69166,74.84847 -11.27432,17.14081 -22.60435,42.03889 -28.74325,63.16415 l -2.71295,9.33585 -0.33429,71.25 -0.33428,71.25 -19.45643,0 -19.45642,0 0.008,-66.75 z"
+       id="path2231"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:12.60000229;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect5581"
+       width="214.28571"
+       height="37.142857"
+       x="235.26427"
+       y="671.40503" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:14.33232403;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path5587"
+       sodipodi:cx="242.85715"
+       sodipodi:cy="116.42857"
+       sodipodi:rx="62.857143"
+       sodipodi:ry="89.285713"
+       d="m 305.71429,116.42857 a 62.857143,89.285713 0 1 1 -125.71429,0 62.857143,89.285713 0 1 1 125.71429,0 z"
+       transform="matrix(0.79545455,0,0,2.448,149.2253,193.53071)" />
+  </g>
+</svg>

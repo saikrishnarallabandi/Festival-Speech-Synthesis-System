@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <title>TestVox Server Administration</title>
+    <link rel="stylesheet" href="/static/css/testvox/testvox.css"
+	  type="text/css" />
+  </head>
+  <body>
+    <div id="header-container">
+      <div id="header" class="wrapper clearfix">
+	<img src="/static/images/testvox_logo.png" class="" alt="Logo"
+	     id="header-logo" />
+	<h1 id="title">TestVox Server Administration</h1>
+      </div>
+    </div>
+    <div id="main-container">
+      <div id="main" class="wrapper clearfix">
+	<div>
+	  <table class="bordered">
+	    <tr>
+	      <td colspan="4" align="center">
+		<h2>Uploaded Experiments</h2>
+	      </td>
+	    </tr>
+	    <tr>
+	      <th>Experiment Identifier</th>
+	      <th>Experiment Description</th>
+	      <th>Creation Time</th>
+	      <th>Links</th>
+	    </tr>
+	    {% for exp in exp_list %}
+	    <tr>
+	      <td>{{ exp.experiment_uid }}</td>
+	      <td>
+			{{ exp.description }}
+			{% if exp.error_corrupt_file %}
+			<br />
+			<p style="color:red; font-weight: bold">
+			  Error: Experiment is Corrupt. Please Delete and Upload Again
+			</p>
+			{% endif %}
+
+
+		  </td>
+	      <td>{{ exp.upload_time }}</td>
+		  <td>
+			{% if not exp.error_corrupt_file %}
+
+			<a href="/begin?exp_id={{ exp.experiment_uid }}">Local URL</a> <br />
+			  {% if exp.num_hits > 0 %}
+			   <a href="/admin?page=download_amturk_config&exp_id={{ exp.experiment_uid }}">MTurk Config</a> <br />
+			    MTurk URL:
+			    {% for i in range(exp.num_hits) %}
+			      <a href="/begin?exp_id={{ exp.experiment_uid }}&subtask_id={{ i }}&username=testvox_test">[{{ i }}]</a>
+			    {% endfor %}
+			   <br />
+			  {% endif %}
+
+			  <a href="/admin?page=download_results&exp_id={{ exp.experiment_uid }}">Results</a>
+			  &nbsp;&nbsp;
+			{% endif %}
+
+			<a href="/admin?page=download&exp_id={{ exp.experiment_uid }}">
+			  .zip
+			</a>
+			&nbsp;&nbsp;
+			<a href="/admin?page=delete&exp_id={{ exp.experiment_uid }}"
+			   onclick="return confirm('Can not undo delete. Sure?');" >
+			  Delete
+			</a>
+	      </td>
+	    </tr>
+	    {% endfor %}
+	  </table>
+	</div>
+	<div id="block">
+	  <h2>Upload New Experiment</h2>
+	  <form action="/admin?page=upload_experiment"
+		method="post" enctype="multipart/form-data">
+	    <table class="outborder">
+	      <tr>
+		<td>Short Description</td>
+		<td><input type="text" name="description" value="" /></td>
+	      </tr>
+	      <tr>
+		<td>File</td>
+		<td><input type="file" name="exp_file" /></td>
+	      </tr>
+	      <tr>
+		<td colspan=2><input type="submit" /></td>
+	      </tr>
+	    </table>
+	  </form>
+	</div>
+	<div>
+	  {% if error %}
+	  <p style="color:red; font-weight: bold">
+	    Error Ocurred: {{ error }}
+	  </p>
+	  {% endif %}
+	</div>
+      </div>
+    </div>
+  </body>
+</html>

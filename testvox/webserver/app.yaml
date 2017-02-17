@@ -1,0 +1,30 @@
+application: testvox-appname
+version: 1-0-dev
+runtime: python27
+api_version: 1
+threadsafe: true
+
+default_expiration: "1d"
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?\..*
+
+handlers:
+- url: /favicon.ico
+  mime_type: image/png
+  static_files: views/static/images/favicon.ico
+  upload: views/static/images/favicon.ico
+
+- url: /static
+  static_dir: views/static
+  expiration: "365d"
+
+- url: /.*
+  script: testvox_server.app

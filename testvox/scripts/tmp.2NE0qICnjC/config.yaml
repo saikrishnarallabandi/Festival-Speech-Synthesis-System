@@ -1,0 +1,70 @@
+
+testvox_config:
+  base_media_directory: mp3
+  pagetitle: A/B Preference Task
+
+testvox_steps:
+  - name: listening_task
+    task_type: abtask
+
+    instruction: >-
+      Listen to the two audio clips below, and 
+      tell us which one you prefer.
+
+    directory_a: a_dir
+    directory_b: b_dir
+    ab_randomize: Yes  # Randomize order of A-clip and B-clip presented to participants
+    audio_autoplay: No
+    data_randomize: Yes  # Present the different data files in random order
+
+    data:
+      - filename: HI_ML_10.mp3
+      - filename: HI_ML_11.mp3
+      - filename: HI_ML_12.mp3
+      - filename: HI_ML_13.mp3
+      - filename: HI_ML_14.mp3
+      - filename: HI_ML_15.mp3
+      - filename: HI_ML_16.mp3
+      - filename: HI_ML_17.mp3
+      - filename: HI_ML_18.mp3
+      - filename: HI_ML_19.mp3
+      - filename: HI_ML_1.mp3
+      - filename: HI_ML_20.mp3
+      - filename: HI_ML_21.mp3
+      - filename: HI_ML_22.mp3
+      - filename: HI_ML_23.mp3
+      - filename: HI_ML_24.mp3
+      - filename: HI_ML_25.mp3
+      - filename: HI_ML_26.mp3
+      - filename: HI_ML_27.mp3
+      - filename: HI_ML_28.mp3
+      - filename: HI_ML_29.mp3
+      - filename: HI_ML_2.mp3
+      - filename: HI_ML_30.mp3
+      - filename: HI_ML_31.mp3
+      - filename: HI_ML_32.mp3
+      - filename: HI_ML_33.mp3
+      - filename: HI_ML_34.mp3
+      - filename: HI_ML_35.mp3
+      - filename: HI_ML_36.mp3
+      - filename: HI_ML_37.mp3
+      - filename: HI_ML_38.mp3
+      - filename: HI_ML_39.mp3
+      - filename: HI_ML_3.mp3
+      - filename: HI_ML_40.mp3
+      - filename: HI_ML_41.mp3
+      - filename: HI_ML_42.mp3
+      - filename: HI_ML_43.mp3
+      - filename: HI_ML_44.mp3
+      - filename: HI_ML_45.mp3
+      - filename: HI_ML_46.mp3
+      - filename: HI_ML_47.mp3
+      - filename: HI_ML_48.mp3
+      - filename: HI_ML_49.mp3
+      - filename: HI_ML_4.mp3
+      - filename: HI_ML_50.mp3
+      - filename: HI_ML_5.mp3
+      - filename: HI_ML_6.mp3
+      - filename: HI_ML_7.mp3
+      - filename: HI_ML_8.mp3
+      - filename: HI_ML_9.mp3
