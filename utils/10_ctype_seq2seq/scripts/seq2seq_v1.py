@@ -92,7 +92,7 @@ class Attention:
         c = 1
         for word in output:
 	   c += 1
-           print word
+           #print "Processing ", word
            # w1dt can be computed and cached once for the entire decoding phase
            w1dt = w1dt or w1 * input_mat
            vector = dy.concatenate([self.attend(input_mat, s, w1dt), last_output_embeddings])
@@ -103,15 +103,16 @@ class Attention:
            #print "Back"
            #dur_loss.append(dloss)
            out_vector = w * s.output() + b
-           print out_vector
+           #print out_vector
            probs = dy.softmax(out_vector)
            last_output_embeddings = self.output_lookup[word]
-           print "Got embeddings"
-           print " Picking", dy.pick(probs, word).value()
-           loss.append(-dy.log(dy.pick(probs, word)))
-           print -dy.log(dy.pick(probs, word)).value()
+           #print "Got embeddings"
+           #print " Picking "
+           #print dy.pickneglogsoftmax(probs, word)
+           loss.append(pickneglogsoftmax(probs, word))
+           #print pickneglogsoftmax(probs, word).value()
         loss = dy.esum(loss)
-        print  "Gave loss"
+        #print  "Gave loss"
         return loss
       
      def generate(self, sentence):
@@ -161,7 +162,7 @@ class Attention:
         #embedded = self.embed_sentence(sentence)
         encoded = self.encode_sentence(sentence)
         end_token = '</s>'
-        print "Returning"
+        #print "Returning"
         return self.decode(encoded, target, end_token)
       
 	
@@ -532,8 +533,8 @@ class nnlm:
 	      if word == '<s>' or '</s>':
 	           pass
 	      else: 
-	        word = tokenizer.tokenize(word)[0]
-	        
+	        #word = tokenizer.tokenize(word)[0]
+	        pass
               if word in self.unigrams:
 		self.unigrams[word] = self.unigrams[word] + 1
               else:

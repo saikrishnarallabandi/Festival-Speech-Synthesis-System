@@ -35,7 +35,7 @@ print "Created phone arrays"
 '''
 
 src_filename = 'train.en-de.low.en'
-tgt_filename = 'train.en-de.low.en'
+tgt_filename = 'train.en-de.low.de'
 
 lm = LM()
 train_dict,src_wids = lm.read_corpus(src_filename)
@@ -45,6 +45,17 @@ src_i2w = {i:w for w,i in src_wids.iteritems()}
 tgt_i2w = {i:w for w,i in tgt_wids.iteritems()}
 
 print "Prepared index to words"
+
+f = open('src_wids','w')
+for w in src_wids:
+   f.write(w + ' ' + str(src_wids[w]) + '\n')
+f.close()   
+
+
+f = open('tgt_wids','w')
+for w in tgt_wids:
+   f.write(w + ' ' + str(tgt_wids[w]) + '\n')
+f.close()
 
 import dynet as dy
 from seq2seq_v1 import Attention as RED 
@@ -91,17 +102,18 @@ for epoch in range(100):
  random.shuffle(sentences) 
  c = 1
  for instance in sentences:
-  print "Processing ", instance
+  #print "Processing ", instance
   src_sentence, tgt_sentence = instance[0], instance[1]
   src_sentence = src_sentence.split() 
+  tgt_sentence = tgt_sentence.split()
   if len(src_sentence) > 2:  
     #print "This is a valid sentence"
     c = c+1
-    if c%1000 == 1:
+    if c%200 == 1:
          #print "I will print trainer status now"
          trainer.status()
          print loss / words
-         print "Duration Loss: ", dloss , " for " , words
+         #print "Duration Loss: ", dloss , " for " , words
          loss = 0
          words = 0
          dloss = 0
@@ -137,9 +149,11 @@ for epoch in range(100):
     isent = get_indexed(src_sentence,1)
     idur = get_indexed(tgt_sentence,0)
     #print isent
-    print "I will try to calculate error now"
+    #print "I will try to calculate error now"
+    #print "Processing ", isent
+    #print "Processing ", idur
     error = red.get_loss(isent,idur)
-    print "Obtained loss "
+    #print "Obtained loss "
     #print error
     loss += error.value()
     #dloss += derror.value()
