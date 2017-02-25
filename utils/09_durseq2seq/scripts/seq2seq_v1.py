@@ -18,7 +18,7 @@ class Attention:
        self.model = model
        #self.trainer = dy.SimpleSGDTrainer(self.model)
        self.layers = 1
-       self.embed_size = 20
+       self.embed_size = 50
        self.hidden_size = 128
        self.state_size = 128
        self.src_vocab_size = vocab_size
@@ -70,7 +70,7 @@ class Attention:
      def test_duration(self, state, idx):
         dw = dy.parameter(self.duration_weight)
         db = dy.parameter(self.duration_bias)
-        duration = dw * state.output() + db
+        duration = dy.rectify(dw * state.output() + db)
         return dy.squared_norm(duration - float(idx))
 
      def decode(self,  vectors, output, end_token,durs):
@@ -143,7 +143,7 @@ class Attention:
                   count_EOS += 1
                   continue
 	      res.append(next_word)
-	      dur_g.append(dur_pred)
+	      dur_g.append(dy.rectify(dur_pred))
 
               #out += int2char[next_word]
         return res, dur_g

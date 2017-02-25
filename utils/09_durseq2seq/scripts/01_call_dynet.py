@@ -28,7 +28,7 @@ i2w = {i:w for w,i in wids.iteritems()}
 import dynet as dy
 from seq2seq_v1 import Attention as RED 
 model = dy.Model()
-M = model.add_lookup_parameters((len(wids), 20))
+M = model.add_lookup_parameters((len(wids), 50))
 red =  RED(len(wids), model, M)
 trainer = dy.SimpleSGDTrainer(model)
 
@@ -67,17 +67,22 @@ for epoch in range(100):
 	     print ' '.join(k for  k in sentence)
 	     isent = get_indexed(sentence)
 	     resynth,dur_gen = red.generate(isent)
+              
              #samp = red.sample(nchars= len(sentence),stop=wids["</s>"])
-             #print(" ".join([i2w[c] for c in resynth]).strip())
-             #print "Original: ", ' '.join(str(float(k)).zfill(3) for k in durs)
-             #print "Synthesized: ", ' '.join(str(float(k.value())).zfill(3) for k in dur_gen)
+             print(" ".join([i2w[c] for c in resynth]).strip())
+             durs = durs[0:5]
+             
+             print "Original: ", ' '.join(str(float(k)).zfill(3) for k in durs)
+             print "Synthesized: ", ' '.join(str(float(dur_gen[k].value())).zfill(3) for k in range(0,5))
              synth_durs = [float(k.value()) for k in dur_gen]
              durs = np.asarray(durs, dtype=float)
              synth_durs = np.asarray(durs, dtype=float)
              #print "Mean Squared Error is: ", np.linalg.norm(durs - synth_durs) / np.sqrt(len(durs)) 			   
-             r =  dur_gen - durs
-             ms = 0
+             ##r =  dur_gen - durs
+             ##ms = 0
              try:
+              r = dur_gen - durs
+              ms = 0
               for k in r:
 	        ms += k.value() * k.value()
 	      print "Root Mean Squared error: ", sqrt(ms)
