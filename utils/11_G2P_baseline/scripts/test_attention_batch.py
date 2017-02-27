@@ -32,7 +32,7 @@ input_dim = 128
 embedding_dim = 128
 src_vocab_size = len(src_wids)
 tgt_vocab_size = len(tgt_wids)
-minibatch_size = 1
+minibatch_size = 16
 
 src_lookup = model.add_lookup_parameters((len(src_wids), embedding_dim))
 tgt_lookup = model.add_lookup_parameters((len(tgt_wids), embedding_dim))
@@ -109,10 +109,11 @@ for epoch in range(100):
   if 3 > 2:  
     #print "This is a valid sentence"
     c = c+1
-    print c, " out of ", len(train_order)
-    print sentences[sentence_id]
+    #print c, " out of ", len(train_order)
+    #print sentences[sentence_id]
     if c%250 == 1:
     #     #print "I will print trainer status now"
+         print " Processed ", c, " batches out of ", len(train_order)
          trainer.status()
          print "Loss: ", loss / words
          print "Perplexity: ", math.exp(loss / words)
