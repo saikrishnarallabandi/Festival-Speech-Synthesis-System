@@ -1,0 +1,745 @@
+nohup: ignoring input
+Created phone arrays
+[dynet] random seed: 2412109227
+[dynet] allocating memory: 512MB
+[dynet] memory allocation done.
+[epoch=0 eta=0.1 clips=999 updates=999] 2.97778064544
+Duration Loss:  1332.81901327  for  34983
+pau hh ao r s ax z ae n d r ay f ax l z hh ae d b ih n hh er t oy z pau k ae m p ae n d t r ey l hh er n er s er iy pau
+Root Mean Squared error:  1.15876648924
+
+
+('ITER', 0, 12168.537645339966)
+
+
+[epoch=0 eta=0.1 clips=133 updates=133] [epoch=1 eta=0.1 clips=999 updates=999] 2.28688167353
+Duration Loss:  270.723906808  for  39658
+pau ae n d m ax k d uw g ax l w aa z pau b ih aa n d dh ax t r ey l pau w ih dh th r iy w iy k s t ax s p eh r pau
+Root Mean Squared error:  0.390619284868
+
+
+('ITER', 1, 6895.829236030579)
+
+
+[epoch=1 eta=0.1 clips=133 updates=133] [epoch=2 eta=0.1 clips=999 updates=999] 1.08690711697
+Duration Loss:  123.09041719  for  39347
+pau pau sh iy w aa z hh ih z n aw pau f er eh v er pau
+Root Mean Squared error:  0.307416527245
+
+
+('ITER', 2, 3805.1359577178955)
+
+
+[epoch=2 eta=0.1 clips=132 updates=133] [epoch=3 eta=0.1 clips=998 updates=999] 0.573530271288
+Duration Loss:  256.855973188  for  39877
+pau sh ae l ay k ae r iy y uw pau
+Root Mean Squared error:  0.395297800471
+
+
+('ITER', 3, 2120.2091711461544)
+
+
+[epoch=3 eta=0.1 clips=132 updates=133] [epoch=4 eta=0.1 clips=989 updates=999] 0.353545991738
+Duration Loss:  1283.35202257  for  39284
+pau t uw y ih r z ax g ow ay g ey v ah p s ih v ax l ih z ey sh ax n pau f ao r dh ih s pau
+Root Mean Squared error:  1.19780871641
+
+
+('ITER', 4, 1534.8266260549426)
+
+
+[epoch=4 eta=0.1 clips=131 updates=133] [epoch=5 eta=0.1 clips=996 updates=999] 0.194142570546
+Duration Loss:  2262.9093371  for  39650
+pau w ay t l eh g hh ao r n z pau s eh d m ih s ah s pau m ao r t ih m er pau
+Root Mean Squared error:  1.00590287219
+
+
+('ITER', 5, 760.4394528344274)
+
+
+[epoch=5 eta=0.1 clips=132 updates=133] [epoch=6 eta=0.1 clips=995 updates=999] 0.118582243449
+Duration Loss:  2298.03196695  for  39496
+pau n ow p pau n aa t dh ax s l ay t ax s t ay d iy ax pau
+Root Mean Squared error:  0.997466967569
+
+
+('ITER', 6, 315.9595933333039)
+
+
+[epoch=6 eta=0.1 clips=130 updates=133] [epoch=7 eta=0.1 clips=981 updates=999] 0.0572053315473
+Duration Loss:  2426.95836389  for  39766
+pau dh ax f ao r th pau ae n d pau f ih f th pau d ey z pau p ae s t pau w ih th aw t eh n iy d ih v eh l ax p m ax n t s pau
+
+
+('ITER', 7, 261.3340572528541)
+
+
+[epoch=7 eta=0.1 clips=132 updates=133] [epoch=8 eta=0.1 clips=990 updates=999] 0.0444090987223
+Duration Loss:  2447.14274782  for  39263
+pau dh ih s pau dh ax ay er n hh iy l pau f ao r s ao pau ae n d l ey d ih t s s k iy m z pau ax k ao r d ih ng l iy pau
+Root Mean Squared error:  1.18376088192
+
+
+('ITER', 8, 138.10784753784537)
+
+
+[epoch=8 eta=0.1 clips=132 updates=133] [epoch=9 eta=0.1 clips=987 updates=999] 0.0265838447682
+Duration Loss:  2536.493325  for  39713
+pau f r ah m dh ae t pau m ow m ax n t hh ih z f r eh n d sh ih p f ao r b eh l iy z t er n z pau t ax hh ey t r ax d ae n d jh eh l ax s iy pau
+Root Mean Squared error:  2.00380915419
+
+
+('ITER', 9, 164.52675846219063)
+
+
+[epoch=9 eta=0.1 clips=132 updates=133] [epoch=10 eta=0.1 clips=990 updates=999] 0.0325114388345
+Duration Loss:  2515.18294337  for  39553
+pau pau dh ax f l aw er ah v dh ax aa r t ih s t ih k pau ae n d ih n t ax l eh k ch uw ax l w er l d pau w er r eh v ax l uw sh ax n ax s t s pau
+Root Mean Squared error:  1.872012767
+
+
+('ITER', 10, 319.53376083076)
+
+
+[epoch=10 eta=0.1 clips=131 updates=133] [epoch=11 eta=0.1 clips=992 updates=999] 0.0242274221898
+Duration Loss:  2576.77426854  for  39625
+pau dh ey hh ae d n ow f ih k s t v ae l y uw z pau t ax b iy ao l t er d b ay ae jh ax k t ih v z pau ae n d ae d v er b z pau
+Root Mean Squared error:  2.47675996342
+
+
+('ITER', 11, 23.78752128407359)
+
+
+[epoch=11 eta=0.1 clips=132 updates=133] [epoch=12 eta=0.1 clips=995 updates=999] 0.0105542586334
+Duration Loss:  2602.6662731  for  39882
+pau t ax m ay d ih r ax s t pau ae n d ao l w ey z ax p r iy sh iy ey t ih d f r eh n d pau ay s ax b m ih t pau m ay s eh l f pau
+Root Mean Squared error:  1.81240822522
+
+
+('ITER', 12, 21.99560607969761)
+
+
+[epoch=12 eta=0.1 clips=131 updates=133] [epoch=13 eta=0.1 clips=994 updates=999] 0.0158034511438
+Duration Loss:  2571.9225294  for  39477
+pau pau ih t w aa z ow v er pau w eh n hh iy m ey d hh ih z pau w ey pau th r uw dh ax r ih ng ah v s p eh k t ey t er z pau
+
+
+('ITER', 13, 34.58353618532419)
+
+
+[epoch=13 eta=0.1 clips=131 updates=133] [epoch=14 eta=0.1 clips=989 updates=999] 0.0259302557768
+Duration Loss:  2583.35339967  for  39590
+pau v eh r iy f y uw p iy p ax l pau n uw ah v dh ax eh g z ih s t ax n s ah v dh ih s l ao pau
+Root Mean Squared error:  1.71316450416
+
+
+('ITER', 14, 155.9482992272824)
+
+
+[epoch=14 eta=0.1 clips=129 updates=133] [epoch=15 eta=0.1 clips=989 updates=999] 0.0234324955416
+Duration Loss:  2548.48769964  for  39351
+pau dh eh r f ao r s ih z w er ao l r eh d iy m uw v ih ng pau ih n t uw dh ax n ao r th pau k ah n t r iy pau
+
+
+('ITER', 15, 11.104562512598932)
+
+
+[epoch=15 eta=0.1 clips=132 updates=133] [epoch=16 eta=0.1 clips=990 updates=999] 0.00845752165207
+Duration Loss:  2598.06712839  for  39715
+pau dh ax n eh k s t th ih ng t ax w aa ch aw t pau f ao r pau ih z b eh d s ao r z pau
+
+
+('ITER', 16, 34.98099255794659)
+
+
+[epoch=16 eta=0.1 clips=133 updates=133] [epoch=17 eta=0.1 clips=990 updates=999] 0.00828538272951
+Duration Loss:  2595.55578887  for  39354
+pau dh eh r w aa z n ah th ih ng m ao r pau ih k s eh p t ax l aa r jh ih ng k b l aa t pau pau ah n d er dh ax w er d z pau
+
+
+('ITER', 17, 8.686915406957269)
+
+
+[epoch=17 eta=0.1 clips=133 updates=133] [epoch=18 eta=0.1 clips=993 updates=999] 0.00295350916966
+Duration Loss:  2619.01243433  for  39687
+pau pau dh ah s hh iy t er n d dh ax t eh n ax t s pau ae n d jh aa r g ax n ah v pau s ay k aa l ax jh iy b ae k aa n m iy pau
+Root Mean Squared error:  1.42238919008
+
+
+('ITER', 18, 8.303644673898816)
+
+
+[epoch=18 eta=0.1 clips=133 updates=133] [epoch=19 eta=0.1 clips=994 updates=999] 0.00258806658464
+Duration Loss:  2610.49936172  for  39693
+pau pau pau w ih dh ih n hh ih m s eh l f pau hh iy k ao l d ih t pau n ow pau l ao ng g er hh ih z ow n pau
+Root Mean Squared error:  1.75832633769
+
+
+('ITER', 19, 8.696205945685506)
+
+
+[epoch=19 eta=0.1 clips=133 updates=133] [epoch=20 eta=0.1 clips=996 updates=999] 0.0157851264922
+Duration Loss:  2580.56007552  for  39193
+pau pau y uw w er pau eh n g ey jh d pau
+Root Mean Squared error:  0.853224800533
+
+
+('ITER', 20, 44.69636796042323)
+
+
+[epoch=20 eta=0.1 clips=132 updates=133] [epoch=21 eta=0.1 clips=991 updates=999] 0.00637302658882
+Duration Loss:  2654.21808194  for  39845
+pau pau m aa n w eh l hh ae d w ah n b ih s eh t ih ng pau s ih n pau
+Root Mean Squared error:  0.985713175197
+
+
+('ITER', 21, 26.10798468440771)
+
+
+[epoch=21 eta=0.1 clips=133 updates=133] [epoch=22 eta=0.1 clips=988 updates=999] 0.00799259299619
+Duration Loss:  2619.98123275  for  39619
+pau pau dh ax l ey s pau w aa z ah v ax d eh l ax k ax t pau ay v er iy k ah l er pau f ey n t l iy t ih n t ih d w ih dh y eh l ow pau
+Root Mean Squared error:  1.43734724225
+
+
+('ITER', 22, 7.105699095875025)
+
+
+[epoch=22 eta=0.1 clips=133 updates=133] [epoch=23 eta=0.1 clips=994 updates=999] 0.00394021279407
+Duration Loss:  2609.65631324  for  39488
+pau b ow th jh aa n iy ae n d hh ih z pau m ah dh er pau sh ah f ax l d dh eh r f iy t pau ae z dh ey w ao k t pau
+
+
+('ITER', 23, 81.15146715566516)
+
+
+[epoch=23 eta=0.1 clips=133 updates=133] [epoch=24 eta=0.1 clips=998 updates=999] 0.00448490761011
+Duration Loss:  2626.12825459  for  39766
+pau dh ax w iy k s hh ae d g ao n b ay pau ae n d n ow ow v er t ae k t s pau hh ae d b ih n ax t eh m p t ax d pau
+Root Mean Squared error:  1.50247507382
+
+
+('ITER', 24, 80.7396735609509)
+
+
+[epoch=24 eta=0.1 clips=131 updates=133] [epoch=25 eta=0.1 clips=997 updates=999] 0.00391528266578
+Duration Loss:  2626.71312737  for  39437
+pau dh ey jh ah s t l ey ao f ih n dh ax b uh sh pau ae n d p l ah g d pau ax w ey pau
+Root Mean Squared error:  1.47439623239
+
+
+('ITER', 25, 39.09011337347329)
+
+
+[epoch=25 eta=0.1 clips=132 updates=133] [epoch=26 eta=0.1 clips=998 updates=999] 0.00713587606269
+Duration Loss:  2635.01877737  for  39619
+pau pau ay hh ae d f er g aa t ax n dh eh r eh g z ih s t ax n s pau
+Root Mean Squared error:  1.2293948712
+
+
+('ITER', 26, 6.213157517835498)
+
+
+[epoch=26 eta=0.1 clips=132 updates=133] [epoch=27 eta=0.1 clips=988 updates=999] 0.0108021670035
+Duration Loss:  2631.68451387  for  39582
+pau ow n l iy dh ax ch ae n s s aw n d pau hh ae d l eh d hh ih m t ax ax b z er v dh eh m pau
+Root Mean Squared error:  1.74171067372
+
+
+('ITER', 27, 11.764986848458648)
+
+
+[epoch=27 eta=0.1 clips=132 updates=133] [epoch=28 eta=0.1 clips=987 updates=999] 0.0148040606609
+Duration Loss:  2615.32290646  for  39778
+pau ih t w aa z pau l ay k dh ax b iy t ih ng ah v hh uh f s pau
+Root Mean Squared error:  1.20264285794
+
+
+('ITER', 28, 6.783417864702642)
+
+
+[epoch=28 eta=0.1 clips=131 updates=133] [epoch=29 eta=0.1 clips=995 updates=999] 0.0166384237967
+Duration Loss:  2622.83447233  for  39355
+pau f r eh sh pau m iy t pau dh ey f ey l d t ax ax b t ey n pau
+Root Mean Squared error:  1.24136337004
+
+
+('ITER', 29, 51.52567760180682)
+
+
+[epoch=29 eta=0.1 clips=130 updates=133] [epoch=30 eta=0.1 clips=997 updates=999] 0.00998992354825
+Duration Loss:  2632.48615728  for  39512
+pau dh eh n pau ae n d ae t s ah p er pau hh iy t r ay d t ax f ae dh ax m hh er pau
+Root Mean Squared error:  0.899250885345
+
+
+('ITER', 30, 107.70316340588033)
+
+
+[epoch=30 eta=0.1 clips=130 updates=133] [epoch=31 eta=0.1 clips=994 updates=999] 0.00407876551397
+Duration Loss:  2622.79770125  for  39487
+pau pau dh ax aa l ax g aa r k iy w aa n t ax d v ay ax l ax n s pau ae n d ih t s eh t ih t s pau ey jh ax n t s p r ax v ao k ax t uh r z t ax w er k pau
+Root Mean Squared error:  2.39164040758
+
+
+('ITER', 31, 33.63516132719815)
+
+
+[epoch=31 eta=0.1 clips=133 updates=133] [epoch=32 eta=0.1 clips=997 updates=999] 0.00193838540131
+Duration Loss:  2623.39840254  for  39694
+pau dh ow dh ax er ao r ax s t ih l f l ey m d pau pau ax n ah dh er d ey hh ae d b ih g ah n pau
+Root Mean Squared error:  1.53448552148
+
+
+('ITER', 32, 5.776890000328422)
+
+
+[epoch=32 eta=0.1 clips=133 updates=133] [epoch=33 eta=0.1 clips=996 updates=999] 0.0127486635063
+Duration Loss:  2643.02650477  for  39547
+pau pau ao l r eh d iy hh iy hh ae d b ih g ah n b aa r ow ih ng pau f r ah m dh ax b ae ng k s pau
+Root Mean Squared error:  1.59682817994
+
+
+('ITER', 33, 72.20268125832081)
+
+
+[epoch=33 eta=0.1 clips=133 updates=133] [epoch=34 eta=0.1 clips=992 updates=999] 0.0044238020982
+Duration Loss:  2646.29719974  for  39741
+pau pau n aw pau p l iy z g ih v ax p l ey n s t ey t m ax n t ah v w ah t ax k er d pau
+Root Mean Squared error:  1.46177846445
+
+
+('ITER', 34, 5.128031142055988)
+
+
+[epoch=34 eta=0.1 clips=133 updates=133] [epoch=35 eta=0.1 clips=997 updates=999] 0.00407819757635
+Duration Loss:  2646.62403864  for  39689
+pau pau y uw w er m ey k ih ng dh eh m t ao k sh aa p pau pau r uw th ch aa r jh d hh ih m pau
+
+
+('ITER', 35, 5.324244853109121)
+
+
+[epoch=35 eta=0.1 clips=133 updates=133] [epoch=36 eta=0.1 clips=999 updates=999] 0.00112208685348
+Duration Loss:  2622.62763077  for  39424
+pau ao r pau hh ae v dh ey ao l r eh d iy d ih v ay z d pau w ah n pau
+Root Mean Squared error:  1.59866049557
+
+
+('ITER', 36, 5.415311466902494)
+
+
+[epoch=36 eta=0.1 clips=133 updates=133] [epoch=37 eta=0.1 clips=996 updates=999] 0.00822798935902
+Duration Loss:  2646.46772283  for  39571
+pau pau dh ax f l aw er ah v dh ax aa r t ih s t ih k pau ae n d ih n t ax l eh k ch uw ax l w er l d pau w er r eh v ax l uw sh ax n ax s t s pau
+Root Mean Squared error:  1.34206095819
+
+
+('ITER', 37, 24.803585337474942)
+
+
+[epoch=37 eta=0.1 clips=130 updates=133] [epoch=38 eta=0.1 clips=995 updates=999] 0.00429644717112
+Duration Loss:  2618.06521364  for  39548
+pau pau ow n l iy ih t ih z s ow w ah n d er f ax l pau s ow ao l m ow s t ih m p aa s ax b ax l pau t ax b ih l iy v pau
+Root Mean Squared error:  1.13148711801
+
+
+('ITER', 38, 153.66079013608396)
+
+
+[epoch=38 eta=0.1 clips=132 updates=133] [epoch=39 eta=0.1 clips=992 updates=999] 0.0133300687858
+Duration Loss:  2648.20769092  for  39584
+pau dh eh r f ao r s ih z w er ao l r eh d iy m uw v ih ng pau ih n t uw dh ax n ao r th pau k ah n t r iy pau
+
+
+('ITER', 39, 221.31726993620396)
+
+
+[epoch=39 eta=0.1 clips=133 updates=133] [epoch=40 eta=0.1 clips=992 updates=999] 0.00795277745871
+Duration Loss:  2622.11781554  for  39589
+pau pau iy l ay hh aa r d ih ng ae s k t pau ae z sh ah ng k s t aa r t ax d t ax f aa l ow pau
+Root Mean Squared error:  1.33175317133
+
+
+('ITER', 40, 13.794605488423258)
+
+
+[epoch=40 eta=0.1 clips=131 updates=133] [epoch=41 eta=0.1 clips=996 updates=999] 0.00461127572058
+Duration Loss:  2625.44174199  for  39545
+pau pau d eh th hh ae d k ah m w ih dh t eh r ax b ax l s ah d ax n n ax s pau
+
+
+('ITER', 41, 5.006217448972166)
+
+
+[epoch=41 eta=0.1 clips=130 updates=133] [epoch=42 eta=0.1 clips=999 updates=999] 0.00103826421813
+Duration Loss:  2616.76247197  for  39375
+pau pau hh iy ch ey n jh d hh ih z s iy t pau f ao r ax s t iy m er r ih k l ay n ih ng pau ch eh r pau
+Root Mean Squared error:  1.49215674029
+
+
+('ITER', 42, 4.95081920735538)
+
+
+[epoch=42 eta=0.1 clips=133 updates=133] [epoch=43 eta=0.1 clips=996 updates=999] 0.00120119490789
+Duration Loss:  2644.79067606  for  39715
+pau dh ih s pau dh ax ay er n hh iy l pau f ao r s ao pau ae n d l ey d ih t s s k iy m z pau ax k ao r d ih ng l iy pau
+Root Mean Squared error:  2.1772962365
+
+
+('ITER', 43, 4.709981178864837)
+
+
+[epoch=43 eta=0.1 clips=133 updates=133] [epoch=44 eta=0.1 clips=998 updates=999] 0.000996839863172
+Duration Loss:  2627.44697711  for  39508
+pau ae n d dh eh r w aa z eh th ax l b eh r d pau hh uw m ao l s ow y uw m ah s t r ih m eh m b er pau
+
+
+('ITER', 44, 4.668890789151192)
+
+
+[epoch=44 eta=0.1 clips=133 updates=133] [epoch=45 eta=0.1 clips=999 updates=999] 0.00097945329386
+Duration Loss:  2647.59772587  for  39730
+pau ih l uw m ax n ey t ih ng oy l w aa z b ih k ah m ih ng ao l p r aa f ax t pau
+Root Mean Squared error:  1.48375724469
+
+
+('ITER', 45, 4.446093317586929)
+
+
+[epoch=45 eta=0.1 clips=133 updates=133] [epoch=46 eta=0.1 clips=995 updates=999] 0.00421990563841
+Duration Loss:  2615.94064846  for  39126
+pau pau b ah t pau eh v er hh ih z g ey z r ih t er n d t ax dh ae t k r aw ch t v iy n ax s pau aa n dh ax p iy ae n ow pau
+Root Mean Squared error:  1.79851628323
+
+
+('ITER', 46, 21.152260028757155)
+
+
+[epoch=46 eta=0.1 clips=132 updates=133] [epoch=47 eta=0.1 clips=994 updates=999] 0.00543893464234
+Duration Loss:  2660.81833056  for  40087
+pau ih t w aa z s ih m p ax l pau ih n ih t s pau w ey pau ae n d n ow v er ch uw ah v hh ih z pau
+Root Mean Squared error:  1.27110267801
+
+
+('ITER', 47, 4.664387532509863)
+
+
+[epoch=47 eta=0.1 clips=133 updates=133] [epoch=48 eta=0.1 clips=996 updates=999] 0.0177713172113
+Duration Loss:  2641.37062332  for  39575
+pau pau hh iy ch ey n jh d hh ih z s iy t pau f ao r ax s t iy m er r ih k l ay n ih ng pau ch eh r pau
+Root Mean Squared error:  1.61737387846
+
+
+('ITER', 48, 17.40668047592044)
+
+
+[epoch=48 eta=0.1 clips=133 updates=133] [epoch=49 eta=0.1 clips=986 updates=999] 0.0246749194437
+Duration Loss:  2645.44816478  for  39613
+pau b aa b pau g r ow ih ng d ih s g ah s t ax d pau t er n d b ae k s ah d ax n l iy pau ae n d pau ax t eh m p t ax d t ax p ae s pau m ae b pau
+Root Mean Squared error:  1.86648968145
+
+
+('ITER', 49, 11.223034304566681)
+
+
+[epoch=49 eta=0.1 clips=133 updates=133] [epoch=50 eta=0.1 clips=988 updates=999] 0.0137055285928
+Duration Loss:  2626.38247447  for  39690
+pau ih t l ih v d ih n p er p eh ch uw ax l ae p r ih hh eh n sh ax n pau ah v pau dh ae t pau k w ao r t er ah v dh ax k ah m p ax s pau
+Root Mean Squared error:  1.82553203652
+
+
+('ITER', 50, 4.156624626368284)
+
+
+[epoch=50 eta=0.1 clips=131 updates=133] [epoch=51 eta=0.1 clips=996 updates=999] 0.00170356163567
+Duration Loss:  2612.1868096  for  39458
+pau g ih v dh eh m dh eh r ch oy s pau b ih t w iy n ax f ay n pau ao r ae n ax f ih sh ax l w ih p ih ng pau
+Root Mean Squared error:  1.54417131913
+
+
+('ITER', 51, 4.429271863773465)
+
+
+[epoch=51 eta=0.1 clips=132 updates=133] [epoch=52 eta=0.1 clips=997 updates=999] 0.00277443597671
+Duration Loss:  2653.97559713  for  39504
+pau n aw ih t pau w aa z pau m ih s ih ng pau f r ah m dh ax w ao l pau
+Root Mean Squared error:  1.49252658168
+
+
+('ITER', 52, 15.94800756406039)
+
+
+[epoch=52 eta=0.1 clips=132 updates=133] [epoch=53 eta=0.1 clips=998 updates=999] 0.00120811773753
+Duration Loss:  2631.29313603  for  39456
+pau t aa m s p ih ng k pau hh ae z ax hh aa r p uw n pau
+Root Mean Squared error:  1.0135453029
+
+
+('ITER', 53, 4.082914472557604)
+
+
+[epoch=53 eta=0.1 clips=133 updates=133] [epoch=54 eta=0.1 clips=998 updates=999] 0.000878112985613
+Duration Loss:  2634.60814428  for  39755
+pau pau ao l ay z pau hh aw eh v er w er s t eh r ih ng ae t hh ih m pau ih n s er t ax t uw d ah v pau ih k s p eh k t ax n s iy pau
+Root Mean Squared error:  1.57083193198
+
+
+('ITER', 54, 3.892182341311127)
+
+
+[epoch=54 eta=0.1 clips=133 updates=133] [epoch=55 eta=0.1 clips=998 updates=999] 0.000884663870323
+Duration Loss:  2627.75445256  for  39515
+pau hh er ax ch iy v m ax n t s pau w ih dh k ow k ow n ah t s pau w er ax r eh v ax l ey sh ax n pau
+Root Mean Squared error:  1.39436837061
+
+
+('ITER', 55, 4.0120723699219525)
+
+
+[epoch=55 eta=0.1 clips=133 updates=133] [epoch=56 eta=0.1 clips=997 updates=999] 0.000913600682564
+Duration Loss:  2622.10705146  for  39500
+pau pau ih n sh ao r t pau pau m ay jh oy ax s ih n d ih v ih d uw ax l ih z ax m pau w aa z d aa m ax n ey t ax d b ay dh ax pau ao r th ax d aa k s pau b uh r zh w aa pau eh th ih k s pau
+
+
+('ITER', 56, 4.095410997979343)
+
+
+[epoch=56 eta=0.1 clips=133 updates=133] [epoch=57 eta=0.1 clips=997 updates=999] 0.000857583769783
+Duration Loss:  2627.21787241  for  39567
+pau hh iy m ey d ih z ay er t ax ih s k ey p p ey n pau ao r pau t ax eh n jh oy p l eh zh er pau
+Root Mean Squared error:  1.79781628267
+
+
+('ITER', 57, 4.214020430110395)
+
+
+[epoch=57 eta=0.1 clips=133 updates=133] [epoch=58 eta=0.1 clips=996 updates=999] 0.000845853593711
+Duration Loss:  2639.10479712  for  39652
+pau dh ey hh ae d n ow f ih k s t v ae l y uw z pau t ax b iy ao l t er d b ay ae jh ax k t ih v z pau ae n d ae d v er b z pau
+Root Mean Squared error:  1.69560729981
+
+
+('ITER', 58, 4.135370736010373)
+
+
+[epoch=58 eta=0.1 clips=133 updates=133] [epoch=59 eta=0.1 clips=996 updates=999] 0.000835216683967
+Duration Loss:  2639.16086496  for  39526
+pau w ay sh uh d ax f eh l ow pau th r ow ah p dh ax s p ah n jh pau ae f t er dh ax f er s t r aw n d pau
+
+
+('ITER', 59, 3.8398737087845802)
+
+
+[epoch=59 eta=0.1 clips=133 updates=133] [epoch=60 eta=0.1 clips=997 updates=999] 0.000837581911193
+Duration Loss:  2633.65288582  for  39531
+pau ax l ih t ax l t r iy t m ax n t pau m ax s aa zh pau w ih dh s ah m hh eh l p f r ah m dh ax d aa k t er pau
+Root Mean Squared error:  1.60073288238
+
+
+('ITER', 60, 3.815583280287683)
+
+
+[epoch=60 eta=0.1 clips=133 updates=133] [epoch=61 eta=0.1 clips=994 updates=999] 0.00352837081201
+Duration Loss:  2628.86855677  for  39636
+pau n uw ay d iy ax pau hh iy v aa l ax n t ih r d pau pau b r ae n d n uw ay d iy ax pau
+Root Mean Squared error:  1.55611085542
+
+
+('ITER', 61, 3.7270333897322416)
+
+
+[epoch=61 eta=0.1 clips=133 updates=133] [epoch=62 eta=0.1 clips=995 updates=999] 0.00147200781062
+Duration Loss:  2643.87054618  for  39575
+pau dh ae t s w ah t pau k aa r n ax g iy d ih d pau
+Root Mean Squared error:  1.12676439532
+
+
+('ITER', 62, 4.030742206610739)
+
+
+[epoch=62 eta=0.1 clips=132 updates=133] [epoch=63 eta=0.1 clips=992 updates=999] 0.0169968872067
+Duration Loss:  2648.99766552  for  39564
+pau ih l uw m ax n ey t ih ng oy l w aa z b ih k ah m ih ng ao l p r aa f ax t pau
+Root Mean Squared error:  1.70551158357
+
+
+('ITER', 63, 4.124609622638673)
+
+
+[epoch=63 eta=0.1 clips=131 updates=133] [epoch=64 eta=0.1 clips=988 updates=999] 0.00753348486467
+Duration Loss:  2646.91112345  for  39655
+pau ae n d n aw p uh t y er s eh l f ih n m ay p l ey s pau f ao r ax m ow m ax n t pau
+Root Mean Squared error:  1.59547692523
+
+
+('ITER', 64, 5.31452143471688)
+
+
+[epoch=64 eta=0.1 clips=132 updates=133] [epoch=65 eta=0.1 clips=994 updates=999] 0.00845124370689
+Duration Loss:  2631.91368224  for  39652
+pau pau ow n l iy ih t ih z s ow w ah n d er f ax l pau s ow ao l m ow s t ih m p aa s ax b ax l pau t ax b ih l iy v pau
+Root Mean Squared error:  2.22619246924
+
+
+('ITER', 65, 63.18209987739101)
+
+
+[epoch=65 eta=0.1 clips=133 updates=133] [epoch=66 eta=0.1 clips=996 updates=999] 0.00230647242993
+Duration Loss:  2617.23072922  for  39432
+pau pau pau ax m ah n th ih n ao s t r ey l y ax w uh d f ih n ih sh pau m iy pau
+
+
+('ITER', 66, 3.6484565241262317)
+
+
+[epoch=66 eta=0.1 clips=133 updates=133] [epoch=67 eta=0.1 clips=995 updates=999] 0.000952129614399
+Duration Loss:  2634.12946886  for  39516
+pau m ih s pau b r ow t iy z s m ay l pau w aa z s l ay t l iy s aa r k ae s t ih k pau
+Root Mean Squared error:  1.42657631329
+
+
+('ITER', 67, 3.8352492889389396)
+
+
+[epoch=67 eta=0.1 clips=133 updates=133] [epoch=68 eta=0.1 clips=997 updates=999] 0.000781712226057
+Duration Loss:  2641.44211294  for  39704
+pau y uw aa r pau p aa z ax t ih v l iy s ow l l ax s pau hh iy s eh d s ae v ih jh l iy pau
+Root Mean Squared error:  1.68305100812
+
+
+('ITER', 68, 3.680468985810876)
+
+
+[epoch=68 eta=0.1 clips=132 updates=133] [epoch=69 eta=0.1 clips=997 updates=999] 0.000762944367256
+Duration Loss:  2614.93568245  for  39431
+pau dh er z pau dh ax hh ih ch pau r ih p l ay d th ao r p pau pau r ow l ih ng ax s ih g er eh t pau
+
+
+('ITER', 69, 3.7532454594038427)
+
+
+[epoch=69 eta=0.1 clips=133 updates=133] [epoch=70 eta=0.1 clips=999 updates=999] 0.0007660462339
+Duration Loss:  2638.50324181  for  39751
+pau pau ao l s ow pau ae t r eh g y ax l er ih n t er v ax l z pau hh iy w uh d pau m ah t er pau
+Root Mean Squared error:  1.49761442987
+
+
+('ITER', 70, 3.467219728510827)
+
+
+[epoch=70 eta=0.1 clips=132 updates=133] [epoch=71 eta=0.1 clips=997 updates=999] 0.000754276185658
+Duration Loss:  2634.68155524  for  39383
+pau dh er z t uw m ah ch ah v dh ax s k uw l b oy ih n m iy pau
+Root Mean Squared error:  1.4581513075
+
+
+('ITER', 71, 3.5739169735461473)
+
+
+[epoch=71 eta=0.1 clips=133 updates=133] [epoch=72 eta=0.1 clips=998 updates=999] 0.000758452260999
+Duration Loss:  2632.5831812  for  39568
+pau pau hh iy w aa z ax hh eh d sh ao r t er dh ae n hh ih z k ax m p ae n y ax n pau pau ah v ao l m ow s t d eh l ax k ax t f ax z iy k pau
+Root Mean Squared error:  1.77652290748
+
+
+('ITER', 72, 3.575078371912241)
+
+
+[epoch=72 eta=0.1 clips=133 updates=133] [epoch=73 eta=0.1 clips=998 updates=999] 0.000738527721666
+Duration Loss:  2639.64438435  for  39777
+pau pau f ao r dh ae t r iy z ax n pau l ax b ow pau hh ae d ch ow z ax n hh ih m pau t ax f ay t dh ax b ih g pau f ay t pau
+Root Mean Squared error:  2.09713087859
+
+
+('ITER', 73, 3.2796996135730296)
+
+
+[epoch=73 eta=0.1 clips=131 updates=133] [epoch=74 eta=0.1 clips=994 updates=999] 0.00117186047865
+Duration Loss:  2611.76015617  for  39396
+pau pau dh eh r ih z n ow n iy d ah v f er dh er d ih t ey l pau n aw pau f ao r y uw k ae n ah n d er s t ae n d pau
+Root Mean Squared error:  1.63384125296
+
+
+('ITER', 74, 3.725357113406062)
+
+
+[epoch=74 eta=0.1 clips=133 updates=133] [epoch=75 eta=0.1 clips=996 updates=999] 0.00072636778711
+Duration Loss:  2656.84640339  for  39728
+pau hh iy hh ae d b ih n pau f oy l d ih n hh ih z ax t eh m p t t ax ih s k ey p pau
+Root Mean Squared error:  1.76047537931
+
+
+('ITER', 75, 3.3581528533250093)
+
+
+[epoch=75 eta=0.1 clips=133 updates=133] [epoch=76 eta=0.1 clips=996 updates=999] 0.00090646310837
+Duration Loss:  2638.23145714  for  39420
+pau pau ih f pau n aa t pau l eh t s s ey aw er p r eh r z pau ae n d g ow t ax b eh d pau
+Root Mean Squared error:  1.77818391018
+
+
+('ITER', 76, 3.43566712224856)
+
+
+[epoch=76 eta=0.1 clips=133 updates=133] [epoch=77 eta=0.1 clips=996 updates=999] 0.000715627721611
+Duration Loss:  2622.55075201  for  39753
+pau dh ey w uh d n t b iy s w iy p ih ng pau ax b ih g v eh s ax l pau l ay k dh ax m aa r th ax pau
+
+
+('ITER', 77, 3.3422415982931852)
+
+
+[epoch=77 eta=0.1 clips=133 updates=133] [epoch=78 eta=0.1 clips=997 updates=999] 0.00071419615533
+Duration Loss:  2625.45138252  for  39601
+pau pau pau ae t dh ax b eh s t pau dh ey w er pau n eh s ax s eh r iy ae k s eh s er iy z pau
+Root Mean Squared error:  1.23727737817
+
+
+('ITER', 78, 3.2507648961618543)
+
+
+[epoch=78 eta=0.1 clips=133 updates=133] [epoch=79 eta=0.1 clips=997 updates=999] 0.00069517441481
+Duration Loss:  2624.68174747  for  39578
+pau w iy k uh d th r ow s t ow n z pau w ih dh aw er f iy t pau
+
+
+('ITER', 79, 3.3822636203840375)
+
+
+[epoch=79 eta=0.1 clips=133 updates=133] [epoch=80 eta=0.1 clips=997 updates=999] 0.00069878483771
+Duration Loss:  2635.40065922  for  39712
+pau t ax m aa r ow ao r n eh k s t d ey pau ih t pau m ay t hh iy g ao n pau
+Root Mean Squared error:  1.28087819043
+
+
+('ITER', 80, 3.2148843239992857)
+
+
+[epoch=80 eta=0.1 clips=133 updates=133] [epoch=81 eta=0.1 clips=997 updates=999] 0.000680915784093
+Duration Loss:  2651.43895872  for  39569
+pau pau hh iy m uw v d hh ih z p ax z ih sh ax n pau ae n d dh ax ih l uw zh ax n w aa z g ao n pau
+Root Mean Squared error:  1.61947679365
+
+
+('ITER', 81, 3.1454297536984086)
+
+
+[epoch=81 eta=0.1 clips=133 updates=133] [epoch=82 eta=0.1 clips=995 updates=999] 0.000683671735376
+Duration Loss:  2644.71576777  for  39442
+pau y uw pau sh uh d hh ae v s iy n dh eh m w eh n pau dh ey hh er d m iy s p ih t ih ng pau sh ih n uh k pau
+Root Mean Squared error:  1.48682983728
+
+
+('ITER', 82, 2.979245978873223)
+
+
+[epoch=82 eta=0.1 clips=133 updates=133] [epoch=83 eta=0.1 clips=998 updates=999] 0.000672967583243
+Duration Loss:  2620.70236138  for  39539
+pau pau pau w ih th aw t d ih s k ah sh ax n pau ih t w aa z dh ax ey jh ax n t s p r ax v ao k ax t uh r z pau hh uw k aa z d dh ax p eh z ax n t r ih v ow l t pau
+
+
+('ITER', 83, 3.2333087171427906)
+
+
+[epoch=83 eta=0.1 clips=133 updates=133] 

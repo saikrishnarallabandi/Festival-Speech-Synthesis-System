@@ -1,0 +1,11 @@
+nohup: ignoring input
+[dynet] random seed: 350232453
+[dynet] allocating memory: 6000MB
+[dynet] memory allocation done.
+test.en-de.low.en
+Traceback (most recent call last):
+  File "01_call_dynet.py", line 43, in <module>
+    train_dict,src_wids = lm.read_corpus(src_filename)
+  File "/home/srallaba/repos/Festival-Speech-Synthesis-System/utils/10_ctype_seq2seq/scripts/seq2seq_v1.py", line 527, in read_corpus
+    f = open(file)
+IOError: [Errno 2] No such file or directory: 'test.en-de.low.en'

@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>TestVox Listening Tests</title>
+    <link rel="stylesheet" href="/static/css/testvox/testvox.css"
+	  type="text/css" />
+  </head>
+  <body>
+    <div id="header-container">
+      <div id="header" class="wrapper clearfix">
+	<img src="/static/images/testvox_logo.png" class="" alt="Logo"
+	     id="header-logo" />
+	<h1 id="title">TestVox Listening Tests</h1>
+      </div>
+    </div>
+    <div id="main-container">
+      <div id="main" class="wrapper clearfix">
+	<div id="block">
+	  <h2>Let's get started!</h2>
+	  <form action="/begin"
+		method="post" >
+	    <input type="hidden" name="exp_id" value="{{ exp_id }}" />
+	    <table class="outborder">
+	      <tr>
+		<td>Enter Your Name</td>
+		<td><input type="text" name="username" value="" /></td>
+	      </tr>
+	      <tr>
+		<td colspan=2><input type="submit" value="Start!"/></td>
+	      </tr>
+	    </table>
+	  </form>
+	</div>
+      </div>
+    </div>
+  </body>
+</html>
