@@ -9,6 +9,8 @@ from seq2seq_v1 import nnlm as LM
 from seq2seq_v1 import RNNLanguageModel 
 import dynet as dy
 import random
+import nltk
+
 
 #folder = '../duration_stuff_ksp/ctype'
 #files = sorted(os.listdir(folder))
@@ -34,8 +36,8 @@ for file in files:
 print "Created phone arrays"   
 '''
 
-src_filename = 'train.en-de.low.en'
-tgt_filename = 'train.en-de.low.de'
+src_filename = 'txt.done.data'
+tgt_filename = 'txt.done.data'
 
 lm = LM()
 train_dict,src_wids = lm.read_corpus(src_filename)
@@ -51,6 +53,7 @@ for w in src_wids:
    f.write(w + ' ' + str(src_wids[w]) + '\n')
 f.close()   
 
+mini_batch_size = 32
 
 f = open('tgt_wids','w')
 for w in tgt_wids:
@@ -100,15 +103,19 @@ sentences = zip(src_sentences,tgt_sentences)
 words = sents = loss = cumloss = dloss = 0
 for epoch in range(100):
  random.shuffle(sentences) 
+ b = 0
  c = 1
  for instance in sentences:
   #print "Processing ", instance
   src_sentence, tgt_sentence = instance[0], instance[1]
+  print len(src_sentence), len(tgt_sentence)
   src_sentence = src_sentence.split() 
   tgt_sentence = tgt_sentence.split()
+
   if len(src_sentence) > 2:  
     #print "This is a valid sentence"
     c = c+1
+    b = b + 1
     if c%200 == 1:
          #print "I will print trainer status now"
          trainer.status()
@@ -118,15 +125,19 @@ for epoch in range(100):
          words = 0
          dloss = 0
          for _ in range(1):
-	     print ' '.join(k for  k in sentence)
+	     print ' '.join(k for  k in src_sentence)
 	     isent = get_indexed(src_sentence, 1)
              itype = get_indexed(tgt_sentence,0)
-	     resynth,dur_gen = red.generate(isent)
+	     resynth= red.generate(isent)
               
              #resythn = red.sample(nchars= len(sentence),stop=wids["</s>"])
              print(" ".join([tgt_i2w[c] for c in resynth]).strip())
+             print '\n'
              #durs = durs[0:5]
-             
+             hypothesis = resynth
+             reference = itype
+             BLEUscore = nltk.translate.bleu_score.sentence_bleu([reference], hypothesis)
+             print "BLEU: ", BLEUscore
              #print "Original: ", ' '.join(str(float(k)).zfill(3) for k in durs)
              #print "Synthesized: ", ' '.join(str(float(dur_gen[k].value())).zfill(3) for k in range(0,5))
              #synth_durs = [float(k.value()) for k in dur_gen]
@@ -161,7 +172,9 @@ for epoch in range(100):
     #print error.value()
     error.backward()
     #derror.backward()
-    trainer.update(1.0)
+    if mini_batch_size == b:
+       trainer.update(1.0)
+       b = 0
  print '\n'   
  print("ITER",epoch,loss)
  print '\n'

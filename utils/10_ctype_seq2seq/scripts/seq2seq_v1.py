@@ -144,7 +144,7 @@ class Attention:
               #k = s
               #dloss = self.test_duration(k, i, b)
               out_vector = w * s.output() + b
-              dur_pred = dw * s.output() + db
+              #dur_pred = dw * s.output() + db
               probs = dy.softmax(out_vector).vec_value()
               next_word = probs.index(max(probs))
               last_output_embeddings = self.output_lookup[next_word]
@@ -152,7 +152,7 @@ class Attention:
                   count_EOS += 1
                   continue
 	      res.append(next_word)
-	      dur_g.append(dy.rectify(dur_pred))
+	      #dur_g.append(dy.rectify(dur_pred))
 
               #out += int2char[next_word]
         return res
