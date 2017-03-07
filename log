@@ -1,0 +1,6 @@
+#####
+07 March 2017:
+
+Added gcc 6 compatibility.
+
+Changes: EST_items  x->next(), x->prev(), x->up() and x->down() have been modified to  inext(x), iprev(x), iup(x) and idown(x) respectively
