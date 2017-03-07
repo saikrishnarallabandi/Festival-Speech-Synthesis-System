@@ -660,7 +660,7 @@ static float test_tree_ols(WNode &tree,WDataSet &dataset,ostream *output)
     {
 	leaf = tree.predict_node((*dataset(p)));
         // do ols to get predict;
-        predict = 0.0;
+        predict = 0.0;  // This is incomplete ! you need to use leaf
 	real = dataset(p)->get_flt_val(wgn_predictee);
 	if (wgn_count_field == -1)
 	    count = 1.0;

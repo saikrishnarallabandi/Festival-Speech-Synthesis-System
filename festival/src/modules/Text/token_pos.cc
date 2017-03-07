@@ -54,7 +54,7 @@ LISP FT_Token_POS_Utt(LISP utt)
     trees = siod_get_lval("token_pos_cart_trees",NULL);
     if (trees == NIL) return utt;
 
-    for (t=u->relation("Token")->first(); t != 0; t = t->next())
+    for (t=u->relation("Token")->first(); t != 0; t = inext(t))
     {
 	if (t->f("token_pos","0") == "0")
 	    for (l=trees; l != NIL; l=cdr(l))  // find a tree that matches

@@ -89,7 +89,7 @@ static LISP FT_utt_tag_unit( LISP l_utt, LISP l_unitnum )
   EST_Item *it = u->relation("Unit")->first();  
   int i;
   for( i=1; i<=n && it!= 0; i++ )
-    it=it->next();
+    it=inext(it);
   
   if( i<=n )
     EST_error( "unit number greater than number of items in unit relation") ;

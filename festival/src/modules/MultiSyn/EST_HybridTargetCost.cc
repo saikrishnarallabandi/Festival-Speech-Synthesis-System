@@ -64,44 +64,42 @@ float EST_HybridTargetCost::operator()(const EST_Item* targ, const EST_Item* can
 
 float EST_HybridTargetCost::kl_features_cost() const
 {
+    /* In cases where there is a missing diphone and the current target is extended, there should be a feature:
+       targ or cand->features().val("extendLeft").String() [or extendRight] set, in which case 6
+       comparisons should be made rather than 4.
+    */
 
+    // Feature names copied from DiphoneVoiceModule.cc
+    static const EST_String start_str("start");
+    static const EST_String ll_str("target_ll");
+    static const EST_String l_str("target_l");
+    static const EST_String r_str("target_r");
+    static const EST_String rr_str("target_rr");
 
-/* In cases where there is a missing diphone and the current target is extended, there should be a feature:
-targ or cand->features().val("extendLeft").String() [or extendRight] set, in which case 6
-comparisons should be made rather than 4.
-*/
+    EST_FVector *targv_l_r = NULL;
+    EST_FVector *targv_l_rr = NULL;
+    EST_FVector *targv_r_ll = NULL;
+    EST_FVector *targv_r_l = NULL;
 
-  // Feature names copied from DiphoneVoiceModule.cc
-  static const EST_String start_str("start");
-  static const EST_String ll_str("target_ll");
-  static const EST_String l_str("target_l");
-  static const EST_String r_str("target_r");
-  static const EST_String rr_str("target_rr");
+    // First get the Fvectors.
+    /* This is complicated by the fact that added interword silences won't have features */
+    if( targ->features().present(r_str)) {
+        targv_l_r  = fvector(targ->features().val( r_str ));
+        targv_l_rr = fvector(targ->features().val( rr_str ));
+    }
 
-  EST_FVector *targv_l_r = NULL;
-  EST_FVector *targv_l_rr = NULL;
-  EST_FVector *targv_r_ll = NULL;
-  EST_FVector *targv_r_l = NULL;
+    if( inext(targ)->features().present(ll_str)) {
+        targv_r_ll = fvector(inext(targ)->features().val( ll_str ));
+        targv_r_l  = fvector(inext(targ)->features().val( l_str ));
+    }
 
-  // First get the Fvectors.
-  /* This is complicated by the fact that added interword silences won't have features */
-  if( targ->features().present(r_str)) {
-    targv_l_r  = fvector(targ->features().val( r_str ));
-    targv_l_rr = fvector(targ->features().val( rr_str ));
-  }
+    EST_FVector *candv_l_r  = fvector(cand->features().val( r_str ));
+    EST_FVector *candv_l_rr = fvector(cand->features().val( rr_str ));
+    EST_FVector *candv_r_ll = fvector(inext(cand)->features().val( ll_str ));
+    EST_FVector *candv_r_l  = fvector(inext(cand)->features().val( l_str ));
 
-  if( targ->next()->features().present(ll_str)) {
-    targv_r_ll = fvector(targ->next()->features().val( ll_str ));
-    targv_r_l  = fvector(targ->next()->features().val( l_str ));
-  }
-
-  EST_FVector *candv_l_r  = fvector(cand->features().val( r_str ));
-  EST_FVector *candv_l_rr = fvector(cand->features().val( rr_str ));
-  EST_FVector *candv_r_ll = fvector(cand->next()->features().val( ll_str ));
-  EST_FVector *candv_r_l  = fvector(cand->next()->features().val( l_str ));
-
-  return 0.25 * (kl_divergence(targv_l_r,candv_l_r) + kl_divergence(targv_l_rr,candv_l_rr)
-                  + kl_divergence(targv_r_ll,candv_r_ll) + kl_divergence(targv_r_l,candv_r_l));
+    return 0.25 * (kl_divergence(targv_l_r,candv_l_r) + kl_divergence(targv_l_rr,candv_l_rr)
+                   + kl_divergence(targv_r_ll,candv_r_ll) + kl_divergence(targv_r_l,candv_r_l));
 }
 
 

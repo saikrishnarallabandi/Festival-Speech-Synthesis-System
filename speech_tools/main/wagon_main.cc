@@ -301,7 +301,7 @@ static int wagon_main(int argc, char **argv)
 
     if (al.present("-ignore"))
     {
-	EST_String ig = al.val("-ignore");
+	EST_String ig = (const char *)al.sval("-ignore");
 	if (ig[0] == '(')
 	    ignores = read_from_string(ig);
 	else
@@ -357,7 +357,7 @@ static int wagon_main(int argc, char **argv)
     }
     if (al.present("-track_feats"))
     {   /* overrides start and end numbers */
-        EST_String wagon_track_features = al.val("-track_feats");
+        EST_String wagon_track_features = (const char *)al.val("-track_feats");
         set_Vertex_Feats(wgn_VertexFeats,wagon_track_features);
     }
 

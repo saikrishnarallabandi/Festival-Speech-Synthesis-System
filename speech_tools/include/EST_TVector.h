@@ -314,7 +314,8 @@ public:
     {
         int i; 
         for (i = 0; i < m.n(); ++i) 
-            st << m(i) << " "; st << endl; 
+            st << m(i) << " "; 
+        st << endl; 
         return st;
     }
 

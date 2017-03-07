@@ -1,11 +1,11 @@
-/HTS_vocoder_me.cc/1.2/Fri Feb  8 05:55:07 2013//
 /HTS_vocoder_me.h/1.1/Wed Jan 30 16:08:52 2013//
 /Makefile/1.2/Wed Jan 30 16:08:52 2013//
-/clustergen.cc/1.4/Sun Nov 16 17:33:13 2014//
-/mlsa_resynthesis.cc/1.3/Wed Jan 30 16:08:52 2013//
 /mlsa_resynthesis.h/1.2/Wed Jan 30 16:08:52 2013//
-/simple_mlpg.cc/1.2/Fri Apr 15 15:44:00 2016//
 /simple_mlpg.h/1.1/Tue Feb  2 17:35:51 2010//
 /vc.cc/1.1/Tue Feb  2 17:35:51 2010//
 /vc.h/1.1/Tue Feb  2 17:35:51 2010//
+/HTS_vocoder_me.cc/1.3/Tue Mar  7 16:49:01 2017//
+/clustergen.cc/1.5/Tue Mar  7 16:49:01 2017//
+/mlsa_resynthesis.cc/1.4/Tue Mar  7 16:49:01 2017//
+/simple_mlpg.cc/1.3/Tue Mar  7 16:49:01 2017//
 D

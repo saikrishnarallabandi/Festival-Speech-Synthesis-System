@@ -763,10 +763,7 @@ static DVECTOR xget_detvec_diamat2inv(DMATRIX covmat)	// [num class][dim]
     long num_err_frames = 0;
     double det;
     DVECTOR detvec = NODATA;
-
     XBOOL zero_determinant_flag;
-
-    
 
     // In cases where the determinant of the matrix ends up being
     // zero, we can fix this by artificially setting the covariance
@@ -787,26 +784,27 @@ static DVECTOR xget_detvec_diamat2inv(DMATRIX covmat)	// [num class][dim]
 	for (j = 0, det = 1.0; j < dim; j++) {
 	    det *= covmat->data[i][j];
 	    if (det > 0.0) {
-	      covmat->data[i][j] = 1.0 / covmat->data[i][j];
+                covmat->data[i][j] = 1.0 / covmat->data[i][j];
 	    } else {
-	      zero_determinant_flag = XTRUE;
-	      covmat->data[i][j] = 1.0 / magic_covariance;
-	      det = pow(magic_covariance, j+1); 
-	      // should actually be magic_covariance^2
+                zero_determinant_flag = XTRUE;
+                covmat->data[i][j] = 1.0 / magic_covariance;
+                det = pow(magic_covariance, j+1); 
+                // should actually be magic_covariance^2
 	    }
 	}
 	
 	if (zero_determinant_flag == XTRUE){
-	  num_err_frames++;
-	  //printf("Using Prasanna's magic numbers in frame number %d", i);
+            num_err_frames++;
+            //printf("Using Prasanna's magic numbers in frame number %d", i);
 	}
 
 	detvec->data[i] = det;
     }
 
-    if (num_err_frames != 0){
-      printf("Warning: det <= 0. Using Prasanna's magic numbers in %d of %d frames\n",
-	     num_err_frames, clsnum);
+    if (num_err_frames != 0)
+    {
+        printf("Warning: det <= 0. Using Prasanna's magic numbers in %d of %d frames\n",
+               (int)num_err_frames, (int)clsnum);
     }
 
     return detvec;

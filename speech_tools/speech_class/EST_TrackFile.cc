@@ -279,7 +279,7 @@ EST_read_status EST_TrackFile::load_xmg(const EST_String filename, EST_Track &tr
 
     EST_TokenStream ts;
     EST_StrList sl;
-    int i, n, sr;
+    int i, n;
     EST_String t, k, v;
     EST_Litem *p;
     
@@ -300,12 +300,15 @@ EST_read_status EST_TrackFile::load_xmg(const EST_String filename, EST_Track &tr
     {
 	k = ts.get().string();
 	v = ts.get().string();
+#if 0
+        /* Tracks don't represent these explicitly */
 	if (k == "Freq")
 	    sr = v.Int() * 1000;
 	else if (k == "YMin")
 	  /* tr.amin = atof(v) */;
 	else if (k == "YMax")
 	  /*tr.amax = atof(v) */;
+#endif
     }
 
     if (ts.eof())
@@ -386,7 +389,7 @@ EST_read_status EST_TrackFile::load_est_ts(EST_TokenStream &ts,
     (void)ishift;
     (void)startt;
     int i, j;
-    int num_frames, num_channels, num_aux_channels;
+    int num_frames, num_channels;
     EST_Features hinfo;
     EST_EstFileType t;
     EST_String v;
@@ -410,7 +413,6 @@ EST_read_status EST_TrackFile::load_est_ts(EST_TokenStream &ts,
 
     num_frames = hinfo.I("NumFrames");
     num_channels = hinfo.I("NumChannels");
-    num_aux_channels = hinfo.I("NumAuxChannels", 0);
     tr.resize(num_frames, num_channels);
 
     hinfo.remove("NumFrames");
@@ -418,8 +420,6 @@ EST_read_status EST_TrackFile::load_est_ts(EST_TokenStream &ts,
     hinfo.remove("NumChannels");
     hinfo.remove("BreaksPresent");
     hinfo.remove("DataType");
-    if (hinfo.present("NumAuxChannels"))
-      hinfo.remove("NumAuxChannels");
 
     EST_String strn, cname;
     
@@ -430,12 +430,7 @@ EST_read_status EST_TrackFile::load_est_ts(EST_TokenStream &ts,
       {
 	c = p++;
 
-	if (c->k.contains("Aux_Channel_"))
-	{
-	      ch_map.append(c->v.String());
-	      hinfo.remove(c->k);
-	}
-	else if (c->k.contains("Channel_"))
+	if (c->k.contains("Channel_"))
 	  {
 	    tr.set_channel_name(c->v.String(),
 				c->k.after("Channel_").Int());

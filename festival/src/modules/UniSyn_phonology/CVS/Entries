@@ -1,12 +1,12 @@
 /Makefile/1.1/Tue Jul 24 13:08:48 2001//
-/UniSyn_build.cc/1.3/Fri Nov  5 14:13:02 2010//
-/UniSyn_phonology.cc/1.3/Fri Nov  5 14:13:02 2010//
-/mettree.cc/1.3/Fri Nov  5 14:13:02 2010//
-/subword.cc/1.2/Fri Nov  5 14:13:02 2010//
-/syllabify.cc/1.3/Fri Nov  5 14:13:02 2010//
 /unisyn_phonology.mak/1.1/Tue Jul 24 13:08:48 2001//
-/unisyn_tilt.cc/1.3/Fri Nov  5 14:13:02 2010//
-/us_aux.cc/1.3/Fri Nov  5 14:13:02 2010//
-/us_duration.cc/1.3/Fri Nov  5 14:13:02 2010//
 /us_duration.h/1.1/Tue Jul 24 13:08:48 2001//
+/UniSyn_build.cc/1.4/Tue Mar  7 16:48:57 2017//
+/UniSyn_phonology.cc/1.4/Tue Mar  7 16:48:57 2017//
+/mettree.cc/1.4/Tue Mar  7 16:48:58 2017//
+/subword.cc/1.3/Tue Mar  7 16:48:58 2017//
+/syllabify.cc/1.4/Tue Mar  7 16:48:58 2017//
+/unisyn_tilt.cc/1.4/Tue Mar  7 16:48:58 2017//
+/us_aux.cc/1.4/Tue Mar  7 16:48:58 2017//
+/us_duration.cc/1.4/Tue Mar  7 16:48:58 2017//
 D

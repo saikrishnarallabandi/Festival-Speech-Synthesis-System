@@ -1,11 +1,11 @@
 /Makefile/1.2/Fri Apr  6 11:05:39 2001//
-/UniSyn.cc/1.3/Fri Nov  5 14:13:02 2010//
 /UniSyn.h/1.2/Fri Jun 25 11:12:58 2004//
 /ps_synthesis.cc/1.7/Sat Dec 20 15:37:38 2014//
-/us_features.cc/1.3/Fri Nov  5 14:13:02 2010//
 /us_features.h/1.1.1.1/Wed Apr  4 11:55:20 2001//
-/us_mapping.cc/1.6/Sat Dec 20 15:37:38 2014//
-/us_prosody.cc/1.6/Sat Dec 20 15:46:08 2014//
 /us_synthesis.h/1.2/Fri Jun 25 11:12:58 2004//
-/us_unit.cc/1.10/Fri Nov  5 14:13:02 2010//
+/UniSyn.cc/1.4/Tue Mar  7 16:48:55 2017//
+/us_features.cc/1.4/Tue Mar  7 16:48:55 2017//
+/us_mapping.cc/1.7/Tue Mar  7 16:48:56 2017//
+/us_prosody.cc/1.7/Tue Mar  7 16:48:56 2017//
+/us_unit.cc/1.11/Tue Mar  7 16:48:56 2017//
 D

@@ -642,6 +642,131 @@ static cst_val *cmu_indic_lex_jnyan_replacement(cst_val *in_phones,
 }
 
 
+static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones) 
+{
+    const cst_val *p;
+    
+    p=in_phones;
+    
+    /* Provide better approximates for 3rd person singular pronouns */
+    /* Check for orthographic variant of ihn/uhn, written inh/unh */
+    /* Equivalent to the punjabi_pronoun_postfixes function */
+    if ((cst_streq(val_string(val_car(val_cdr(p))),"nB")) &&
+        (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"hv")) &&
+        ((cst_streq(val_string(val_car(p)),"i")) ||
+         (cst_streq(val_string(val_car(p)),"u"))))
+    {
+        if (cst_streq(val_string(val_car(p)),"i"))
+            replace_car(p,string_val("e"));
+        else if (cst_streq(val_string(val_car(p)),"u"))
+            replace_car(p,string_val("o"));
+        p = val_cdr(p);
+        replace_car(p,string_val("hv"));
+        set_cdr((cst_val *)p,cons_val(string_val("nB"),val_cdr(val_cdr(p))));
+        return in_phones;
+    }
+
+    for ( ; p && val_cdr(p); p=val_cdr(p))
+    {
+        /* Change sequences ( A hv i/u ) => ( aI/aU hv ) */
+        if ((cst_streq(val_string(val_car(p)),"A")) &&
+            (cst_streq(val_string(val_car(val_cdr(p))),"hv")) &&
+            ((cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"i")) ||
+             (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"u"))))
+        {
+            if (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"i"))
+                replace_car(p,string_val("aI"));
+            else if (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"u"))
+                replace_car(p,string_val("aU"));
+            set_cdr((cst_val *)p,cons_val(string_val("hv"),val_cdr(val_cdr(val_cdr(p)))));
+            p = val_cdr(val_cdr(p)); /* Skip over them */
+        }
+        
+        /* Change sequences ( i/u hv ) => ( e/o hv ) */
+        else if (((cst_streq(val_string(val_car(p)),"i")) ||
+                  (cst_streq(val_string(val_car(p)),"u"))) &&
+                 (cst_streq(val_string(val_car(val_cdr(p))),"hv")))
+        {
+            if (cst_streq(val_string(val_car(p)),"i"))
+                replace_car(p,string_val("e"));
+            else if (cst_streq(val_string(val_car(p)),"u"))
+                replace_car(p,string_val("o"));
+            p = val_cdr(p); /* Skip over them */
+        }
+        
+        /* Change sequences ( A: u/A ) => ( aU/A: ) */
+        else if ((cst_streq(val_string(val_car(p)),"A:")) &&
+                 ((cst_streq(val_string(val_car(val_cdr(p))),"u")) ||
+                  (cst_streq(val_string(val_car(val_cdr(p))),"A")))
+                 )
+        {
+            if (cst_streq(val_string(val_car(val_cdr(p))),"u"))
+                replace_car(p,string_val("aU"));
+            set_cdr((cst_val *)p,val_cdr(val_cdr(p)));
+            p = val_cdr(p); /* Skip over them */
+        }
+    }
+    return in_phones;
+}
+
+
+static cst_val *cmu_indic_lex_punjabi_glide_postfixes(cst_val *in_phones) 
+{
+    const cst_val *p;
+    
+    /* Inserts glides/semivowels corresponding to i/u */
+    for (p=in_phones; p && val_cdr(p); p=val_cdr(p)) 
+    {
+        if (cmu_indic_is_vowel(val_string(val_car(val_cdr(p)))) &&
+            ((cst_streq(val_string(val_car(p)),"i")) ||
+             (cst_streq(val_string(val_car(p)),"u")) ||
+             (cst_streq(val_string(val_car(p)),"i:")) ||
+             (cst_streq(val_string(val_car(p)),"u:"))))
+        {
+            /* Change sequences ( i/u V ) => ( j/v V ) */
+            if (cst_streq(val_string(val_car(p)),"i"))
+                replace_car(p,string_val("j"));
+            else if (cst_streq(val_string(val_car(p)),"u"))
+                replace_car(p,string_val("v"));
+            
+            /* Change sequences ( i:/u: V ) => ( i/u j/v V ) */
+            else if (cst_streq(val_string(val_car(p)),"i:"))
+            {
+                replace_car(p,string_val("i"));
+                set_cdr((cst_val *)p,cons_val(string_val("j"),val_cdr(p)));
+            }
+            else if (cst_streq(val_string(val_car(p)),"u:"))
+            {
+                replace_car(p,string_val("u"));
+                set_cdr((cst_val *)p,cons_val(string_val("v"),val_cdr(p)));
+            }
+            p = val_cdr(p); /* Skip over them */
+        }
+        
+        /* Change sequences ( V i ) => ( V j ) */
+        else  if (cst_streq(val_string(val_car(val_cdr(p))),"i") &&
+                  cmu_indic_is_vowel(val_string(val_car(p))))
+        {
+            p = val_cdr(p);
+            replace_car(p,string_val("j"));
+        }
+        
+        /* Change sequence ( V i: V ) => ( V j j V ) */
+        else  if (cst_streq(val_string(val_car(val_cdr(p))),"i:") &&
+                  cmu_indic_is_vowel(val_string(val_car(p))) &&
+                  (val_cdr(val_cdr(p))) &&
+                  cmu_indic_is_vowel(val_string(val_car(val_cdr(val_cdr(p))))))
+        {
+            p = val_cdr(p);
+            replace_car(p,string_val("j"));
+            set_cdr((cst_val *)p,cons_val(string_val("j"),val_cdr(p)));
+            p = val_cdr(p); /* Skip over them */
+        }
+    }
+    return in_phones;
+}
+
+
 static cst_val *cmu_indic_lex_tamil_tr_replacement(cst_val *in_phones) 
 {
     /* Changes instances of ( rr rr ) to ( tr tr rr ) */
@@ -997,6 +1122,15 @@ cst_val *cmu_indic_lex_lts_function(const struct lexicon_struct *l,
         /* final u -> uy */
         base_phones = cmu_indic_lex_tamil_final_u(base_phones);
     }
+    
+      if (cst_streq(indic_variant,"pan")) 
+    {
+        /* Punjabi vowel and pronoun rules */
+        base_phones = cmu_indic_lex_punjabi_vowel_postfixes(base_phones);
+        /* Punjabi glide rules */
+        base_phones = cmu_indic_lex_punjabi_glide_postfixes(base_phones);
+    }
+    
 
     if ((cst_streq(indic_variant,"hin")) || (cst_streq(indic_variant,"mar")) ||
         (cst_streq(indic_variant,"guj")) || (cst_streq(indic_variant,"raj")) || 
@@ -1171,6 +1305,7 @@ cst_utterance *cmu_indic_postlex(cst_utterance *u)
 
     if ((cst_streq(indic_variant,"hin")) ||
         (cst_streq(indic_variant,"mar")) ||
+        (cst_streq(indic_variant,"pan")) ||
         (cst_streq(indic_variant,"raj")) ||
         (cst_streq(indic_variant,"asm")) ||
         (cst_streq(indic_variant,"ben")))
