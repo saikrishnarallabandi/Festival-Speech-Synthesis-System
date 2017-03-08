@@ -4,9 +4,11 @@ import numpy as np
 from math import sqrt
 from collections import defaultdict
 from sklearn.metrics import mean_squared_error as mse
+from WER import wer
 folder = '../duration_stuff_ksp/duration'
 files = sorted(os.listdir(folder))
 wids = defaultdict(lambda:  len(wids))
+
 
 phones = []
 durations =[]
@@ -26,10 +28,11 @@ print "Created phone arrays"
 i2w = {i:w for w,i in wids.iteritems()}
 
 import dynet as dy
-from seq2seq_v1 import Attention as RED 
+from seq2seq_beam import Attention as RED 
 model = dy.Model()
 M = model.add_lookup_parameters((len(wids), 50))
 red =  RED(len(wids), model, M)
+print "printign red", red
 trainer = dy.SimpleSGDTrainer(model)
 
 
@@ -64,16 +67,18 @@ for epoch in range(100):
          words = 0
          dloss = 0
          for _ in range(1):
-	     print ' '.join(k for  k in sentence)
+	     original =  ' '.join(k for  k in sentence)
 	     isent = get_indexed(sentence)
 	     resynth,dur_gen = red.generate(isent)
               
              #samp = red.sample(nchars= len(sentence),stop=wids["</s>"])
-             print(" ".join([i2w[c] for c in resynth]).strip())
+             hypothesis = (" ".join([i2w[c] for c in resynth]).strip())
              durs = durs[0:5]
-             
-             print "Original: ", ' '.join(str(float(k)).zfill(3) for k in durs)
-             print "Synthesized: ", ' '.join(str(float(dur_gen[k].value())).zfill(3) for k in range(0,5))
+        
+           
+             print "Original: " ' '.join(str(float(k)).zfill(3) for k in durs)
+             print "Synthesized: ",' '.join(str(float(dur_gen[k].value())).zfill(3) for k in range(0,5))
+             wer(original.split(),hypothesis.split())
              synth_durs = [float(k.value()) for k in dur_gen]
              durs = np.asarray(durs, dtype=float)
              synth_durs = np.asarray(durs, dtype=float)
@@ -110,3 +115,9 @@ for epoch in range(100):
  trainer.update_epoch(1)
     
     
+#def save_model( l):
+#          params = [model.add_lookup_parameters]
+#          model.save("model_beam_cmudict" + str(l).zfill(2), params)
+#          print "model saved"
+#def load_model(self, l):
+#         [self.input_lookup, self.output_lookup, self.enc_fwd_lstm, self.enc_bwd_lstm, self.dec_lstm, self.attention_w1, self.attention_w2, self.attention_v, self.decoder_w, self.decoder_b, self.encoder_w, self.encoder_b] = self.model.load("model_beam_" + str(l).zfill(2))

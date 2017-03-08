@@ -3,7 +3,7 @@ import numpy as np
 from math import sqrt
 from collections import defaultdict
 from sklearn.metrics import mean_squared_error as mse
-folder = '../duration_stuff_ksp/duration'
+folder = '/home/srallaba/voices/cmu_us_ksp/duration_stuff_ksp/duration'
 files = sorted(os.listdir(folder))
 wids = defaultdict(lambda:  len(wids))
 
@@ -93,7 +93,7 @@ for epoch in range(100):
     isent = get_indexed(sentence)
     #print isent
     #print "I will try to calculate error now"
-    error, derror = red.get_loss(isent,durs)
+    error, derror = red.get_loss(isent)#,durs)
     #print "Obtained loss ", error.value()
     loss += error.value()
     dloss += derror.value()

@@ -9,7 +9,8 @@ model = Model()
 trainer = SimpleSGDTrainer(model)
 #filename = '../data/en-de/test.en-de.low.en'
 #filename = '../../../../dynet-base/dynet/examples/python/written.txt'
-filename = 'txt.done.data'
+#filename = 'txt.done.data'
+filename = '/home/pbaljeka/IS17/Data/cmu_us_wsj/etc/txt.done.data'
 
 lm = LM()
 train_dict,wids = lm.read_corpus(filename)

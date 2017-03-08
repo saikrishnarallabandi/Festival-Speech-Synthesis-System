@@ -38,8 +38,9 @@ class Attention:
        self.output_lookup = lookup
        self.duration_weight = model.add_parameters(( 1, self.state_size ))
        self.duration_bias = model.add_parameters( ( 1 ))
-     
+       print "till here"    
      def run_lstm(self, init_state, input_vecs):
+#            print "came here"
             s = init_state
             out_vectors = []
             for vector in input_vecs:
@@ -50,6 +51,7 @@ class Attention:
             return out_vectors 
 
      def embed_sentence(self, sentence):
+#          print "came here also"
           sentence = [EOS] + list(sentence) + [EOS]
           sentence = [char2int[c] for c in sentence]
           global input_lookup

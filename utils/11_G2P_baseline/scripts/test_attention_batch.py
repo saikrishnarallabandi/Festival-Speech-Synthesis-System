@@ -114,6 +114,7 @@ for epoch in range(100):
     if c%250 == 1:
     #     #print "I will print trainer status now"
          print " Processed ", c, " batches out of ", len(train_order)
+         c = c + 1
          trainer.status()
          print "Loss: ", loss / words
          print "Perplexity: ", math.exp(loss / words)
