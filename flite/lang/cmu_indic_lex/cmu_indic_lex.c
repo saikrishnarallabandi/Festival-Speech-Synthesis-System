@@ -641,7 +641,6 @@ static cst_val *cmu_indic_lex_jnyan_replacement(cst_val *in_phones,
     return in_phones;
 }
 
-
 static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones) 
 {
     const cst_val *p;
@@ -651,7 +650,8 @@ static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones)
     /* Provide better approximates for 3rd person singular pronouns */
     /* Check for orthographic variant of ihn/uhn, written inh/unh */
     /* Equivalent to the punjabi_pronoun_postfixes function */
-    if ((cst_streq(val_string(val_car(val_cdr(p))),"nB")) &&
+    if (p && val_cdr(p) && val_cdr(val_cdr(p)) &&        
+        (cst_streq(val_string(val_car(val_cdr(p))),"nB")) &&
         (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"hv")) &&
         ((cst_streq(val_string(val_car(p)),"i")) ||
          (cst_streq(val_string(val_car(p)),"u"))))
@@ -671,6 +671,7 @@ static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones)
         /* Change sequences ( A hv i/u ) => ( aI/aU hv ) */
         if ((cst_streq(val_string(val_car(p)),"A")) &&
             (cst_streq(val_string(val_car(val_cdr(p))),"hv")) &&
+            val_cdr(val_cdr(p)) &&
             ((cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"i")) ||
              (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"u"))))
         {
@@ -696,6 +697,7 @@ static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones)
         
         /* Change sequences ( A: u/A ) => ( aU/A: ) */
         else if ((cst_streq(val_string(val_car(p)),"A:")) &&
+                 val_cdr(val_cdr(p)) &&
                  ((cst_streq(val_string(val_car(val_cdr(p))),"u")) ||
                   (cst_streq(val_string(val_car(val_cdr(p))),"A")))
                  )
@@ -765,7 +767,6 @@ static cst_val *cmu_indic_lex_punjabi_glide_postfixes(cst_val *in_phones)
     }
     return in_phones;
 }
-
 
 static cst_val *cmu_indic_lex_tamil_tr_replacement(cst_val *in_phones) 
 {
@@ -1123,14 +1124,13 @@ cst_val *cmu_indic_lex_lts_function(const struct lexicon_struct *l,
         base_phones = cmu_indic_lex_tamil_final_u(base_phones);
     }
     
-      if (cst_streq(indic_variant,"pan")) 
+    if (cst_streq(indic_variant,"pan")) 
     {
         /* Punjabi vowel and pronoun rules */
         base_phones = cmu_indic_lex_punjabi_vowel_postfixes(base_phones);
         /* Punjabi glide rules */
         base_phones = cmu_indic_lex_punjabi_glide_postfixes(base_phones);
     }
-    
 
     if ((cst_streq(indic_variant,"hin")) || (cst_streq(indic_variant,"mar")) ||
         (cst_streq(indic_variant,"guj")) || (cst_streq(indic_variant,"raj")) || 
