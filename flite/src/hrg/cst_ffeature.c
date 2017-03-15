@@ -133,6 +133,10 @@ static const void *internal_ff(const cst_item *item,
 	    pitem = item_daughter(pitem);
 	else if (cst_streq(tk,"daughtern"))
 	    pitem = item_last_daughter(pitem);
+	else if (cst_streq(tk,"first"))
+	    pitem = item_first(pitem);
+	else if (cst_streq(tk,"last"))
+	    pitem = item_last(pitem);
 	else if (cst_streq(tk,"R"))
 	{
 	    /* A relation move */

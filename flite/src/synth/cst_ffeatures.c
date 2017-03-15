@@ -223,6 +223,43 @@ const cst_val *cg_position_in_phrasep(const cst_item *p)
     }
 }
 
+const cst_val *cg_position_in_phrase(const cst_item *p)
+{
+    float pstart, pend;
+    float x;
+    #define CG_FRAME_SHIFT 0.005 
+
+    pstart = ffeature_float(p,"R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Phrase.parent.daughter1.R:SylStructure.daughter1.daughter1.R:Segment.p.end");
+    pend = ffeature_float(p,"R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Phrase.parent.daughtern.R:SylStructure.daughtern.daughtern.R:Segment.end");
+    if ((pend - pstart) == 0.0)
+        return float_val(-1.0);
+    else
+    {
+        x = 0 +
+            ((CG_FRAME_SHIFT*item_feat_float(p,"frame_number"))-pstart) /
+            (pend - pstart);
+        return float_val(x);
+    }
+}
+
+const cst_val *cg_position_in_sentence(const cst_item *p)
+{
+    float sstart, send;
+    float x;
+    #define CG_FRAME_SHIFT 0.005 
+
+    sstart = ffeature_float(p,"R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Word.first.R:SylStructure.daughter1.daughter1.R:Segment.p.end");
+    send = ffeature_float(p,"R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Word.last.R:SylStructure.daughtern.daughtern.R:Segment.end");
+    if ((send - sstart) == 0.0)
+        return float_val(-1.0);
+    else
+    {
+        x = ((CG_FRAME_SHIFT*item_feat_float(p,"frame_number"))-sstart) /
+            (send - sstart);
+        return float_val(x);
+    }
+}
+
 /* Spam specific features, but may be useful for others */
 const cst_val *pos_in_word(const cst_item *p)
 {
@@ -494,6 +531,16 @@ static const cst_val *syl_final(const cst_item *seg)
     const cst_item *s = item_as(seg,"SylStructure");
 
     if (!s || (item_next(s) == NULL))
+	return VAL_STRING_1;
+    else
+	return VAL_STRING_0;
+}
+
+static const cst_val *syl_initial(const cst_item *seg)
+{   /* first segment in a syllable */
+    const cst_item *s = item_as(seg,"SylStructure");
+
+    if (!s || (item_prev(s) == NULL))
 	return VAL_STRING_1;
     else
 	return VAL_STRING_0;
@@ -812,6 +859,8 @@ void basic_ff_register(cst_features *ffunctions)
     ff_register(ffunctions, "lisp_cg_phone_rindex", cg_phone_rindex);
 
     ff_register(ffunctions, "lisp_cg_position_in_phrasep", cg_position_in_phrasep);
+    ff_register(ffunctions, "lisp_cg_position_in_phrase", cg_position_in_phrase);
+    ff_register(ffunctions, "lisp_cg_position_in_sentence", cg_position_in_sentence);
     ff_register(ffunctions, "lisp_cg_find_phrase_number", cg_find_phrase_number);
     ff_register(ffunctions, "lisp_is_pau", cg_is_pau);
 
@@ -845,6 +894,7 @@ void basic_ff_register(cst_features *ffunctions)
     ff_register(ffunctions, "last_accent",last_accent);
     ff_register(ffunctions, "next_accent",next_accent);
     ff_register(ffunctions, "syl_final",syl_final);
+    ff_register(ffunctions, "syl_initial",syl_initial);
     ff_register(ffunctions, "segment_duration",segment_duration);
     ff_register(ffunctions, "lisp_cg_syl_ratio",cg_syl_ratio);
     ff_register(ffunctions, "lisp_cg_phrase_ratio",cg_phrase_ratio);

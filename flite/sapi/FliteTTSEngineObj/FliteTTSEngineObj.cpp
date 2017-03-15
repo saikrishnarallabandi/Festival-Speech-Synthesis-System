@@ -498,9 +498,19 @@ CFliteTTSEngineObj::speak_frag()
 	char *text;
 	size_t len;
 
-	len = wcstombs(NULL, curr_frag->pTextStart, curr_frag->ulTextLen);
-	text = cst_alloc(char, len+1);
-	wcstombs(text, curr_frag->pTextStart, curr_frag->ulTextLen);
+        // Sai Krishna + Tim 13 March 2017
+
+	//len = wcstombs(NULL, curr_frag->pTextStart, curr_frag->ulTextLen);
+	//text = cst_alloc(char, len+1);
+	//wcstombs(text, curr_frag->pTextStart, curr_frag->ulTextLen);
+
+        len = WideCharToMultiByte(CP_UTF8, 0, curr_frag->pTextStart, curr_frag->ulTextLen, NULL, 0, NULL, NULL);
+        text = cst_alloc(char, len + 1);
+        WideCharToMultiByte(CP_UTF8, 0, curr_frag->pTextStart, curr_frag->ulTextLen, text, len, NULL, NULL);
+        text[len] = 0x00;
+
+        /////////////////////////
+ 
 	ts = my_ts_open_string(curr_utt, text);
 	cst_free(text);
 

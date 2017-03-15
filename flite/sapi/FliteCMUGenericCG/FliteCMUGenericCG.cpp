@@ -72,7 +72,10 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID /*lpReserved*/)
 		SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
 		*/
 		flite_add_lang("eng", usenglish_init, cmulex_init);
-
+                // Sai Krishna + Tim 13 March 2017 //////////
+                flite_add_lang("cmu_indic_lang", cmu_indic_lang_init, cmu_indic_lex_init);
+                flite_add_lang("cmu_grapheme_lang", cmu_grapheme_lang_init, cmu_grapheme_lex_init);
+                //////////////////////////////////////
 	}
 	else if (dwReason == DLL_PROCESS_DETACH)
 		_Module.Term();

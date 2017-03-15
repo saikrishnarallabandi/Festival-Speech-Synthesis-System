@@ -280,7 +280,7 @@ int cst_cg_dump_voice(const cst_voice *v,const cst_string *filename)
                           get_param_string(v->features,"build_date","unknown"));
     cst_cg_write_voice_feature(fd, "description", 
                           get_param_string(v->features,"description","unknown"));
-    /* These three must be set as string feature 
+    /* These three must be saved as string features
        (though are interpreted as floats) */
     if (get_param_string(v->features,"int_f0_target_mean",NULL))
         cst_cg_write_voice_feature(fd, "int_f0_target_mean", 

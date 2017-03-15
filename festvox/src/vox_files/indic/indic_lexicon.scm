@@ -87,11 +87,11 @@ Returns t if medial schwa in words is deleted in the current language"
 
 ;; Set classes of indic characters
 (set! indic_char_types '(independent_vowel
-                         consonant vowel
-                         digits punc ignore
-                         anuswaar visarga nukta
-                         avagraha halant
-                         ))
+						 consonant vowel
+						 digits punc ignore
+						 anuswaar visarga nukta
+						 avagraha halant addak
+						 ))
 
 (set! indic_char_type_ranges
       '(
@@ -135,6 +135,12 @@ Returns t if medial schwa in words is deleted in the current language"
                             (2693 2701)
                             (2703 2705)
                             (2707 2708)
+
+							;; Gurmukhi
+							(2565 2570) ;; ਅ to ਊ
+							(2575 2576) ;; ਏ and ਐ
+							(2579 2580) ;; ਓ and ਔ
+							(2676 2676) ;; ੴ (ek onkar)
 
                             ))
         (consonant         (
@@ -183,6 +189,16 @@ Returns t if medial schwa in words is deleted in the current language"
                             (2738 2739)
                             (2741 2745)
 
+							;; Gurmukhi
+                                                        (2581 2600) ;; ਕ to ਨ
+                                                        (2602 2608) ;; ਪ to ਰ
+                                                        (2610 2611) ;; ਲ and ਲ਼
+                                                        (2613 2614) ;; ਵ and ਸ਼
+                                                        (2616 2617) ;; ਸ and ਹ
+                                                        (2649 2652) ;; ਖ਼ to ੜ
+                                                        (2654 2654) ;; ਫ਼
+                                                        (2677 2677) ;; ੵ
+
                             ))
 
         (vowel             (
@@ -222,6 +238,11 @@ Returns t if medial schwa in words is deleted in the current language"
                             (2759 2761)
                             (2763 2764)
 
+							;; Gurmukhi
+							(2622 2626) ;; ਾ to ੂ
+							(2631 2632) ;; ੇ and ੈ
+							(2635 2636) ;; ੋ and ੌ
+
                             ))
 
         (anuswaar          (
@@ -243,6 +264,10 @@ Returns t if medial schwa in words is deleted in the current language"
                             ;; Gujarati
                             (2689 2690)
 
+							;; Gurmukhi
+							(2561 2562) ;; ਁ and ਂ
+							(2672 2672) ;; ੰ (tippi)
+
                             ))
 
         (visarga           (
@@ -263,6 +288,9 @@ Returns t if medial schwa in words is deleted in the current language"
 
                             ;; Gujarati
                             (2691 2691)
+
+							;; Gurmukhi
+							(2563 2563) ;; ਃ
 
                             ))
 
@@ -287,6 +315,9 @@ Returns t if medial schwa in words is deleted in the current language"
                             ;; Gujarati
                             (2748 2748)
 
+							;; Gurmukhi
+							(2620 2620) ;; ਼
+
                             ))
 
         (avagraha          (
@@ -307,6 +338,7 @@ Returns t if medial schwa in words is deleted in the current language"
 
                             ))
 
+
         (halant            (            ; Also known as Virama
                             ;; Devnagari
                             (2381 2381)
@@ -325,7 +357,15 @@ Returns t if medial schwa in words is deleted in the current language"
 
                             ;; Gujarati
                             (2765 2765)
+
+							;; Gurmukhi
+							(2637 2637) ;; ੍
                             ))
+
+		(addak		   (			;; Gurmukhi
+							(2673 2673) ;; ੱ
+
+							))
 
         (digits            (
                             ;; Devnagari
@@ -345,6 +385,9 @@ Returns t if medial schwa in words is deleted in the current language"
 
                             ;; Gujarati
                             (2790 2799)
+
+							;; Gurmukhi
+							(2662 2671) ; Digits
 
                             ))
 
@@ -410,6 +453,33 @@ Returns t if medial schwa in words is deleted in the current language"
                             (2800 2800) ;; abbreviation symbol
                             (2801 2801) ;; rupee symbol
 
+							;; Gurmukhi
+							(2560 2560) ;; 
+							(2564 2564) ;; 
+							(2571 2574) ;; 
+							(2577 2578) ;; 
+							(2601 2601) ;; 
+							(2609 2609) ;; 
+							(2612 2612) ;; 
+							(2615 2615) ;; 
+							(2618 2619) ;; 
+							(2621 2621) ;; 
+							(2627 2630) ;; 
+							(2633 2634) ;; 
+							(2638 2640) ;;
+							(2641 2641) ;; udaat (non-spacing mark--probably safe to ignore?)
+							(2642 2648) ;; 
+							(2653 2653) ;; 
+							(2655 2661) ;;
+							(2674 2675) ;; ੲ (iri) and ੳ (ura) are the base forms
+								    ;; for independent vowels ਇ, ਈ, ਏ; ਉ, ਊ, ਓ ...
+								    ;; I guess sometimes those are written as iri/ura +
+								    ;; combining vowel sign as opposed to using the
+								    ;; standalone codepoints for the above.  So just
+								    ;; ignore these and the combining sign will
+								    ;; function as the vowel by itself.
+							(2678 2687) ;; 
+
                             ))
         ))
 
@@ -435,6 +505,15 @@ Returns t if medial schwa in words is deleted in the current language"
 		;; Tamil aU vowel in Tamil gets lengthened. See Tamil nukta
 		;; above for details.
 		( 2962 2964 )
+
+		;; Gurmukhi
+		( 2582 2649 ) ; ਖ਼
+		( 2583 2650 ) ; ਗ਼
+		( 2588 2651 ) ; ਜ਼
+		( 2603 2654 ) ; ਫ਼
+		( 2610 2611 ) ; ਲ਼
+		( 2616 2614 ) ; ਸ਼
+		
 		))
 
 
@@ -611,6 +690,10 @@ Letter to sound rules for Indic words"
 		   ;; phone.
 		   (set! out_phones (append out_phones (list 'h))))
 
+		  ((eq cur_char_type 'addak)
+		   ;; In Gurmukhi, this diacritic geminates the following consonant.
+		   (set! out_phones (append out_phones (ord_to_phoneme next_char))))
+
 		  (t
 		   (format t "WARNING: Unhandled character %d of type %s\n" cur_char cur_char_type )
 		   )
@@ -675,24 +758,25 @@ context"
    ((and (cdr phones) ;; nX followed by velar becomes nG
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "v"))
-    (cons 'N (indic_nasal_postfixes (cdr phones))))
+    (cons 'N (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
    ((and (cdr phones) ;; nX followed by palatal becomes n~
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "p"))
-    (cons 'n~ (indic_nasal_postfixes (cdr phones))))
+    (cons 'n~ (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
    ((and (cdr phones) ;; nX followed by alveolar becomes nr
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "a"))
-    (cons 'nr (indic_nasal_postfixes (cdr phones))))
+    (cons 'nr (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
    ((and (cdr phones) ;; nX followed by dental becomes nB
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "d"))
-    (cons 'nB (indic_nasal_postfixes (cdr phones))))
+    (cons 'nB (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
    ((and (cdr phones) ;; nX followed by labial becomes m
          (eq 'nX (car phones))
          (string-equal (phone_feature (cadr phones) 'cplace) "l"))
-    (cons 'm (indic_nasal_postfixes (cdr phones))))
-   ((eq 'nX (car phones))
+    (cons 'm (cons (cadr phones) (indic_nasal_postfixes (cddr phones)))))
+   ((and (cdr phones) ;; all other nX become nB
+         (eq 'nX (car phones)))
     (set! replacement 'nB)
     (if (eq lex:language_variant "kan") ;; Default anuswar in kannada is "m"
         (set! replacement 'm))
@@ -853,6 +937,128 @@ rr rr -> tr tr rr and n rr -> nr dr rr."
    (t
     (cons (car phones) (tamil_rr_postfixes (cdr phones))))))
 	   
+(define (punjabi_vowel_postfixes phones)
+  "(punjabi_vowel_postfixes phones)
+Vowel changes for sequence of two vowels, or vowels influenced by hv."
+
+  (set! hv_vowel_map
+		'(
+		  ( i  aI  e )
+		  ( u  aU  o )
+		  ))
+		    
+  (cond
+   ((null phones) nil)
+   ((not (car phones)) nil)
+   ((not (cdr phones)) phones)
+   
+   ;; Change sequences ( A hv i/u ) => ( aI/aU hv )
+   ((and (eq (car phones) 'A)
+		 (eq (cadr phones) 'hv)
+		 (assoc (caddr phones) hv_vowel_map))
+	 (cons (cadr (assoc (caddr phones) hv_vowel_map))
+			     (cons 'hv (cdddr phones))))
+   
+   ;; Change sequences ( i/u hv ) => ( e/o hv )
+   ((and (assoc (car phones) hv_vowel_map)
+         (eq (cadr phones) 'hv))
+    (cons (caddr (assoc (car phones) hv_vowel_map))
+          (cons 'hv (cddr phones))))
+
+   ;; Change the sequence ( A: u ) => ( aU )
+   ((and (eq (car phones) 'A:)
+         (eq (cadr phones) 'u))
+    (cons 'aU
+          (cddr phones)))
+
+   ;; Change the sequence ( A: A ) => ( A: )
+   ((and (eq (car phones) 'A:)
+         (eq (cadr phones) 'A))
+    (cons 'A:
+          (cddr phones)))
+
+   (t
+	  (cons (car phones) (punjabi_vowel_postfixes (cdr phones))))))
+
+
+(define (punjabi_pronoun_postfixes phones)
+  "(punjabi_pronoun_postfixes phones)
+Provide better approximates for 3rd person singular pronouns ih/uh => eh/oh"
+
+  (set! pronoun_vowel_map
+		'(
+		  ( i  e  )
+		  ( u  o  )
+		  ))
+		  
+  ;; Check for orthographic variant of ihn/uhn, written inh/unh
+  ;; Regular versions get treated properly by punjabi_vowel_postfixes
+  (if (and (assoc (car phones) pronoun_vowel_map)
+           (eq (cadr phones) 'nB)
+           (eq (caddr phones) 'hv))
+      (cons (cadr (assoc (car phones) pronoun_vowel_map))
+            (cons 'hv
+                  (cons 'nB (cdddr phones))))
+      phones))
+
+
+(define (punjabi_glide_postfixes phones)
+  "(punjabi_glide_postfixes phones)
+Given a phone sequence, convert i and u to glides if next to a vowel, V"
+
+  (set! short_glide_map
+		'(
+		  ( i  j  )
+		  ( u  v  )
+		  ))
+		  
+  (set! long_glide_map
+		'(
+		  ( i:  j  i )
+		  ( u:  v  u )
+		  ))
+  
+  (cond
+   ((null phones) nil)
+   ((not (car phones)) nil)
+   ((not (cdr phones)) phones)
+   
+   ;; Change sequences ( i/u V ) => ( j/v V )
+   ((and (assoc (car phones) short_glide_map)
+         (indic_is_vowel (cadr phones)))
+    (cons (cadr (assoc (car phones) short_glide_map))
+          (cons (cadr phones)
+                (punjabi_glide_postfixes (cddr phones)))))
+
+   ;; Change sequences ( i:/u: V ) => ( i/u j/v V )
+   ((and (assoc (car phones) long_glide_map)
+         (indic_is_vowel (cadr phones)))
+    (cons (caddr (assoc (car phones) long_glide_map))
+          (cons (cadr (assoc (car phones) long_glide_map))
+                (cons (cadr phones)
+                      (punjabi_glide_postfixes (cddr phones))))))
+
+   ;; Change sequence ( V i ) => ( V j )
+   ((and (eq 'i (cadr phones))
+         (indic_is_vowel (car phones)))
+    (cons (car phones)
+          (cons 'j
+                (punjabi_glide_postfixes (cddr phones)))))
+
+   ;; Change sequence ( V i: (V) ) => ( V j i(j) (V) )
+   ((and (eq 'i: (cadr phones))
+         (indic_is_vowel (car phones))
+         (indic_is_vowel (caddr phones)))
+
+        ;; If i: between two vowels, rule is applied recursively to get ( j j )
+        (cons (car phones)
+              (cons 'j
+                    (cons 'j
+                          (punjabi_glide_postfixes (cddr phones))))))
+
+   (t
+	(cons (car phones) (punjabi_glide_postfixes (cdr phones))))))
+	
 (define (indic_lex_sylbreak currentsyl remainder)
   "(indic_lex_sylbreak currentsyl remainder)
 t if this is a syl break, nil otherwise."
@@ -957,7 +1163,7 @@ t if this is a syl break, nil otherwise."
     
     (set! syls (reverse syls))
 
-    (if (member_string lex:language_variant '("hin" "mar" "raj" "asm" "ben"))
+    (if (member_string lex:language_variant '("hin" "mar" "raj" "asm" "ben" "pan"))
         (set! syls (indic_assign_stress syls)))
 
     syls))
@@ -1163,13 +1369,18 @@ Return pronunciation of word not in lexicon."
 		(set! phones (reverse (indic_delete_medial_schwa (reverse phones)))))
         ;; language specific postfixes
 	(cond
-         ((string-equal lex:language_variant "hin")
+         ((eq lex:language_variant 'hin)
           (set! phones (hindi_schwa_postfixes phones))
           )
-         ((string-equal lex:language_variant "tam")
+         ((eq lex:language_variant 'tam)
           (set! phones (tamil_voicing_postfixes phones))
           (set! phones (tamil_u_postfixes phones))
           (set! phones (tamil_rr_postfixes phones))
+          )
+         ((eq lex:language_variant 'pan)
+          (set! phones (punjabi_vowel_postfixes phones))
+          (set! phones (punjabi_pronoun_postfixes phones))
+          (set! phones (punjabi_glide_postfixes phones))
           )
          (t
           nil))
