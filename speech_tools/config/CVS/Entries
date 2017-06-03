@@ -5,6 +5,7 @@
 /example.Makefile/1.2/Tue May  4 00:00:16 2004//
 /example.module.mak/1.1.1.1/Wed Apr  4 11:55:32 2001//
 /make_system.mak/1.2/Wed Apr  4 13:11:27 2001//
+/project.mak/1.26/Wed Feb 22 15:50:14 2017//
 /system.sh/1.5/Fri Dec 27 21:20:14 2002//
 /test_make_rules/1.1.1.1/Wed Apr  4 11:55:32 2001//
 /vc_common_make_rules/1.2/Wed Sep 29 08:24:16 2004//
@@ -14,4 +15,3 @@ D/configs////
 D/modules////
 D/rules////
 D/systems////
-/project.mak/1.26/Tue Mar  7 16:56:14 2017//

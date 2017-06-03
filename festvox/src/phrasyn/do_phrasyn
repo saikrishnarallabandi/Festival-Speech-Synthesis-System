@@ -140,7 +140,7 @@ fi
 if [ "$ACTION" = "postbuild" ]
 then
    $FESTVOXDIR/src/phrasyn/do_phrasyn dump_phrasing_tree etc/txt.done.data.train gpos 20 20
-   nohup $FESTVOXDIR/src/phrasyn/do_phrasyn build_phrasing_grammar etc/txt.done.data.train gpos 20 20
+   $FESTVOXDIR/src/phrasyn/do_phrasyn build_phrasing_grammar etc/txt.done.data.train gpos 20 20
    $FESTVOXDIR/src/phrasyn/do_phrasyn utt_parse etc/txt.done.data.train gpos 20 20
 
    # Simple tree based (but need syntax based one to bootstrap from)

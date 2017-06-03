@@ -241,10 +241,33 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lang\cmu_grapheme_lang\cmu_grapheme_lang.c" />
+    <ClCompile Include="..\..\lang\cmu_grapheme_lang\cmu_grapheme_phoneset.c" />
+    <ClCompile Include="..\..\lang\cmu_grapheme_lang\cmu_grapheme_phrasing_cart.c" />
+    <ClCompile Include="..\..\lang\cmu_grapheme_lex\cmu_grapheme_lex.c" />
+    <ClCompile Include="..\..\lang\cmu_grapheme_lex\grapheme_unitran_tables.c" />
+    <ClCompile Include="..\..\lang\cmu_indic_lang\cmu_indic_lang.c" />
+    <ClCompile Include="..\..\lang\cmu_indic_lang\cmu_indic_phoneset.c" />
+    <ClCompile Include="..\..\lang\cmu_indic_lang\cmu_indic_phrasing_cart.c" />
+    <ClCompile Include="..\..\lang\cmu_indic_lex\cmu_indic_lex.c" />
     <ClCompile Include="FliteTTSEngineObj.cpp" />
     <ClCompile Include="flite_sapi_usenglish.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lang\cmu_grapheme_lang\cmu_grapheme_lang.h" />
+    <ClInclude Include="..\..\lang\cmu_grapheme_lang\cmu_grapheme_phrasing_cart.h" />
+    <ClInclude Include="..\..\lang\cmu_grapheme_lex\cmu_grapheme_lex.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\cmu_indic_lang.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\cmu_indic_phrasing_cart.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_eng_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_guj_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_hin_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_kan_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_mar_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_tam_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lang\indic_tel_num_table.h" />
+    <ClInclude Include="..\..\lang\cmu_indic_lex\cmu_indic_lex.h" />
     <ClInclude Include="FliteTTSEngineObj.h" />
     <ClInclude Include="flite_sapi_usenglish.h" />
   </ItemGroup>

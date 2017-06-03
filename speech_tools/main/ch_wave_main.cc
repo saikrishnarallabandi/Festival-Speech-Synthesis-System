@@ -46,6 +46,8 @@
 #include "EST_wave_aux.h"
 #include "EST.h"
 
+#define sgn(x) (x>0?1:x?-1:0)
+
 void wave_extract_channel(EST_Wave &single, const EST_Wave &multi,  EST_IList &ch_list);
 
 
@@ -172,7 +174,9 @@ int main (int argc, char *argv[])
 	 "    section on wave extraction\n\n"
 		       
 	 "-ext <string>    File extension for divided waveforms\n\n"
-		       
+         
+         "-compress Apply Dynamic Range Compression by factor specified \n" 		       
+
 	 "-extract <string> Used in conjunction with -key to extract a \n"
 	 "    single section of waveform from the input \n"
 	 "    waveform. The argument is the name of a file given \n"
@@ -245,6 +249,21 @@ int main (int argc, char *argv[])
     {
 	float scale = al.fval("-scale", 0);
 	sig.rescale(scale);
+    }
+    if (al.present("-compress")) // Dynamic Range Compression
+    {
+        //float mu = al.fval("-compress", 0);
+        float mu = 255.0;
+        float lim = 30000.0;
+        sig.compress(mu, lim);
+        //float x;
+        //nsig = sig;
+        //for (int i = 0; i < nsig.num_samples(); i++)
+        //{
+        //  x = nsig[i];
+        //  sig[i]= lim* (sgn(x)*(log(1+(mu/lim)*abs(x))/log(1+mu)));
+        
+        
     }
     else if (al.present("-scaleN"))	// rescale
     {

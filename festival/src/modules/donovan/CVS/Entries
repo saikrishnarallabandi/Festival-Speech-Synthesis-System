@@ -1,5 +1,6 @@
 /Makefile/1.1.1.1/Wed Apr  4 11:55:20 2001//
 /coeffs.c/1.1.1.1/Wed Apr  4 11:55:20 2001//
+/donovan.cc/1.4/Wed Feb 22 15:51:30 2017//
 /donovan.h/1.1.1.1/Wed Apr  4 11:55:20 2001//
 /durations.c/1.2/Tue Nov 25 14:35:41 2014//
 /excitation.c/1.1.1.1/Wed Apr  4 11:55:20 2001//
@@ -7,5 +8,4 @@
 /makewav.c/1.1.1.1/Wed Apr  4 11:55:20 2001//
 /pitch.c/1.1.1.1/Wed Apr  4 11:55:20 2001//
 /t2s.h/1.2/Tue Aug 26 11:28:07 2014//
-/donovan.cc/1.4/Tue Mar  7 16:49:02 2017//
 D

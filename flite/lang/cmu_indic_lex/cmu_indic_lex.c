@@ -226,7 +226,7 @@ static void replace_cdr(const cst_val *it,const cst_val *newcdr)
 
 static int cmu_indic_is_vowel(const char *p)
 {
-  /* this happens works for the vowels in the indic set */
+  /* this happens to work for the vowels in the indic set */
   if (strchr("aeiouAEIOU",p[0]) == NULL)
     return FALSE;
   else
@@ -280,11 +280,39 @@ static int cmu_indic_get_char_type(const cst_val *indic_char)
     return cmu_indic_offset_char[c].type;
 }
 
-static const cst_val* cmu_indic_get_char_phoneme(const cst_val *indic_char) 
+static int indic_text_splitable(const char *s,int i,int len1)
+{
+    /* Returns true only if this and next chars are not both digits */
+    /* or both non-digits */
+
+    char *ccc, *ddd;    /* Store this character and the next character */
+    int len2;           /* Length of next character */
+
+    int flag;
+
+    ccc = cst_strdup(&s[i]);
+    ddd = cst_strdup(&s[i+len1]);
+
+    len2 = utf8_sequence_length(ddd[0]);
+
+    ccc[len1] = '\0';
+    ddd[len2] = '\0';
+
+    /* Makeshift NOR */
+    flag = (indic_digit_to_offset(ccc) == -1)? !(indic_digit_to_offset(ddd) == -1):
+	       (indic_digit_to_offset(ddd) == -1);
+
+    cst_free(ccc);
+    cst_free(ddd);
+
+    return flag;
+}
+
+static const char *cmu_indic_get_char_phoneme(const cst_val *indic_char) 
 {
     int c;
 
-    if (!indic_char) return string_val("");
+    if (!indic_char) return "";
 
     c = val_int(indic_char);
 
@@ -292,33 +320,35 @@ static const cst_val* cmu_indic_get_char_phoneme(const cst_val *indic_char)
        length distinction b/w e and e: */
     /* e/e: & o/o: distinction: */  
     /* Kannada */
-    if ((c == 0x0C8F)||(c == 0x0CC7)) return string_val("e:");
-    if (c == 0x0C92) return string_val("o");
-    if ((c == 0x0C93)||(c == 0x0CCB)) return string_val("o:");
+    if ((c == 0x0C8F)||(c == 0x0CC7)) return "e:";
+    if (c == 0x0C92) return "o";
+    if ((c == 0x0C93)||(c == 0x0CCB)) return "o:";
     /* Malayalam */
-    if ((c == 0x0D0F)||(c == 0x0D47)) return string_val("e:");
-    if (c == 0x0D12) return string_val("o");
-    if ((c == 0x0D13)||(c == 0x0D4B)) return string_val("o:");
-    if (c == 0x0D34) return string_val("zr"); /* Retroflex approximant */
-    if (c == 0x0D31) return string_val("rr"); /* Retroflex flap */
+    if ((c == 0x0D0F)||(c == 0x0D47)) return "e:";
+    if (c == 0x0D12) return "o";
+    if ((c == 0x0D13)||(c == 0x0D4B)) return "o:";
+    if (c == 0x0D34) return "zr"; /* Retroflex approximant */
+    if (c == 0x0D31) return "rr"; /* Retroflex flap */
+    /* Punjabi */
+    if (c == 0x0A33) return "l";
     /* Tamil */
-    if ((c == 0x0B8F)||(c == 0x0BC7)) return string_val("e:");
-    if (c == 0x0B92) return string_val("o");
-    if ((c == 0x0B93)||(c == 0x0BCB)) return string_val("o:");
-    if (c == 0x0BA9) return string_val("n"); /* Tamil alveolar nasal */
-    if (c == 0x0BB1) return string_val("rr");
-    if (c == 0x0BB4) return string_val("zr");
+    if ((c == 0x0B8F)||(c == 0x0BC7)) return "e:";
+    if (c == 0x0B92) return "o";
+    if ((c == 0x0B93)||(c == 0x0BCB)) return "o:";
+    if (c == 0x0BA9) return "n"; /* Tamil alveolar nasal */
+    if (c == 0x0BB1) return "rr";
+    if (c == 0x0BB4) return "zr";
     
     /* Telugu */
-    if ((c == 0x0C0F)||(c == 0x0C47)) return string_val("e:");
-    if (c == 0x0C12) return string_val("o");
-    if ((c == 0x0C13)||(c == 0x0C4B)) return string_val("o:");
+    if ((c == 0x0C0F)||(c == 0x0C47)) return "e:";
+    if (c == 0x0C12) return "o";
+    if ((c == 0x0C13)||(c == 0x0C4B)) return "o:";
 
     /* Not a special case */
     c = cmu_indic_lex_ord_to_offset(c);
 
     /*    printf("awb_debug get_char_phone %x %s\n",c,cmu_indic_offset_char[c].phoneme);*/
-    return string_val(cmu_indic_offset_char[c].phoneme);
+    return cmu_indic_offset_char[c].phoneme;
 }
 
 static cst_val *cmu_indic_lex_remove_ignore_chars(const cst_val *indic_ords) {
@@ -366,7 +396,7 @@ static cst_val *cmu_indic_lex_map_nukta_chars(const cst_val *indic_ords) {
       case 2583: mapped_val=2650; break; /* ਗ਼ */
       case 2588: mapped_val=2651; break; /* ਜ਼ */
       case 2603: mapped_val=2654; break; /* ਫ਼ */
-      case 2610: mapped_val=2611; break; /* ਲ਼ */
+      case 2610: mapped_val=2610; break; /* ਲ਼ */
       case 2616: mapped_val=2614; break; /* ਸ਼ */
 
         default:
@@ -446,15 +476,16 @@ cst_val *cmu_indic_lex_ord_to_phones(const cst_val *ords,
             /* takes care of that. */
             if ((prev_char) &&
                 ((prev_char_type == IND_VISARGA) &&
-                 (((cst_streq("J", val_string(cmu_indic_get_char_phoneme(cur_char)))) ||
-                   (cst_streq("p", val_string(cmu_indic_get_char_phoneme(cur_char))))) &&
+                 (((cst_streq("J", cmu_indic_get_char_phoneme(cur_char))) ||
+                   (cst_streq("p", cmu_indic_get_char_phoneme(cur_char)))) &&
                   (cst_streq(indic_variant,"tam"))))) {
                 /* Don't add current character to out_phones; */
                 /* the correct mapped character is already added when  */
                 /* cur_char is visarga */
             } else {
-                out_phone_strings = cons_val(cmu_indic_get_char_phoneme(cur_char),
-                                             out_phone_strings);
+                out_phone_strings =
+                    cons_val(string_val(cmu_indic_get_char_phoneme(cur_char)),
+                             out_phone_strings);
                 /* If a consonant is followed by a combination vowel, a */
                 /* halant, a punctuation then don't add a schwa after */
                 /* it. Otherwise, insert a schwa. For end-of-word, check */
@@ -483,15 +514,17 @@ cst_val *cmu_indic_lex_ord_to_phones(const cst_val *ords,
                    (cur_char_type == IND_INDEPENDENT_VOWEL) ||
                    (cur_char_type == IND_DIGIT)) {
             /* Add whatever the pronunciation is */
-            out_phone_strings = cons_val(cmu_indic_get_char_phoneme(cur_char),
-                                         out_phone_strings);
+            out_phone_strings =
+                cons_val(string_val(cmu_indic_get_char_phoneme(cur_char)),
+                                out_phone_strings);
         } else if (cur_char_type == IND_HALANT) {
             /* Ignore */
         } else if (cur_char_type == IND_AVAGRAHA) {
             /* Lengthen previous vowel */
             if (cmu_indic_get_char_type(prev_char) == IND_VOWEL) {
-                out_phone_strings = cons_val(cmu_indic_get_char_phoneme(prev_char),
-                                             out_phone_strings);
+                out_phone_strings =
+                    cons_val(string_val(cmu_indic_get_char_phoneme(prev_char)),
+                             out_phone_strings);
             }
         } else if (cur_char_type == IND_ANUSWAAR) {
             /* The realization of anuswaar is context dependent: We */
@@ -510,11 +543,11 @@ cst_val *cmu_indic_lex_ord_to_phones(const cst_val *ords,
             /* If there's a next character */
             if (next_char) {
                 /* If next character is p or J, do mapping and add to output */
-                if (cst_streq("p", val_string(cmu_indic_get_char_phoneme(next_char)))) {
+                if (cst_streq("p", cmu_indic_get_char_phoneme(next_char))) {
                     out_phone_strings = cons_val(string_val("f"),
                                                  out_phone_strings);
 
-                } else if (cst_streq("J", val_string(cmu_indic_get_char_phoneme(next_char)))) {
+                } else if (cst_streq("J", cmu_indic_get_char_phoneme(next_char))) {
                     out_phone_strings = cons_val(string_val("z"),
                                                  out_phone_strings);
                     /* Otherwise it's "h" */
@@ -530,8 +563,9 @@ cst_val *cmu_indic_lex_ord_to_phones(const cst_val *ords,
 
         } else if (cur_char_type == IND_ADDAK) {
             /* In Gurmukhi, this diacritic geminates the following consonant. */
-            out_phone_strings = cons_val(cmu_indic_get_char_phoneme(next_char),
-                                         out_phone_strings);
+            out_phone_strings =
+                cons_val(string_val(cmu_indic_get_char_phoneme(next_char)),
+                         out_phone_strings);
         } else {
             /* IDEALLY we should warn for unhandled characters! */
             /* TODO? */
@@ -563,6 +597,29 @@ cst_val *cmu_indic_lex_ord_to_phones(const cst_val *ords,
     delete_val(out_phone_strings);
     return val_reverse(out_phones);
 
+}
+
+static cst_val *cmu_indic_lex_kannada_spelling_postfixes(cst_val *in_phones)
+{
+    const cst_val *p;
+    
+    p=in_phones;
+
+    for ( ; p && val_cdr(p) ; p=val_cdr(p))
+    {
+        /* Correct spell-errors ( e u:/aI ) => ( o/aI ) */
+        if ((cst_streq(val_string(val_car(p)),"e")) &&
+            ((cst_streq(val_string(val_car(val_cdr(p))),"u:")) ||
+             (cst_streq(val_string(val_car(val_cdr(p))),"aI"))))
+        {
+                if (cst_streq(val_string(val_car(val_cdr(p))),"u:"))
+                    replace_car(p,string_val("o"));
+                else
+                    replace_car(p,string_val("aI"));
+                set_cdr((cst_val *)p, val_cdr(val_cdr(p)));
+        }
+    }
+    return in_phones;
 }
 
 cst_val *cmu_indic_lex_nasal_postfixes(cst_val *in_phones) 
@@ -671,7 +728,7 @@ static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones)
         /* Change sequences ( A hv i/u ) => ( aI/aU hv ) */
         if ((cst_streq(val_string(val_car(p)),"A")) &&
             (cst_streq(val_string(val_car(val_cdr(p))),"hv")) &&
-            val_cdr(val_cdr(p)) &&
+            val_cdr(val_cdr(p)) && (val_cdr(val_cdr(val_cdr(p)))) &&
             ((cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"i")) ||
              (cst_streq(val_string(val_car(val_cdr(val_cdr(p)))),"u"))))
         {
@@ -686,6 +743,7 @@ static cst_val *cmu_indic_lex_punjabi_vowel_postfixes(cst_val *in_phones)
         /* Change sequences ( i/u hv ) => ( e/o hv ) */
         else if (((cst_streq(val_string(val_car(p)),"i")) ||
                   (cst_streq(val_string(val_car(p)),"u"))) &&
+                 val_cdr(val_cdr(p)) &&
                  (cst_streq(val_string(val_car(val_cdr(p))),"hv")))
         {
             if (cst_streq(val_string(val_car(p)),"i"))
@@ -1107,8 +1165,11 @@ cst_val *cmu_indic_lex_lts_function(const struct lexicon_struct *l,
         delete_val(ords);
     }
 
+    if (cst_streq(indic_variant,"tam")){
+       printf("Tamil doesnt have anuswara");
+    } 
+    else
     cmu_indic_lex_nasal_postfixes(base_phones);
-
     base_phones = cmu_indic_lex_jnyan_replacement(base_phones,feats);
 
     /* Postfix Indic Nasals, Voicing, Medial Schwa deletion */
@@ -1132,6 +1193,10 @@ cst_val *cmu_indic_lex_lts_function(const struct lexicon_struct *l,
         base_phones = cmu_indic_lex_punjabi_glide_postfixes(base_phones);
     }
 
+    if (cst_streq(indic_variant,"kan"))
+      cmu_indic_lex_kannada_spelling_postfixes(base_phones); 
+    
+ 
     if ((cst_streq(indic_variant,"hin")) || (cst_streq(indic_variant,"mar")) ||
         (cst_streq(indic_variant,"guj")) || (cst_streq(indic_variant,"raj")) || 
         (cst_streq(indic_variant,"pan")))

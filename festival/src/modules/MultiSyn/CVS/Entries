@@ -1,17 +1,27 @@
 /Decoder.h/1.1/Thu May 27 13:53:09 2004//
+/DiphoneBackoff.cc/1.3/Wed Feb 22 15:51:29 2017//
 /DiphoneBackoff.h/1.1/Thu May 27 13:53:09 2004//
+/DiphoneUnitVoice.cc/1.24/Wed Feb 22 15:51:29 2017//
 /DiphoneUnitVoice.h/1.12/Thu Jun 18 14:46:26 2015//
+/DiphoneVoiceModule.cc/1.20/Wed Feb 22 15:51:30 2017//
 /DiphoneVoiceModule.h/1.8/Thu Jun 18 14:46:26 2015//
+/EST_DiphoneCoverage.cc/1.3/Wed Feb 22 15:51:30 2017//
 /EST_DiphoneCoverage.h/1.1/Wed Apr 13 08:58:00 2005//
+/EST_FlatTargetCost.cc/1.6/Wed Feb 22 15:51:30 2017//
 /EST_FlatTargetCost.h/1.5/Thu Jun 18 14:46:27 2015//
+/EST_HybridTargetCost.cc/1.5/Wed Feb 22 15:51:30 2017//
 /EST_HybridTargetCost.h/1.1/Mon Jun 22 08:36:43 2015//
 /EST_JoinCost.cc/1.1/Thu May 27 13:53:09 2004//
+/EST_JoinCost.h/1.8/Wed Feb 22 15:51:30 2017//
 /EST_JoinCostCache.cc/1.4/Fri Nov  5 14:13:02 2010//
 /EST_JoinCostCache.h/1.3/Thu Sep 30 13:49:37 2004//
+/EST_TargetCost.cc/1.20/Wed Feb 22 15:51:30 2017//
 /EST_TargetCost.h/1.7/Thu Mar 15 12:11:00 2007//
 /Makefile/1.6/Thu Jun 18 14:46:27 2015//
 /SearchCandidate.h/1.1/Thu May 27 13:53:09 2004//
+/TargetCostRescoring.cc/1.3/Wed Feb 22 15:51:30 2017//
 /TargetCostRescoring.h/1.1/Mon Jul  3 15:40:05 2006//
+/UnitSelection.cc/1.16/Wed Feb 22 15:51:30 2017//
 /UnitSelection.h/1.1/Thu May 27 13:53:09 2004//
 /ViterbiDecoder.cc/1.1/Thu May 27 13:53:09 2004//
 /ViterbiDecoder.h/1.1/Thu May 27 13:53:09 2004//
@@ -20,14 +30,4 @@
 /VoiceModuleBase.cc/1.1/Thu May 27 13:53:09 2004//
 /VoiceModuleBase.h/1.3/Wed Aug  9 15:22:10 2006//
 /safety.h/1.1/Thu May 27 13:53:09 2004//
-D/inst_tmpl////
-/DiphoneBackoff.cc/1.3/Tue Mar  7 16:48:54 2017//
-/DiphoneUnitVoice.cc/1.24/Tue Mar  7 16:48:54 2017//
-/DiphoneVoiceModule.cc/1.20/Tue Mar  7 16:48:54 2017//
-/EST_DiphoneCoverage.cc/1.3/Tue Mar  7 16:48:54 2017//
-/EST_FlatTargetCost.cc/1.6/Tue Mar  7 16:48:54 2017//
-/EST_HybridTargetCost.cc/1.5/Tue Mar  7 16:48:54 2017//
-/EST_JoinCost.h/1.8/Tue Mar  7 16:48:54 2017//
-/EST_TargetCost.cc/1.20/Tue Mar  7 16:48:54 2017//
-/TargetCostRescoring.cc/1.3/Tue Mar  7 16:48:54 2017//
-/UnitSelection.cc/1.16/Tue Mar  7 16:48:54 2017//
+D

@@ -25,6 +25,7 @@
 /EST_Server.h/1.4/Tue May  4 00:00:16 2004//
 /EST_ServiceTable.h/1.2/Wed Apr  4 13:11:27 2001//
 /EST_SingleChannelWave.h/1.2/Wed Apr  4 13:11:27 2001//
+/EST_String.h/1.11/Wed Feb 22 15:50:14 2017//
 /EST_StringTrie.h/1.1.1.1/Wed Apr  4 11:55:32 2001//
 /EST_TBox.h/1.2/Wed Apr  4 13:11:27 2001//
 /EST_TBuffer.h/1.4/Wed Sep 29 08:24:17 2004//
@@ -34,11 +35,14 @@
 /EST_TIterator.h/1.7/Sat Apr 13 14:17:11 2013//
 /EST_TKVL.h/1.4/Fri Nov  5 14:12:43 2010//
 /EST_TList.h/1.6/Fri Nov  5 14:12:43 2010//
+/EST_TMatrix.h/1.7/Wed Feb 22 15:50:14 2017//
 /EST_TNamedEnum.h/1.4/Sat Apr 13 14:17:11 2013//
 /EST_TSimpleMatrix.h/1.2/Tue May  4 00:00:16 2004//
 /EST_TSimpleVector.h/1.4/Tue Aug  1 10:34:43 2006//
 /EST_TSortable.h/1.1.1.1/Wed Apr  4 11:55:32 2001//
 /EST_TTimeIndex.h/1.3/Wed Sep 29 08:24:17 2004//
+/EST_TVector.h/1.10/Wed Feb 22 15:50:14 2017//
+/EST_Token.h/1.3/Wed Feb 22 15:50:14 2017//
 /EST_Track.h/1.6/Wed Dec 20 15:56:37 2006//
 /EST_TrackMap.h/1.4/Wed Sep 29 08:24:17 2004//
 /EST_UList.h/1.4/Fri Nov  5 14:12:43 2010//
@@ -46,7 +50,6 @@
 /EST_Val_defs.h/1.2/Tue May  4 00:00:17 2004//
 /EST_WFST.h/1.5/Tue May  4 00:00:17 2004//
 /EST_Wagon.h/1.13/Thu Sep 22 20:01:28 2016//
-/EST_Wave.h/1.8/Tue May 16 09:19:06 2006//
 /EST_audio.h/1.2/Wed Jul 21 21:54:48 2004//
 /EST_bool.h/1.2/Wed Sep 29 08:24:17 2004//
 /EST_cluster.h/1.1.1.1/Wed Apr  4 11:55:32 2001//
@@ -96,7 +99,4 @@ D/rxp////
 D/sigpr////
 D/unix////
 D/win32////
-/EST_String.h/1.11/Tue Mar  7 16:56:15 2017//
-/EST_TMatrix.h/1.7/Tue Mar  7 16:56:15 2017//
-/EST_TVector.h/1.10/Tue Mar  7 16:56:15 2017//
-/EST_Token.h/1.3/Tue Mar  7 16:56:15 2017//
+/EST_Wave.h/1.9/Wed May 10 14:16:42 2017//

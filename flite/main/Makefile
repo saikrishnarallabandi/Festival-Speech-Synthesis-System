@@ -105,7 +105,7 @@ $(BINDIR)/flitevox_info$(EXEEXT): flitevox_info_main.o flite_lang_list $(flite_L
 	$(CC) $(CFLAGS) -o $@ flitevox_info_main.o flite_voice_list.o flite_lang_list.o $(flite_LIBS_flags) $(LDFLAGS)
 
 $(BINDIR)/world$(EXEEXT): world_main.c
-	$(CC) $(CFLAGS) -o $@ world_main.c -I../include $(flite_LIBS_flags) $(world_LIBS_flags) -lworld $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $@ world_main.c -I../include -I../src/world $(flite_LIBS_flags) $(world_LIBS_flags) -lworld $(LDFLAGS)
 
 $(BINDIR)/flite_time$(EXEEXT): flite_time_main.o $(flite_time_LIBS_deps)
 	$(CC) $(CFLAGS) -o $@ flite_time_main.o $(flite_time_LIBS_flags) $(FLITELIBFLAGS) $(LDFLAGS) 

@@ -63,6 +63,7 @@ then
 	filenames=$(awk '{print $2}' $PROMPTFILE)
 	for fname in $filenames
 	do
+                echo $fname
 		if [ ! -f wav/$fname.wav ]
 		then
 			wav_exist=0
