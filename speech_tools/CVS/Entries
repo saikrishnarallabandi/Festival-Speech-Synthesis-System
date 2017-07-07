@@ -1,13 +1,3 @@
-/INSTALL/1.9/Sun Nov 16 17:24:08 2014//
-/Makefile/1.13/Sat Dec 20 15:36:16 2014//
-/README/1.15/Wed Feb 22 15:50:14 2017//
-/config.guess/1.3/Thu Aug  7 17:37:31 2014//
-/config.sub/1.3/Thu Aug  7 17:37:31 2014//
-/configure/1.12/Tue Jan 10 13:38:06 2017//
-/configure.in/1.12/Tue Jan 10 13:38:06 2017//
-/install-sh/1.1/Wed Apr  4 13:11:27 2001//
-/missing/1.1/Wed Apr  4 13:11:27 2001//
-/mkinstalldirs/1.1/Wed Apr  4 13:11:27 2001//
 D/audio////
 D/base_class////
 D/bin////
@@ -29,3 +19,13 @@ D/stats////
 D/testsuite////
 D/utils////
 D/wrappers////
+/INSTALL/1.9/Fri Jun 30 19:44:53 2017//
+/Makefile/1.13/Fri Jun 30 19:44:53 2017//
+/README/1.15/Fri Jun 30 19:44:53 2017//
+/config.guess/1.3/Fri Jun 30 19:44:53 2017//
+/config.sub/1.3/Fri Jun 30 19:44:53 2017//
+/configure/1.12/Fri Jun 30 19:44:53 2017//
+/configure.in/1.12/Fri Jun 30 19:44:53 2017//
+/install-sh/1.1/Fri Jun 30 19:44:53 2017//
+/missing/1.1/Fri Jun 30 19:44:53 2017//
+/mkinstalldirs/1.1/Fri Jun 30 19:44:53 2017//

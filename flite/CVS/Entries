@@ -1,19 +1,3 @@
-/ACKNOWLEDGEMENTS/1.12/Tue Aug 23 10:32:11 2016//
-/COPYING/1.8/Tue Aug 23 10:32:11 2016//
-/Exports.def/1.11/Tue Aug 23 10:32:11 2016//
-/Makefile/1.18/Tue Aug 23 10:32:11 2016//
-/README/1.21/Sat Nov 19 12:04:11 2016//
-/config.guess/1.2/Fri Feb 21 11:20:19 2014//
-/config.sub/1.6/Thu Jul  3 16:21:41 2014//
-/configure/1.17/Tue Jan 10 13:37:45 2017//
-/configure.in/1.18/Tue Jan 10 13:37:45 2017//
-/flite.sln/1.9/Tue Aug 23 10:32:12 2016//
-/flite.v11.suo/1.1/Tue Feb 24 16:44:11 2015//
-/fliteDll.vcxproj/1.3/Tue Apr  4 02:30:03 2017//
-/fliteDll.vcxproj.filters/1.2/Tue Apr  4 02:30:03 2017//
-/install-sh/1.1.1.1/Wed Apr  8 13:18:42 2009//
-/missing/1.1.1.1/Wed Apr  8 13:18:42 2009//
-/mkinstalldirs/1.1.1.1/Wed Apr  8 13:18:42 2009//
 D/android////
 D/config////
 D/doc////
@@ -29,3 +13,19 @@ D/tools////
 D/voices////
 D/wince////
 D/windows////
+/ACKNOWLEDGEMENTS/1.12/Fri Jul  7 13:58:19 2017//
+/COPYING/1.8/Fri Jul  7 13:58:19 2017//
+/Exports.def/1.11/Fri Jul  7 13:58:19 2017//
+/Makefile/1.18/Fri Jul  7 13:58:19 2017//
+/README/1.21/Fri Jul  7 13:58:19 2017//
+/config.guess/1.2/Fri Jul  7 13:58:19 2017//
+/config.sub/1.6/Fri Jul  7 13:58:19 2017//
+/configure.in/1.18/Fri Jul  7 13:58:19 2017//
+/flite.sln/1.9/Fri Jul  7 13:58:19 2017//
+/flite.v11.suo/1.1/Fri Jul  7 13:58:19 2017//
+/fliteDll.vcxproj/1.3/Fri Jul  7 13:58:19 2017//
+/fliteDll.vcxproj.filters/1.2/Fri Jul  7 13:58:19 2017//
+/install-sh/1.1.1.1/Fri Jul  7 13:58:19 2017//
+/missing/1.1.1.1/Fri Jul  7 13:58:19 2017//
+/mkinstalldirs/1.1.1.1/Fri Jul  7 13:58:19 2017//
+/configure/1.18/Fri Jul  7 13:58:19 2017//

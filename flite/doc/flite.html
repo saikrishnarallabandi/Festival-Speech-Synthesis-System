@@ -1,0 +1,1452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Flite: a small, fast speech synthesis engine</title>
+
+<meta name="description" content="Flite: a small, fast speech synthesis engine">
+<meta name="keywords" content="Flite: a small, fast speech synthesis engine">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="#Top" rel="start" title="Top">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="dir.html#Top" rel="up" title="(dir)">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<h1 class="settitle" align="center">Flite: a small, fast speech synthesis engine</h1>
+
+
+
+
+
+<a name="Top"></a>
+<div class="header">
+<p>
+Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h1 class="node-heading">Top</h1>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Abstract" accesskey="1">Abstract</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">initial comments
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Copying" accesskey="2">Copying</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How you can copy and share the code
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Acknowledgements" accesskey="3">Acknowledgements</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">List of contributors
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Installation" accesskey="4">Installation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Compilation and Installation
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Flite-Design" accesskey="5">Flite Design</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#APIs" accesskey="6">APIs</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Standard functions
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Converting-FestVox-Voices" accesskey="7">Converting FestVox Voices</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">building flite voices from FestVox ones
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
+</pre></th></tr></table>
+
+<hr>
+<a name="Abstract"></a>
+<div class="header">
+<p>
+Next: <a href="#Copying" accesskey="n" rel="next">Copying</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="Abstract-1"></a>
+<h2 class="chapter">1 Abstract</h2>
+
+<p>This document provides a user manual for flite, a small, fast
+run-time speech synthesis engine.
+</p>
+<p>This manual is nowhere near complete.
+</p>
+<p>Flite offers text to speech synthesis in a small and efficient binary.
+It is designed for embedded systems like PDAs as well large server
+installation which must serve synthesis to many ports.  Flite is part
+of the suite of free speech synthesis tools which include Edinburgh
+University&rsquo;s Festival Speech Synthesis System
+<a href="http://www.festvox.org/festival">http://www.festvox.org/festival</a> and Carnegie
+Mellon University&rsquo;s FestVox project <a href="http://festvox.org">http://festvox.org</a>, which
+provides tools, scripts, and documentation for building new synthetic
+voices.
+</p>
+<p>Flite is written in ANSI C, and is designed to be portable
+to almost any platform, including very small hardware.
+</p>
+<p>Flite is really just a synthesis library that can be linked into other
+programs, it includes two simple voices with the distribution, an old
+diphone voice and an example limited domain voice which uses the newer
+unit selection techniques we have been developing.  Neither of these
+voices would be considered production voices but serve as examples, new
+voices will be released as they are developed.
+</p>
+<p>The latest versions, comments, new voices etc for Flite are available
+from its home page which may be found at
+</p><div class="example">
+<pre class="example"><a href="http://cmuflite.org">http://cmuflite.org</a>
+</pre></div>
+
+<hr>
+<a name="Copying"></a>
+<div class="header">
+<p>
+Next: <a href="#Acknowledgements" accesskey="n" rel="next">Acknowledgements</a>, Previous: <a href="#Abstract" accesskey="p" rel="prev">Abstract</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="Copying-1"></a>
+<h2 class="chapter">2 Copying</h2>
+
+<p>Flite is free software.  It is distributed under an X11-like license.
+Apart from the few exceptions noted below (which still have
+similarly open licenses) the general license is
+</p><div class="example">
+<pre class="example">                  Language Technologies Institute                      
+                    Carnegie Mellon University                        
+                     Copyright (c) 1999-2014
+                       All Rights Reserved.                           
+                                                                      
+ Permission is hereby granted, free of charge, to use and distribute  
+ this software and its documentation without restriction, including   
+ without limitation the rights to use, copy, modify, merge, publish,  
+ distribute, sublicense, and/or sell copies of this work, and to      
+ permit persons to whom this work is furnished to do so, subject to   
+ the following conditions:                                            
+  1. The code must retain the above copyright notice, this list of    
+     conditions and the following disclaimer.                         
+  2. Any modifications must be clearly marked as such.                
+  3. Original authors' names are not deleted.                         
+  4. The authors' names are not used to endorse or promote products   
+     derived from this software without specific prior written        
+     permission.                                                      
+                                                                      
+ CARNEGIE MELLON UNIVERSITY AND THE CONTRIBUTORS TO THIS WORK         
+ DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING      
+ ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT   
+ SHALL CARNEGIE MELLON UNIVERSITY NOR THE CONTRIBUTORS BE LIABLE      
+ FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN   
+ AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,          
+ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF       
+ THIS SOFTWARE.                                                       
+</pre></div>
+
+<hr>
+<a name="Acknowledgements"></a>
+<div class="header">
+<p>
+Next: <a href="#Installation" accesskey="n" rel="next">Installation</a>, Previous: <a href="#Copying" accesskey="p" rel="prev">Copying</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="Acknowledgements-1"></a>
+<h2 class="chapter">3 Acknowledgements</h2>
+
+<p>The initial development of flite was primarily done by awb while
+travelling, perhaps the name is doubly appropriate as a substantial
+amount of the coding was done over 30,000ft).  During most of that
+time awb was funded by the Language Technologies Institute at
+Carnegie Mellon University.
+</p>
+<p>Kevin A. Lenzo was involved in the design, conversion techniques and
+representations for the voice distributed with flite (as well as being
+the actual voice itself).
+</p>
+<p>Other contributions are:
+</p><ul>
+<li> Nagoya Institute of Technology
+The MLSA, MLPG code comes directly NITECH&rsquo;s hts engine code, though we
+have done some optimizations.
+</li><li> Marcela Charfuelan (DFKI)
+For the mixed-excitation techniques (but no direct code).  These
+originally came from NITECH but we understood the techniques from
+Marcela&rsquo;s Open Mary Java code and implemented them in our optimized
+version of MLSA.
+</li><li> David Huggins-Daines:
+much of the very early clunits code, porting to multiple platforms,
+substantial code tidy up and configure/autoconf guidance (up to 2001).
+</li><li> Cepstral, LLC (<a href="http://cepstral.com">http://cepstral.com</a>):
+For supporting DHD to spend time (in early 2001) on flite and passing
+back the important fixes and enhancements while on a project funded by
+the Portuguese Foundation for Science and Technology (FCT) Praxis XXI
+program specifically to produce an open source synthesizer.
+</li><li> Willie Walker &lt;william.walker@sun.com&gt; and the Sun Speech Group:
+lots of low level bugs (and fixes).
+</li><li> Henry Spencer:
+For the regex code
+</li><li> University of Edinburgh:
+for releasing Festival for free, making a companion runtime synthesizer
+a practical project, much of the design of flite relies on the 
+architecture decisions made in the Festival Speech Synthesis Systems and
+the Edinburgh Speech Tools.
+
+<p>The duration cart tree and intonation (accent and F0) models for the
+US English voice were derived from the models in the Festival
+distribution. which in turn were trained from the Boston University FM
+Radio Data Corpus.
+</p>
+</li><li> Carnegie Mellon University
+The included lexicon is derived from CMULEX and the letter to sound
+rules are constructed using the Lenzo and Black techniques for
+building LTS decision graphs.
+</li><li> Craig Reese: IDA/Supercomputing Research Center and Joe Campbell: Department of Defense
+who wrote the ulaw conversion routines in src/speech/cst_wave_utils.c
+</li></ul>
+
+
+<hr>
+<a name="Installation"></a>
+<div class="header">
+<p>
+Next: <a href="#Flite-Design" accesskey="n" rel="next">Flite Design</a>, Previous: <a href="#Acknowledgements" accesskey="p" rel="prev">Acknowledgements</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="Installation-1"></a>
+<h2 class="chapter">4 Installation</h2>
+
+<p>Flite consist simple of a set of C files.  GNU configure is
+used to configure the engine and will work on most
+major architectures.
+</p>
+<p>In general, the following should build the system
+</p><div class="example">
+<pre class="example">tar zxvf flite-XXX.tar.gz
+cd flite-XXX
+./configure
+make
+</pre></div>
+<p>However you will need to explicitly call GNU make
+<code>gmake</code> if <code>make</code> is not GNU make on your system.
+</p>
+<p>The configuration process build a file <samp>config/config</samp> which under
+some circumstances may need to be edited, e.g. to add unusual options or
+dealing with cross compilation.
+</p>
+<p>On Linux systems, we also support shared libraries which are useful for
+keeping space down when multiple different application are linked to the
+flite libraries.  For development we strongly discourage use of shared
+libraries as it is too easy to either not set them up correctly or
+accidentally pick up the wrong version.  But for installation they are
+definitely encouraged.  That is if you are just going to make and
+install they are good but unless you know what <var>LD_LIBRARY_PATH</var>
+does, it may be better to use static libraries (the default) if you are
+changing C code or building your own voices.
+</p><div class="example">
+<pre class="example">./configure --enable-shared
+make
+</pre></div>
+<p>This will build both shared and static versions of the libraries but
+will link the executables to the <em>shared</em> libraries thus you will
+need to install the libraries in a place that your dynamic linker will
+find them (cf. /etc/ld.so.conf) or set <var>LD_LIBRARY_PATH</var>
+appropriately.
+</p>
+<div class="example">
+<pre class="example">make install
+</pre></div>
+<p>Will install the binaries (<samp>bin/flite*</samp>), include files and
+libraries in appropriate subdirectories of the defined install
+directory, <samp>/usr/local</samp> by default.  You can change this at configure
+time with
+</p><div class="example">
+<pre class="example">./configure --prefix=/opt
+</pre></div>
+
+<a name="Windows-Support"></a>
+<h3 class="section">4.1 Windows Support</h3>
+
+<a name="Window-CE-Support"></a>
+<h3 class="section">4.2 Window CE Support</h3>
+
+<p><em>NOTE: as Windows CE is somewhat rare now, we do not guarantee this
+still works.</em>
+</p>
+<p>Flite has been successfully compiled by a number of different groups
+under Windows CE.  The system should compile under Embedded Visual
+Studio but we not have the full details.
+</p>
+<p>The system as distributed does compile under the gcc <samp>mingw32ce</samp>
+toolchain available from <a href="http://cegcc.sourceforge.net/">http://cegcc.sourceforge.net/</a>.  The
+current version can be compiled and run under WinCE with a primitive
+application called <samp>flowm</samp>.  <samp>flowm</samp> is a simple application
+that allows playing of typed-in text, or full text to speech on
+a file.  Files should be a simple ascii text files <code>*.txt</code>.  The
+application allows the setting of the byte position to start synthesis
+from.
+</p>
+<p>Assuming you have <samp>mingw32ce</samp> installed you can configure as
+</p><div class="example">
+<pre class="example">./configure --target=arm-wince
+make
+</pre></div>
+<p>The resulting binary is given in <samp>wince/flowm.exe</samp>.  If you copy
+this onto your Windows Mobile device and run it, it should allow you
+to speak typed-in text and any <samp>*.txt</samp> files you have on your
+device.
+</p>
+<p>The application uses <code>cmu_us_kal</code> as the voice for default.
+Although it is possible to include the clustergen voices, they may be
+too slow to be really practical.  An 8KHz clustergen voice with a
+reduced order to 13 gives a voices that runs acceptably on an hp2755
+(624MHz) but still marginal on an AT&amp;T Tilt (400MHz).
+</p>
+<p>Building 8KHz clustergen voices is currently a bit of hack.  We take the
+standard waveforms and resample them to 8KHz, then relabel the sample
+rate to be 16KHz.  Then build the voice as normal (as if the speaker
+spoke twice as fast.  You may need to have tune the F0 parameters in
+<samp>etc/f0.params</samp>.  This seems to basically work.  Then after the
+waveform is synthesized (still in the &quot;chipmunk&rdquo; domain) we then
+playit back at 8KHz.  This effectively means we generate half the
+number of samples and the frames are really at 10ms.  A second
+reduction is an option on the basic <samp>build_flite</samp> command.  A
+second argument can specify order reduction, thus instead of the
+standard 25 static parameters (plus its deltas) we can reduce this to
+13 and still get acceptable results
+</p><div class="example">
+<pre class="example">./bin/build_flite cg 13
+cd flite
+make
+</pre></div>
+<p>Importantly this uses less space, and uses less time to synthesis.
+These <code>SPEECH_HACKS</code> in <samp>src/cg/cst_mlsa.c</samp> are switched on
+by default when <code>UNDER_CE</code> is defined.
+</p>
+<p>The reduced order properly extracts the statics (and stddev) and
+deltas (and stddev) from the predicted parameter clusters and makes it
+as if those were the sizes of parameters that were used to the train
+the voice. 
+</p>
+<a name="PalmOS-Support"></a>
+<h3 class="section">4.3 PalmOS Support</h3>
+
+<p><em>NOTE: as PalmOS is somewhat rare now, we do not guarantee this
+still works.</em>
+</p>
+<p>Support for PalmOS was removed from 1.9, I no longer have any working
+PalmOS devices.  But this section remains for people who do, but they
+may need to update something to make this work.
+</p>
+<p>Starting with 1.3 we have initial support for PalmOS using the free
+development tools.  The compilation method assumes the target device
+is running PalmOS 5.0 (or later) on an ARM processor.  Following
+convention in the Palm world, the app that the user interacts with is
+actually a m68k application compiled with the m68 gcc cross compiler,
+the resulting code is interpreted by the PalmOS 5.0 device.  The core
+flite code is in native ARM, and hence uses the ARM gcc cross
+compiler.  An interesting amout of support code is required to 
+get all this work properly.
+</p>
+<p>The user app is called <code>flop</code> (FLite on Palm) and like most apps
+written by awb, is functional, but ugly.  You should not let a
+short-sighted Scotsman, who still thinks command line interfaces are
+cool, design a graphical app.  But it does work and can read typed-in
+text.  The <samp>armflite.ro</samp> resources are designed with the idea
+that proper applications will be written using it as a library.
+</p>
+<p>The <samp>flop.prc</samp> application is distributed separately so it can be used
+without having to install all these tools.  But if you want to PalmOS
+development here is what you need to do to compile Flite for PalmOS and
+the flop application.
+</p>
+<p>There are number of different application development environments for
+Palm, here I only describe the Unix based one as this is what was
+used.  You will need the PalmOS SDK 5.0 from palmOne
+<a href="http://www.palmone.com/us/developers/">http://www.palmone.com/us/developers/</a>.  This is
+free but does require registration.  Out of the lots of different
+files you can get for palmOne you will eventually find
+<samp>palmos-sdk-5.0r3-1.noarch.rpm</samp>, install that on your linux
+machine
+</p><div class="example">
+<pre class="example">rpm -i palmos-sdk-5.0r3-1.noarch.rpm
+</pre></div>
+<p>You will also need the various gcc based cross compilers
+<a href="http://prc-tools.sourceforge.net/">http://prc-tools.sourceforge.net/</a>
+</p><div class="example">
+<pre class="example">prc-tools-2.3-1.i386.rpm                
+prc-tools-arm-2.3-1.i386.rpm
+prc-tools-htmldocs-2.3-1.noarch.rpm
+</pre></div>
+<p>The Palm Resource compiler
+<a href="http://pilrc.sourceforge.net/">http://pilrc.sourceforge.net/</a>
+</p><div class="example">
+<pre class="example">pilrc-3.1-1.i386.rpm
+</pre></div>
+<p>And maybe the emulator 
+<a href="http://www.palmos.com/dev/tools/emulator/">http://www.palmos.com/dev/tools/emulator/</a>
+</p><div class="example">
+<pre class="example">pose-3.5-2.i386.rpm
+pose-skins-1.9-1.noarch.rpm             
+pose-skins-handspring-3.1H4-1.noarch.rpm 
+</pre></div>
+<p>Though as POSE doesn&rsquo;t support ARM code, <samp>Simulator</samp> does but
+that only works under Windows, POSE is only useful for debugging the 
+m68k parts of the app.
+</p>
+<p>Install these
+</p><div class="example">
+<pre class="example">rpm -i prc-tools-2.3-1.i386.rpm                
+rpm -i prc-tools-arm-2.3-1.i386.rpm
+rpm -i prc-tools-htmldocs-2.3-1.noarch.rpm
+rpm -i pilrc-3.1-1.i386.rpm
+rpm -i pose-3.5-2.i386.rpm
+rpm -i pose-skins-1.9-1.noarch.rpm             
+rpm -i pose-skins-handspring-3.1H4-1.noarch.rpm 
+</pre></div>
+<p>We also need the prc-tools to know which SDK is available
+</p><div class="example">
+<pre class="example">palmdev-prep
+</pre></div>
+<p>In addition we use Greg Parker&rsquo;s PEAL
+<a href="http://www.sealiesoftware.com/peal/">http://www.sealiesoftware.com/peal/</a> ELF ARM loader. You need to
+download this and compile and install it yourself, so that
+<code>peal-postlink</code> is in your path.  Greg was very helpful and even
+added support for large data segments for this work (though in the end
+we don&rsquo;t actually use them).  Some peal code is in our distribution
+(which is valid under his licence) but if you use a different version
+of peal you may need to ensure they are matched, by updating 
+the peal code in <samp>palm/</samp>.  We used version <samp>peal-2004-12-29</samp>.
+</p>
+<p>The other palm specific function we require is <code>par</code>
+<a href="http://www.djw.org/product/palm/par/">http://www.djw.org/product/palm/par/</a> which is part of the
+<code>prc.tgz</code> distribution.  We use <code>par</code> to construct resources
+from raw binary files.  There are other programs that can do this but
+we found this one adequate.  Again you must compile this and ensure
+<code>par</code> is in your path.  Note no part of <code>par</code> ends up
+in the distributed system.
+</p>
+<p>Given all of the above you should be able to compile the
+Palm code and the <code>flop</code> application.
+</p><div class="example">
+<pre class="example">   ./configure --target=arm-palmos
+   make
+</pre></div>
+<p>The resulting application should be in <samp>palm/flop/flop.prc</samp>
+which can then be installed on your Plam device
+</p><div class="example">
+<pre class="example">   pilot-xfer -i palm/flop/flop.prc
+</pre></div>
+<p>Setting up the tools, and getting a working Linux/Palm conduit is not
+particularly easy but it is possible.  Although some attempt was made
+to use the Simulator, (PalmOS 5.0/ARM simulator) under Windows, it
+never really contributed to the development.  The POSE (m68k) emulator
+though was use to develop the <code>flop</code> application itself.
+</p>
+<a name="Some-notes-on-the-PalmOS-port"></a>
+<h4 class="subsection">4.3.1 Some notes on the PalmOS port</h4>
+
+<p>Throughout the PalmOS developer documentation they continually remind
+you that a Palm device is not a full computer, its an extention of the
+desktop.  But seeing devices like the Treo 600 can easily make one
+forget and want the device to do real computational work.  PalmOS is
+designed for small light weight devices so it is easy to start hitting
+the boundaries of its capabilities when trying to port larger
+aplications.
+</p>
+<p>PalmOS5.0 still has interesting limitations, in the m68k domain,
+<code>int</code>&rsquo;s are 16 bit and using memory segments greater than 65K
+require special work.  Quaint as these are, they do significantly
+affect the port.  At first we thought that only the key
+computationally expensive parts would be in ARM (so-called
+<code>armlets</code>) but trying to compile the whole flite code in m68k
+with long/short distinctions and sub-64K code segment limitations was
+just too hard.
+</p>
+<p>Thus all the Flite code, USEnglish, Lexicon and diphone databases
+actually are compiled in the ARM domain.  There is however no system
+support in the ARM domain so call backs to m68k system functions are
+necessary.  With care calls to system functions can be significantly
+limited so only a few call backs needed to be written.  These are in
+<samp>palm/pocore/</samp>.  I believe CodeWarrior has better support for
+this, but in this case we rolled our own (though help from other open
+source examples was important).
+</p>
+<p>We manage the m68k/ARM interface through PEAL, which is basically a
+linker for ARM code and calling mechanism from m68k.  PEAL deals with
+globals and spliting the code into 65K chunks automatically.
+</p>
+<p>Flite does however have a number of large data segments, in the
+lexicon and the voice database itself.  PEAL can deal with this but it
+loads large segments by copying them into the dynamic heap, which on
+most Palm device is less than 2M.  This isn&rsquo;t big enough.
+</p>
+<p>Thus we changed Flite to restrict the number of large data sgements it
+used (and also did some new compression on them).  The five segments: the
+lts rules, the lexical entries, the voice LPC coefficients, the voice
+residuals and the voice residual index are now treated a data segments
+that are split into 65400 sized segments and loaded into feature
+memory space, which is in the storage heap and typically much bigger.
+This means we do need about 2-3 megabyte free on the device to run.
+We did look into just indexing the 65400 byte segments directly but
+that looked like being too much work, and we&rsquo;re only going to be able
+to run on 16M sized Palms anyway (there aren&rsquo;t any 8M ARM Palms with 
+audio, expect maybe some SmartPhones).
+</p>
+<p>Using Flite from m68k land involves getting a <code>flite_info</code>
+structure from <code>flite_init()</code>.  This contains a bunch of fields
+that be set and sent to the ARM domain Flite synthesizer proper within
+which other output fields may be set and returned.  This isn&rsquo;t a very
+general structure, but is adequate.  Note the necessary byte swapping
+(for the top level fileds) is done for the this structure, before
+calling the ARM native <code>arm_flite_synth_text</code> and swapped back
+again after returning.
+</p>
+<p>Display, playing audio, pointy-clicky event thingies are all done in
+the m68K domain.
+</p>
+<a name="Using-the-PalmOS"></a>
+<h4 class="subsection">4.3.2 Using the PalmOS</h4>
+
+<p>There are three basic functions that access the ARM flite
+functions: <code>flite_init()</code>, <code>flite_synth_text()</code> and
+<code>flite_end()</code>.
+</p>
+<hr>
+<a name="Flite-Design"></a>
+<div class="header">
+<p>
+Next: <a href="#APIs" accesskey="n" rel="next">APIs</a>, Previous: <a href="#Installation" accesskey="p" rel="prev">Installation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="Flite-Design-1"></a>
+<h2 class="chapter">5 Flite Design</h2>
+
+<a name="Background"></a>
+<h3 class="section">5.1 Background</h3>
+
+<p>Flite was primarily developed to address one of the most common
+complaints about the Festival Speech Synthesis System.  Festival is
+large and slow, even with the software bloat common amongst most
+products and that that bloat has helped machines get faster, have more
+memory and large disks, still Festival is criticized for its size.
+</p>
+<p>Although sometimes this complaint is unfair, it is valid and although
+much work was done to ensure Festival can be trimmed and run fast it
+still requires substantial resources per utterance to run.  After some
+investigation to see if Festival itself could be trimmed down it became
+clear because there was a core set of functions that were sufficient for
+synthesis that a new implementation containing only those aspects that
+were necessary would be easier than trimming down Festival itself.
+</p>
+<p>Given that a new implementation was being considered a number of
+problems with Festival could also be addressed at the same time.
+Festival is not thread-safe, and although it runs under Windows, in
+server mode it relies on the Unix-centric view of fast forks with
+copy-on-write shared memory for servicing clients.  This is a perfectly
+safe and practical solution for Unix systems, but under Windows where
+threads are the more common feature used for servicing multiple events
+and forking is expensive, a non-thread safe program can&rsquo;t be used as
+efficiently.
+</p>
+<p>Festival is written in C++ which was a good decision at the time and
+perfectly suitable for a large program.  However what was discovered
+over the years of development is that C++ is not a portable language.
+Different C++ compilers are quite different and it takes significant
+amount of work to ensure compatibility of the code base over multiple
+compilers.  What makes this worse is that new versions of each compiler
+are incompatible and changes are required.  At first this looked like we
+were producing bad quality code but after 10 years it is clear that it is
+also that the compilers are still maturing.  Thus it is clear that
+Festival and the Edinburgh Speech Tools will continue to require
+constant support as new versions of compilers are released.
+</p>
+<p>A second problem with C++ is the size and efficiency of the code
+produced.  Proponents of C++ may rightly argue that Festival and the
+Edinburgh Speech Tools aren&rsquo;t properly designed, but irrespective if
+that is true or not, it is true that the size of the code is much larger
+and slower than it need be for what it does.  Throughout the design
+there is a constant trade-off between elegancy and efficiency which
+unfortunately at times in Festival requires untidy solutions of
+copying data out of objects processing it and copying back because
+direct access (particularly in some signal processing routines)
+is just too inefficient.
+</p>
+<p>Another major criticism of Festival is the use of Scheme as the
+interpreter language.  Even though it is a simple to implement language
+that is adequate for Festival&rsquo;s needs and can be easily included in the
+distribution, people still hate it.  Often these people do learn to use
+it and appreciate how run time configurability is very desirable and that
+new voices may be added without recompilation.  Scheme does have garbage
+collection which makes leaky programs much harder to write and as some
+of the intended audience for developing in Festival will not be hard
+core programmers a safe programming language seems very desirable.
+</p>
+<p>After taking into consideration all of the above it was decided to
+develop Flite as a new system written in ANSI C.  C is much more
+portable than C++ as well as offering much lower level control of the
+size of the objects and data structure it uses.  
+</p>
+<p>Flite is not intended as a research and development platform for speech
+synthesis, Festival is and will continue to be the best platform for
+that.  Flite however is designed as a run-time engine when an
+application needs to be delivered.  It specifically addresses two
+communities.  First as a engine for small devices such as PDAs and
+telephones where the memory and CPU power are limited and in some cases do
+not even have a conventional operating system.
+</p>
+<p>The second community is for those running synthesis servers for many
+clients.  Here although large fixed databases are acceptable, the size
+of memory required per utterance and speed in which they can be
+synthesized is crucial.
+</p>
+<p>However in spite of the decision to build a new synthesis engine we see
+this as being tightly coupled into the existing free software synthesis
+tools or Festival and the FestVox voice building suite.  Flite offers
+a companion run-time engine.  Our intended mode of development is
+to build new voices in FestVox and debug and tune them in Festival.
+Then for deployment the FestVox format voice may be (semi-)automatically
+compiled into a form that can be used by Flite.
+</p>
+<p>In case some people feel that development of a small run-time
+synthesizer is not an appropriate thing to do within a University and is
+more suited to commercial development, we have a few points which they
+should be aware of that to our mind justify this work.  
+</p>
+<p>We have long felt that research in speech and language should have an
+identifiable link to ultimate commercial use.  In providing a platform
+that can be used in consumer products that falls within the same
+framework as our research we can better understand what research issues
+are actually important to the improvement our work.
+</p>
+<p>In considering small useful synthesizers it forces a more explicit
+definition of what is necessary in a synthesizer and also how we can
+trade size, flexibility and speed with the quality of synthesized
+output.  Defining that relationship is a research issue.
+</p>
+<p>We are also advocates of speech technology within other research areas
+and the ability to offer support on new platforms such as PDAs and
+wearables allows for more interesting speech applications such as
+speech-to-speech translation, robots, and interactive personal digital
+assistants, that will prove new and interesting areas of research.
+Thus having a platform that others around us can more easily integrate
+into their research makes our work more satisfying.
+</p>
+<a name="Key-Decisions"></a>
+<h3 class="section">5.2 Key Decisions</h3>
+
+<p>The basic architecture of Festival is good.  It is well proven.  Paul
+Taylor, Alan W. Black and Richard Caley spent many hours debating low
+level aspects of representation and structure that would both be
+adequate for current theories but also allow for future theories too.
+The heterogeneous relation graphs (HRG) are theoretically adequate,
+computationally efficient and well proven.  Thus both because HRGs have
+such a background and that Flite is to be compatible with voices and
+models developed in Festival, Flite uses HRGs as its basic utterance
+representation structure.
+</p>
+<p>Most of a synthesizer is in its data (lexicons, unit database etc),
+the actual synthesis code is pretty small.  In Festival most of that
+data exists in external files which are loaded on demand.  This is
+obviously slow and memory expensive (you need both a copy on the data
+on disk and in memory).  As one of the principal targets for Flite is
+very small machines we wanted to allow that core data to be in ROM,
+and be appropriately mapped into RAM without any explicit loading
+(some OS&rsquo;s call this XIP &ndash; execute in place).  This can be done by
+various memory mapping functions (in Unix its called mmap) and is the
+core technique used in shared libraries (called DLLs in some parts of
+the world).  Thus the data should be in a format that it can be
+directly accessed.  If you are going to directly access data you need
+to ensure the byte layout is appropriate for the architecture you are
+running on, byte order and address width become crucial if you want to
+avoid any extra conversion code at access time (like byte swapping).
+</p>
+<p>At first is was considered that synthesis data would be converted in
+binary files which could be mmap&rsquo;ed into the runtime systems but
+building appropriate binaries files for architectures is quite a job.
+However the C compiler does this in a standard way.  Therefore the mode
+of operation for data within Flite is to convert it to C code (actually
+C structures) and use the C compiler to generate the appropriate binary
+structures.
+</p>
+<p>Using the C compiler is a good portable solution but it as these
+structures can be very big this can tax the C compiler somewhat.  Also
+because this data is not going to change at run time it can all be
+declared <code>const</code>.  Which means (in Unix) it will be in the text
+segment and hence read only (this can be ROM on platforms which have
+that distinction).  For structures to be const all their subparts
+must also be const thus all relevant parts must be in the same file,
+hence the unit databases files can be quite big.
+</p>
+<p>Of course, this all presumes that you have a C compiler robust enough to
+compile these files, hardware smart enough to treat flash ROM as memory
+rather than disk, or an operating system smart enough to demand-page
+executables.  Certain &quot;popular&quot; operating systems and compilers fail in
+at least one of these respects, and therefore we have provided the
+flexibility to use memory-mapped file I/O on voice databases, where
+available, or simply to load them all into memory.
+</p>
+<a name="Structure"></a>
+<h2 class="chapter">6 Structure</h2>
+
+<p>The flite distribution consists of two distinct parts:
+</p><ul>
+<li> The flite library containing the core synthesis code
+</li><li> Voice(s) for flite.  These contain three sub-parts
+<ul>
+<li> Language models:
+text processing, prosody models etc.
+</li><li> Lexicon and letter to sound rules
+</li><li> Unit database and voice definition
+</li></ul>
+</li></ul>
+
+<a name="cst_005fval"></a>
+<h3 class="section">6.1 cst_val</h3>
+
+<p>This is a basic simple object which can contain ints, floats, strings
+and other objects.  It also allows for lists using the Scheme/Lisp,
+car/cdr architecture (as that is the most efficient way to represent
+arbitrary trees and lists).
+</p>
+<p>The <code>cst_val</code> structure is carefully designed to take up only 8 bytes (or
+16 on a 64-bit machine).  The multiple union structure that it can
+contain is designed so there are no conflicts.  However it depends on
+the fact that a pointer to a <code>cst_val</code> is guaranteed to lie on a even
+address boundary (which is true for all architectures I know of).  Thus
+the distinction between between cons (i.e. list) objects and atomic
+values can be determined by the odd/evenness of the least significant bits
+of the first address in a <code>cst_val</code>.  In some circles this is considered
+hacky, in others elegant. This was done in flite to ensure that the most
+common structure is 8 bytes rather than 12 which saves significantly on
+memory.
+</p>
+<p>All <code>cst_val</code>&rsquo;s except those of type cons are reference counted.  A
+few functions generate new lists of <code>cst_val</code>&rsquo;s which the user
+should be careful about as they need to explicitly delete them (notably
+the lexicon lookup function that returns a list of phonemes).
+Everything that is added to an utterance will be deleted (and/or
+dereferenced) when the utterance is deleted.
+</p>
+<p>Like Festival, user types can be added to the <code>cst_val</code>s.  In
+Festival this can be done on the fly but because this requires the
+updating of some list when each new type is added, this wouldn&rsquo;t be
+thread safe.  Thus an explicit method of defining user types is done in
+<samp>src/utils/cst_val_user.c</samp>.  This is not as neat as defining on the
+fly or using a registration function but it is thread safe and these
+user types won&rsquo;t change often.
+</p>
+<hr>
+<a name="APIs"></a>
+<div class="header">
+<p>
+Next: <a href="#Converting-FestVox-Voices" accesskey="n" rel="next">Converting FestVox Voices</a>, Previous: <a href="#Flite-Design" accesskey="p" rel="prev">Flite Design</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="APIs-1"></a>
+<h2 class="chapter">7 APIs</h2>
+
+<p>Flite is a library that we expected will be embedded into other
+applications.  Included with the distribution is a small example
+executable that allows synthesis of strings of text and text files
+from the command line.
+</p>
+<p>You may want to look at Bard <samp>http://festvox.org/bard/</samp>, an ebook
+reader with a tight coupling to flite as a synthesizer.  This is the
+most elaborate use of the Flite API within our suite of programs.
+</p>
+<a name="flite-binary"></a>
+<h3 class="section">7.1 flite binary</h3>
+
+<p>The example flite binary may be suitable for very simple applications.
+Unlike Festival its start up time is very short (less than 25ms on a PIII
+500MHz) making it practical (on larger machines) to call it each
+time you need to synthesize something.
+</p><div class="example">
+<pre class="example">flite TEXT OUTPUTTYPE
+</pre></div>
+<p>If <code>TEXT</code> contains a space it is treated as a string of text and
+converted to speech, if it does not contain a space <code>TEXT</code> is
+treated as a file name and the contents of that file are converted to
+speech.  The option <code>-t</code> specifies <code>TEXT</code> is to be treat
+as text (not a filename) and <code>-f</code> forces treatment as a file.
+Thus
+</p><div class="example">
+<pre class="example">flite -t hello 
+</pre></div>
+<p>will say the word &quot;hello&quot; while
+</p><div class="example">
+<pre class="example">flite hello 
+</pre></div>
+<p>will say the content of the file <samp>hello</samp>.  Likewise
+</p><div class="example">
+<pre class="example">flite &quot;hello world.&quot;
+</pre></div>
+<p>will say the words &quot;hello world&quot; while
+</p><div class="example">
+<pre class="example">flite -f &quot;hello world&quot;
+</pre></div>
+<p>will say the contents of a file <samp>hello world</samp>.  If no argument is
+specified text is read from standard input.
+</p>
+<p>The second argument <code>OUTPUTTYPE</code> is the name of a file the output
+is written to, or if it is <code>play</code> then it is played to the audio
+device directly.  If it is <code>none</code> then the audio is created but
+discarded, this is used for benchmarking.  If it is <code>stream</code> then
+the audio is streamed through a call back function (though this is not
+particularly useful in the command line version.  If <code>OUTPUTTYPE</code>
+is omitted, <code>play</code> is assumed.  You can also explicitly set the
+outputtype with the <code>-o</code> flag.
+</p><div class="example">
+<pre class="example">flite -f doc/alice -o alice.wav
+</pre></div>
+
+<a name="Voice-selection"></a>
+<h3 class="section">7.2 Voice selection</h3>
+
+<p>All the voices in the distribution are collected into a single simple
+list in the global variable <code>flite_voice_list</code>.  You can select a
+voice from this list from the command line
+</p><div class="example">
+<pre class="example">flite -voice awb -f doc/alice -o alice.wav
+</pre></div>
+<p>And list which voices are currently supported in the binary with
+</p><div class="example">
+<pre class="example">flite -lv
+</pre></div>
+<p>The voices which get linked together are those listed in the
+<code>VOICES</code> in the <samp>main/Makefile</samp>.  You can change that as you
+require.
+</p>
+<p>Voices may also be dynamically loaded from files as well as built in.
+The argument to the <code>-voice</code> option may be pathname to a dumped
+(Clustergen) voice.  This may be a Unix pathname or a URL (only protocols <samp>http</samp> and <samp>file</samp> are supported.  For example
+</p><div class="example">
+<pre class="example">flite -voice file://cmu_us_awb.flitevox -f doc/alice -o alice.wav
+flite -voice http://festvox.org/voices/cmu_us_ksp.flitevox -f doc/alice -o alice.wav
+</pre></div>
+<p>Voices will be loaded once and added to <code>flite_voice_list</code>.
+Although these voices are often small (a few megabytes) there will
+still be some time required to read them in the first time.  The
+voices are not mapped, they are read into newly created structures.
+</p>
+<p>This loading function is currently only supported for Clustergen
+voices.
+</p>
+<a name="C-example"></a>
+<h3 class="section">7.3 C example</h3>
+
+<p>Each voice in Flite is held in a structure, a pointer to which is
+returned by the voice registration function.  In the standard
+distribution, the example diphone voice is <code>cmu_us_kal</code>.
+</p>
+<p>Here is a simple C program that uses the flite library
+</p><div class="example">
+<pre class="example">#include &quot;flite.h&quot;
+
+register_cmu_us_kal();
+
+int main(int argc, char **argv)
+{
+    cst_voice *v;
+
+    if (argc != 2)
+    {
+        fprintf(stderr,&quot;usage: flite_test FILE\n&quot;);
+        exit(-1);
+    }
+
+    flite_init();
+
+    v = register_cmu_us_kal(NULL);
+
+    flite_file_to_speech(argv[1],v,&quot;play&quot;);
+
+}
+</pre></div>
+<p>Assuming the shell variable FLITEDIR is set to the flite directory
+the following will compile the system (with appropriate changes for
+your platform if necessary).
+</p><div class="example">
+<pre class="example">gcc -Wall -g -o flite_test flite_test.c -I$FLITEDIR/include -L$FLITEDIR/lib 
+    -lflite_cmu_us_kal -lflite_usenglish -lflite_cmulex -lflite -lm
+</pre></div>
+
+<a name="Public-Functions"></a>
+<h3 class="section">7.4 Public Functions</h3>
+
+<p>Although, of course you are welcome to call lower level functions,
+there a few key functions that will satisfy most users
+of flite.
+</p><dl compact="compact">
+<dt><code>void flite_init(void);</code></dt>
+<dd><p>This must be called before any other flite function can be called.  As
+of Flite 1.1, it actually does nothing at all, but there is no guarantee
+that this will remain true.
+</p></dd>
+<dt><code>cst_wave *flite_text_to_wave(const char *text,cst_voice *voice);</code></dt>
+<dd><p>Returns a waveform (as defined in <samp>include/cst_wave.h</samp>) synthesized
+from the given text string by the given voice.
+</p></dd>
+<dt><code>float flite_file_to_speech(const char *filename, cst_voice *voice, const char *outtype);</code></dt>
+<dd><p>synthesizes all the sentences in the file <samp>filename</samp> with given
+voice.  Output (at present) can only reasonably be, <code>play</code> or
+<code>none</code>.  If the feature <code>file_start_position</code> with an
+integer, that point is used as start position in the file to be synthesized.
+</p></dd>
+<dt><code>float flite_text_to_speech(const char *text, cst_voice *voice, const char *outtype);</code></dt>
+<dd><p>synthesizes the text in string point to by <code>text</code>, with the given
+voice.  <code>outtype</code> may be a filename where the generated waveform is
+written to, or &quot;play&quot; and it will be sent to the audio device, or
+&quot;none&quot; and it will be discarded.  The return value is the
+number of seconds of speech generated.
+</p></dd>
+<dt><code>cst_utterance *flite_synth_text(const char *text,cst_voice *voice);</code></dt>
+<dd><p>synthesize the given text with the given voice and returns an utterance
+from it for further processing and access.
+</p></dd>
+<dt><code>cst_utterance *flite_synth_phones(const char *phones,cst_voice *voice);</code></dt>
+<dd><p>synthesize the given phones with the given voice and returns an utterance
+from it for further processing and access.
+</p></dd>
+<dt><code>cst_voice *flite_voice_select(const char *name);</code></dt>
+<dd><p>returns a pointer to the voice named <code>name</code>.  Will retrurn
+<code>NULL</code> if there is not match, if <code>name == NULL</code> then the
+first voice in the voice list is returned.  If <code>name</code> is a url
+(starting with <samp>file:</samp> or <samp>http:</samp>, that file will be
+accessed and the voice will be downloaded from there.
+</p></dd>
+<dt><code>float flite_ssml_file_to_speech(const char *filename, cst_voice *voice, const char *outtype);</code></dt>
+<dd><p>Will read the file as ssml, not all ssml tags are supported but many
+are, unsupported ones are ignored.  Voice selection works by naming
+the internal name of the voice, or the name may be a url and the voice
+will be loaded.  The audio tag is supported for loading waveform files, again urls are supported.
+</p></dd>
+<dt><code>float flite_ssml_text_to_speech(const char *text, cst_voice *voice, const char *outtype);</code></dt>
+<dd><p>Will treat the text as ssml.
+</p></dd>
+<dt><code>int flite_voice_add_lex_addenda(cst_voice *v, const cst_string *lexfile);</code></dt>
+<dd><p>loads the pronunciations from <code>lexfile</code> into the lexicon
+identified in the given voice (which will cause all other voices using
+that lexicon to also get this new addenda list.  An example lexicon
+file is given in <samp>flite/tools/examples.lex</samp>.  Words may be in
+double quotes, an optional part of speech tag may be give.  A colon
+separates the headword/postag from the list of phonemes.  Stress
+values (if used in the lexicon) must be specified.  Bad phonemes will
+be complained about on standard out.
+</p></dd>
+</dl>
+
+<a name="Streaming-Synthesis"></a>
+<h3 class="section">7.5 Streaming Synthesis</h3>
+
+<p>In 1.4 support was added for streaming synthesis.  Basically you may
+provide a call back function that will be called with waveform data
+immediately when it is available.  This potentially can reduce the
+delay between sending text to the synthesized and having audio
+available.
+</p>
+<p>The support is through a call back function of type
+</p><div class="example">
+<pre class="example">int audio_stream_chunk(const cst_wave *w, int start, int size, 
+                       int last, cst_audio_streaming_info *asi)
+</pre></div>
+<p>If the utterance feature <code>streaming_info</code> is set (which can
+be set in a voice or in an utterance).  The LPC or MLSA resynthesis
+functions will call the provided function as buffers become available.
+The LPC and MLSA waveform synthesis functions are used for diphones,
+limited domain, unit selection and clustergen voices.  Note explicit
+support is required for streaming so new waveform synthesis function
+may not have the functionality.
+</p>
+<p>An example streaming function is provided in
+<samp>src/audio/au_streaming.c</samp> and is used by the example flite main
+program when <code>stream</code> is given as the playing option.  (Though in
+the command line program the function it isn&rsquo;t really useful.)
+</p>
+<p>In order to use streaming you must provide call back function in your
+particular thread.  This is done by adding features to the voice in
+your thread.  Suppose your function was declared as
+</p>
+<div class="example">
+<pre class="example">int example_audio_stream_chunk(const cst_wave *w, int start, int size, 
+                       int last, void *user)
+</pre></div>
+<p>You can add this function as the streaming function through the statement
+</p><div class="example">
+<pre class="example">     cst_audio_streaming_info *asi;
+...
+     asi = new_audio_streaming_info();
+     asi-&gt;asc = example_audio_stream_chunk;
+     feat_set(voice-&gt;features,
+             &quot;streaming_info&quot;,
+             audio_streaming_info_val(asi));
+</pre></div>
+<p>You may also optionally include your own pointer to any information
+you additionally want to pass to your function.  For example
+</p><div class="example">
+<pre class="example">typedef my_callback_struct {
+   cst_audiodev *fd;
+   int count;
+};
+cst_audio_streaming_info *asi;
+
+...
+
+mcs = cst_alloc(my_callback_struct,1);
+mcs-&gt;fd=NULL;
+mcs-&gt;count=1;
+
+asi = new_audio_streaming_info();
+asi-&gt;asc = example_audio_stream_chunk;
+asi-&gt;userdata = mcs;
+feat_set(voice-&gt;features,
+         &quot;streaming_info&quot;,
+         audio_streaming_info_val(asi));
+</pre></div>
+<p>Another example is given in <samp>testsuite/by_word_main.c</samp> which
+shows a call back funtion that also prints the token as it is being
+synthesized.  The <samp>utt</samp> field in the
+<samp>cst_audio_streaming_info</samp> structure will be set to the current
+utterance.  Please note that the <samp>item</samp> field in the
+<samp>cst_audio_streaming_info</samp> structure is for your convenience and
+is not set by anyone at all.  The previous sentence exists in the
+documentation so that I can point at it, when user&rsquo;s fail to read it.
+</p>
+<hr>
+<a name="Converting-FestVox-Voices"></a>
+<div class="header">
+<p>
+Previous: <a href="#APIs" accesskey="p" rel="prev">APIs</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<a name="Converting-FestVox-Voices-1"></a>
+<h2 class="chapter">8 Converting FestVox Voices</h2>
+
+<p>As of 1.2 initial scripts have been added to aid the conversion of
+FestVox voices to Flite.  In general the conversion cannot be automatic.
+For example all specific Scheme code written for a voice needs to be
+hand converted to C to work in Flite, this can be a major task.
+</p>
+<p>Simple conversion scripts are given as examples of the stages you need
+to go through.  These are designed to work on standard (English)
+diphone sets, and simple limited domain voices.  The conversion
+technique will almost certainly fail for large unit selection voices
+due to limitations in the C compiler (more discussion below).  In 1.4
+we have also added support for converting clustergen voices too (which
+is a little easier, see section below).
+</p>
+<a name="Cocantenative-Voice-Building"></a>
+<h3 class="section">8.1 Cocantenative Voice Building</h3>
+
+<p>Conversion is basically taking the description of units (clunit
+catalogue or diphone index) and constructing some C files that can be
+compiled to form a usable database.  Using the C compiler to generate
+the object files has the advantage that we do not need to worry about
+byte order, alignment and object formats as the C compiler for the
+particular target platform should be able to generate the right code.
+</p>
+<p>Before you start ensure you have successfully built and run your FestVox
+voice in Festival.  Flite is not designed as a voice building/debugging
+tool it is just a delivery vehicle for finalized voices so you should
+first ensure you are satisfied with the quality of Festival voices
+before you start converting it for Flite.
+</p>
+<p>The following basic stages are required:
+</p><ul>
+<li> Setup the directories and copy the conversion scripts
+</li><li> Build the LPC files
+</li><li> Build the MCEP files (for ldom/clunits)
+</li><li> Convert LPC (MCEP) into STS (short term signal) files
+</li><li> Convert the catalogue/diphone index
+</li><li> Compile the generated C code
+</li></ul>
+
+<p>The conversion assumes the environment variable <code>FLITEDIR</code>
+is set, for example
+</p><div class="example">
+<pre class="example">   export FLITEDIR=/home/awb/projects/flite/
+</pre></div>
+<p>The basic flite conversion takes place within a FestVox voice directory.
+Thus all of the conversion scripts expect that the standard files are
+available.  The first task is to build some new directories and copy in
+the build scripts.  The scripts are copied rather than linked from the
+Flite directories as you may need to change these for your particular
+voices.
+</p><div class="example">
+<pre class="example">   $FLITEDIR/tools/setup_flite
+</pre></div>
+<p>This will read <samp>etc/voice.defs</samp>, which should have been created by
+the FestVox build process (except in very old versions of FestVox).
+</p>
+<p>If you don&rsquo;t have a <samp>etc/voice.defs</samp> you can construct one
+with <code>festvox/src/general/guess_voice_defs</code> in the Festvox
+distribution, or generate one by hand making it look
+like
+</p><div class="example">
+<pre class="example">FV_INST=cmu
+FV_LANG=us
+FV_NAME=ked_timit
+FV_TYPE=clunits
+FV_VOICENAME=$FV_INST&quot;_&quot;$FV_LANG&quot;_&quot;$FV_NAME
+FV_FULLVOICENAME=$FV_VOICENAME&quot;_&quot;$FV_TYPE
+</pre></div>
+
+<p>The main script build building the Flite voice is <samp>bin/build_flite</samp>
+which will eventually build sufficient C code in <samp>flite/</samp> that can
+be compiled with the constructed <samp>flite/Makefile</samp> to give you a
+library that can be linked into applications and also an example
+<samp>flite</samp> binary with the constructed voice built-in.
+</p>
+<p>You can run all of these stages, except the final make, together by
+running the the build script with no arguments
+</p><div class="example">
+<pre class="example">   ./bin/build_flite
+</pre></div>
+<p>But as things may not run smoothly, we will go through the 
+stages explicitly.
+</p>
+<p>The first stage is to build the LPC files, this may have already been
+done as part of the diphone building process (though probably not in
+the ldom/clunit case).  In our experience it is very important that the
+records be of similar power, as mis-matched power can often cause
+overflows in the resulting flite (and sometimes Festival) voices. Thus,
+for diphone voices, it is important to run the power normalization
+techniques described int he FestVox document.  The Flite LPC build
+process also builds a parameter file of the ranges of the LPC parameters
+used in later coding of the files, so even if you have already built your
+LPC files you should still do this again
+</p><div class="example">
+<pre class="example">   ./bin/build_flite lpc
+</pre></div>
+
+<p>For ldom, and clunit voices (but not for diphone voices) we also
+need the Mel-frequency Cepstral Coefficients.  These are assumed to
+have been cleared and are in <samp>mcep/</samp> as they are necessary
+for running the voice in Festival.  This stage simply constructs 
+information about the range of the mcep parameters.
+</p><div class="example">
+<pre class="example">   ./bin/build_flite mcep
+</pre></div>
+
+<p>The next stage is to construct the STS files.  Short Term Signals (STS)
+are built for each pitch period in the database.  These are ascii files
+(one for each utterance file in the database, with LPC coefficients, and
+ulaw encoded residuals for each pitch period.  These are built using a
+binary executable built as part of the Flite build
+(<samp>flite/tools/find_sts</samp>.
+</p><div class="example">
+<pre class="example">   ./bin/build_flite sts
+</pre></div>
+<p>Note that the flite code expects waveform files to be in Microsoft RIFF
+format and cannot deal with files in other formats.  Some earlier
+versions of the Edinburgh Speech Tools used NIST as the default header
+format.  This is likely to cause flite and its related programs not
+work. So do ensure your waveform files are in riff format (ch_wave -info
+wav/* will tell you the format).  And the following fill convert
+all your wave files
+</p><div class="example">
+<pre class="example">   mv wav wav.nist
+   mkdir wav
+   cd wav.nist
+   for i in *.wav
+   do
+      ch_wave -otype riff -o ../wav/$i $i
+   done
+</pre></div>
+
+<p>The next stage is to convert the index to the required C format.  For
+diphone voices this takes the <samp>dic/*.est</samp> index files, for
+clunit/ldom voices it takes the <samp>festival/clunit/VOICE.catalogue</samp>
+and <samp>festival/trees/VOICE.tree</samp> files.  This process uses a binary
+executable built as part of the Flite build process
+(<samp>flite/tools/flite_sort</samp>) to sort the indices into the same
+sorting order required for flite to run.  (Using unix sort may or may
+not give the same result due to definitions of lexicographic order so
+we use the very same function in C that will be used in flite to ensure
+that a consistent order is given.)
+</p><div class="example">
+<pre class="example">   ./bin/build_flite idx
+</pre></div>
+<p>All the necessary C files should now have been built in <samp>flite/</samp>
+and you may compile them by
+</p><div class="example">
+<pre class="example">   cd flite
+   make
+</pre></div>
+<p>This should give a library and an executable called <samp>flite</samp> that
+can run as
+</p><div class="example">
+<pre class="example">   ./flite &quot;Hello World&quot;
+</pre></div>
+<p>Assuming a general voice.  For ldom voices it will only be able to say
+things in its domain.  This <samp>flite</samp> binary offers the same options
+as standard the standard <samp>flite</samp> binary compiled in the Flite build
+but with your voice rather than the distributed voices.
+</p>
+<p>Almost certainly this process will not run smoothly for you.  Building
+voices is still a very hard thing to do and problems will probably
+exist.
+</p>
+<p>This build process does not deal with customization for the given
+voices.  Thus you will need to edit <samp>flite/VOICE.c</samp> to set
+intonation ranges and duration stretch for your particular voice.
+</p>
+<p>For example in our <samp>cmu_us_sls_diphone</samp> voice (a US English female
+diphone voice).  We had to change the default parameters from 
+</p><div class="example">
+<pre class="example">    feat_set_float(v-&gt;features,&quot;int_f0_target_mean&quot;,110.0);
+    feat_set_float(v-&gt;features,&quot;int_f0_target_stddev&quot;,15.0);
+
+    feat_set_float(v-&gt;features,&quot;duration_stretch&quot;,1.0); 
+</pre></div>
+<p>to
+</p><div class="example">
+<pre class="example">    feat_set_float(v-&gt;features,&quot;int_f0_target_mean&quot;,167.0);
+    feat_set_float(v-&gt;features,&quot;int_f0_target_stddev&quot;,25.0);
+
+    feat_set_float(v-&gt;features,&quot;duration_stretch&quot;,1.0); 
+</pre></div>
+
+<p>Note this conversion is limited.  Because it depends on the C compiler
+to do the final conversion into binary object format (a good idea in
+general for portability), you can easily generate files too big for the
+C compiler to deal with.  We have spent some time investigating this
+so the largest possible voices can be converted but it is still too
+limited for our larger voices.  In general the limitation seems to be
+best quantified by the number of pitch periods in the database.  After
+about 100k pitch periods the files get too big to handle.  There are
+probably solutions to this but we have not yet investigated them.  This
+limitation doesn&rsquo;t seem to be an issue with the diphone voices as they
+are typically much smaller than unit selection voices.
+</p>
+<a name="Statistical-Voice-Building-_0028Clustergen_0029"></a>
+<h3 class="section">8.2 Statistical Voice Building (Clustergen)</h3>
+
+<p>The process of building from a clustergen (cg) voice is also
+supported.  It is assumed the environment variable <code>FLITEDIR</code> is
+set
+</p><div class="example">
+<pre class="example">   export FLITEDIR=/home/awb/projects/flite/
+</pre></div>
+<p>After you build the clustergen voice you can convert by first setting
+up the skeleton files in the <samp>flite/</samp> directory
+</p><div class="example">
+<pre class="example">   $FLITEDIR/tools/setup_flite
+</pre></div>
+<p>Assuming <samp>etc/voice.defs</samp> properly identifies the voice the cg
+templates will be compied in.
+</p>
+<p>The conversion itself is actually much faster than a clunit build
+(there is less to actually convert).
+</p><div class="example">
+<pre class="example">   ./bin/build_flite cg
+</pre></div>
+<p>Will convert then necessary models into files in the <samp>flite/</samp>
+directory.  The you can compile it with
+</p><div class="example">
+<pre class="example">   cd flite
+   make
+   ./flite_cmu_us_awb &quot;Hello world&quot;
+</pre></div>
+<p>Note that the voice that is to be converted *must* be a standard
+clustergen voice with f0, mceps, delta mceps (optionally strengths for
+mixed excitation) and voicing in its
+combined coeffs files.  The method could be changed to deal with other
+possibilities but it will only work for default build method.
+</p>
+<p>The generated library <samp>libflite_cmu_us_awb.a</samp> may be linked with
+other programs like any other flite voice.  The binary generated
+<code>flite_cmu_us_awb</code> links in only one voice (unlike the flite binary in
+the full flite distribution.
+</p>
+<p>A single flat file contain the cg voice can also be generated that can
+be loaded at run time into the flite binary.  You can dump this file
+from the initial constructed flite binary
+</p><div class="example">
+<pre class="example">   ./flite_cmu_us_awb -voicedump cmu_us_awb.flitevox
+</pre></div>
+<p>The file cmu_us_awb.flitevox may now be references (with pathname/url) on
+the flite command line and used by the synthesizer
+</p><div class="example">
+<pre class="example">   ./flite -voice cmu_us_awb.flitevox &quot;Hello World&quot;
+</pre></div>
+
+<a name="Lexicon-Conversion"></a>
+<h3 class="section">8.3 Lexicon Conversion</h3>
+
+<p>As of 1.3 the script for converting the CMU lexicon (as distributed as
+part of Festival) is included.  <samp>make_cmulex</samp> will use the
+version of CMULEX unpacked in the current directory to build a new
+lexicon.  Also in 1.3. a more sophisticated compression technique is
+used to reduce the lexicon size.  The lexicon is pruned, removing
+those words which the letter to sound rule models get correct.  Also
+the letters and phones are separately huffman coded to produce a
+smaller lexicon.
+</p>
+<a name="Language-Conversion"></a>
+<h3 class="section">8.4 Language Conversion</h3>
+
+<p>This is by far the weakest part as this is the most open ended.  There
+are basic tools in the <samp>flite/tools/</samp> directory that include Scheme
+code to convert various Scheme structures to C include CART tree
+conversion and Lisp list conversion.  The other major source of help
+here is the existing language examples in <samp>flite/lang/usenglish/</samp>.
+</p>
+<p>Adding new language support is far from automatic, but there are core
+scripts for setting up new Flite support for languages and lexicons.  There
+are also scripts for converting (Festival) phoneset definitions to C
+and converting Festival lexicons to LTS rules and compressed lexicons
+in C.
+</p>
+<p>But beyond that you are sort of on your own.  The largest gap here is
+text normalization.  We do not yet have a standardize model for text
+normalization with well definied models for which we could write
+conversion scripts.  
+</p>
+<p>However here is a step by step attempt to show you what to do when
+building support for a new language/lexicon.
+</p>
+<p>Suppose we need to create support for Pashto, and already have a 
+festival voice running, and want it now to run in flite.  Converting
+the voice itself (unitselction or clustergen) is fairly robust, but
+you will also need C libraries for <samp>cmu_pashto_lang</samp> and 
+<samp>cmu_pasho_lex</samp>.  The first stage is to create the basic
+temple files for these.  In the core <samp>flite/</samp> source directory 
+type
+</p><div class="example">
+<pre class="example">   ./tools/make_new_lang_lex pashto
+</pre></div>
+<p>This will create language and lex template files in
+<samp>lang/cmu_pashto_lang/'</samp> and <samp>cmu_pashto_lex</samp>.
+</p>
+<p>Then in firectory <samp>lang/cmu_pashto_lang/</samp> type
+</p><div class="example">
+<pre class="example">    festival $FLITEDIR/tools/make_phoneset.scm
+    ...
+    festival&gt; (phonesettoC &quot;cmu_pashto&quot; (car (load &quot;PATHTO/cmu_pashto_transtac_phoneset.scm&quot; t)) &quot;pau&quot; &quot;.&quot;)
+</pre></div>
+<p>This will create <samp>cmu_pashto_lang_phoneset.[ch]</samp>.  You must the add these
+explicitly to the <samp>Makefile</samp>.
+</p>
+<p>Then in <samp>lang/cmu_pashto_lex/</samp> you have to build the C version of
+the lexicon and letter to sound rules.  The core script is in
+<samp>flite/tools/build_lex</samp>.
+</p><div class="example">
+<pre class="example">    mkdir lex
+    cd lex
+    cp -p $FLITEDIR/tooks/build_lex .
+</pre></div>
+<p>Edit build_lex to give it the name of your lexicon name, and compiled
+lexicon from your voice.
+</p><div class="example">
+<pre class="example">LEXNAME=cmu_pashto
+LEXFILE=lexicon.out
+</pre></div>
+<p>You should (I think) remove the first line &ldquo;MNCL&rdquo; from your
+<samp>lexicon.out</samp> file, note this <em>must</em> be the compiled lexicon
+not the list of entries you compiled from as it expects the ordering, and
+the syllabification.
+</p><div class="example">
+<pre class="example">    ./build_lex setup
+</pre></div>
+<p>Build the letter to sound rules (probably again)
+</p><div class="example">
+<pre class="example">    ./build_lex lts
+</pre></div>
+<p>Convert the compiled letter to sound rules to C.  This converts the
+decision trees to decision graphs and runs WFST minimization of them
+to get a more efficient set of structures.  This puts the generated C
+files in <samp>c/</samp>.
+</p><div class="example">
+<pre class="example">    ./build_lex lts2c
+</pre></div>
+<p>Now convert the lexical entries themselves
+</p><div class="example">
+<pre class="example">    ./build_lex lex
+</pre></div>
+<p>Again the generate C files will be put in <samp>c/</samp>.
+</p>
+<p>Now we generated a Huffman codes compressed lexicon to reduce the 
+lexicon size, merging frequent letter sequences and phone sequences.
+</p><div class="example">
+<pre class="example">    ./build_lex compresslex
+</pre></div>
+<p>The copy the <samp>.c</samp> and <samp>.h</samp> files to <samp>lang/cmu_pashto_lex/</samp>
+[something about compressed and non-compressed???]
+</p>
+
+<a name="Porting-to-new-platforms"></a>
+<h2 class="chapter">9 Porting to new platforms</h2>
+
+<p>byte order, unions, compiler restrictions
+</p>
+<a name="Future-developments"></a>
+<h2 class="chapter">10 Future developments</h2>
+
+<a name="SEC_Contents"></a>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+<ul class="no-bullet">
+<li><a name="toc-Abstract-1" href="#Abstract">1 Abstract</a></li>
+<li><a name="toc-Copying-1" href="#Copying">2 Copying</a></li>
+<li><a name="toc-Acknowledgements-1" href="#Acknowledgements">3 Acknowledgements</a></li>
+<li><a name="toc-Installation-1" href="#Installation">4 Installation</a>
+<ul class="no-bullet">
+  <li><a name="toc-Windows-Support" href="#Windows-Support">4.1 Windows Support</a></li>
+  <li><a name="toc-Window-CE-Support" href="#Window-CE-Support">4.2 Window CE Support</a></li>
+  <li><a name="toc-PalmOS-Support" href="#PalmOS-Support">4.3 PalmOS Support</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Some-notes-on-the-PalmOS-port" href="#Some-notes-on-the-PalmOS-port">4.3.1 Some notes on the PalmOS port</a></li>
+    <li><a name="toc-Using-the-PalmOS" href="#Using-the-PalmOS">4.3.2 Using the PalmOS</a></li>
+  </ul></li>
+</ul></li>
+<li><a name="toc-Flite-Design-1" href="#Flite-Design">5 Flite Design</a>
+<ul class="no-bullet">
+  <li><a name="toc-Background" href="#Background">5.1 Background</a></li>
+  <li><a name="toc-Key-Decisions" href="#Key-Decisions">5.2 Key Decisions</a></li>
+</ul></li>
+<li><a name="toc-Structure" href="#Structure">6 Structure</a>
+<ul class="no-bullet">
+  <li><a name="toc-cst_005fval" href="#cst_005fval">6.1 cst_val</a></li>
+</ul></li>
+<li><a name="toc-APIs-1" href="#APIs">7 APIs</a>
+<ul class="no-bullet">
+  <li><a name="toc-flite-binary" href="#flite-binary">7.1 flite binary</a></li>
+  <li><a name="toc-Voice-selection" href="#Voice-selection">7.2 Voice selection</a></li>
+  <li><a name="toc-C-example" href="#C-example">7.3 C example</a></li>
+  <li><a name="toc-Public-Functions" href="#Public-Functions">7.4 Public Functions</a></li>
+  <li><a name="toc-Streaming-Synthesis" href="#Streaming-Synthesis">7.5 Streaming Synthesis</a></li>
+</ul></li>
+<li><a name="toc-Converting-FestVox-Voices-1" href="#Converting-FestVox-Voices">8 Converting FestVox Voices</a>
+<ul class="no-bullet">
+  <li><a name="toc-Cocantenative-Voice-Building" href="#Cocantenative-Voice-Building">8.1 Cocantenative Voice Building</a></li>
+  <li><a name="toc-Statistical-Voice-Building-_0028Clustergen_0029" href="#Statistical-Voice-Building-_0028Clustergen_0029">8.2 Statistical Voice Building (Clustergen)</a></li>
+  <li><a name="toc-Lexicon-Conversion" href="#Lexicon-Conversion">8.3 Lexicon Conversion</a></li>
+  <li><a name="toc-Language-Conversion" href="#Language-Conversion">8.4 Language Conversion</a></li>
+</ul></li>
+<li><a name="toc-Porting-to-new-platforms" href="#Porting-to-new-platforms">9 Porting to new platforms</a></li>
+<li><a name="toc-Future-developments" href="#Future-developments">10 Future developments</a></li>
+
+</ul>
+</div>
+
+
+<hr>
+
+
+
+</body>
+</html>

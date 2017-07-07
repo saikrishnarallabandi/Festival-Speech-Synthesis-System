@@ -2,7 +2,7 @@
 /*                                                                       */
 /*                Centre for Speech Technology Research                  */
 /*                     University of Edinburgh, UK                       */
-/*                      Copyright (c) 1995,1996                          */
+/*                    Copyright (c) 1994,1995,1996                       */
 /*                        All Rights Reserved.                           */
 /*                                                                       */
 /*  Permission is hereby granted, free of charge, to use and distribute  */
@@ -31,30 +31,30 @@
 /*                                                                       */
 /*************************************************************************/
 /*                      Author :  Paul Taylor                            */
-/*                      Date   :  April 1995                             */
+/*                      Date   :  June 1994                              */
 /*-----------------------------------------------------------------------*/
-/*                     Change EST_Wave utility main                      */
+/*                  EST_Track file manipulation program                  */   
 /*                                                                       */
 /*=======================================================================*/
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
-#include "EST_Wave.h"
-#include "EST_cmd_line.h"
-#include "EST_cmd_line_options.h"
-#include "EST_sigpr.h"
-#include "EST_wave_aux.h"
+
 #include "EST.h"
+#include "EST_Wave.h"
+#include "EST_cmd_line_options.h"
 
-#define sgn(x) (x>0?1:x?-1:0)
+#define DEFAULT_TIME_SCALE 0.001
 
-void wave_extract_channel(EST_Wave &single, const EST_Wave &multi,  EST_IList &ch_list);
+int StrListtoIList(EST_StrList &s, EST_IList &il);
+void extract_channel(EST_Track &orig, EST_Track &nt, EST_IList &ch_list);
 
+EST_write_status save_snns_pat(const EST_String filename, 
+			       EST_TrackList &inpat, EST_TrackList &outpat);
 
-void extract_channels(EST_Wave &single, const EST_Wave &multi,  EST_IList &ch_list);
+EST_read_status read_TrackList(EST_TrackList &tlist, EST_StrList &files, 
+			       EST_Option &al);
 
-/** @name <command>ch_wave</command> <emphasis>Audio file manipulation</emphasis>
-    @id ch_wave_manual
+void extract(EST_Track &tr, EST_Option &al);
+/** @name <command>ch_track</command> <emphasis>Track file manipulation</emphasis>
+  * @id ch-track-manual
   * @toc
  */
 
@@ -68,30 +68,26 @@ void extract_channels(EST_Wave &single, const EST_Wave &multi,  EST_IList &ch_li
 //@synopsis
 
 /**
-ch_wave is used to manipulate the format of a waveform
+ch_track is used to manipulate the format of a track
 file. Operations include:
 
 <itemizedlist>
 <listitem><para>file format conversion</para></listitem>
-<listitem><para>resampling (changing the sampling frequency)</para></listitem>
-<listitem><para>byte-swapping</para></listitem>
+<listitem><para>smoothing</para></listitem>
+<listitem><para>changing the frame spacing of a track (resampling)</para></listitem>
+<listitem><para>producing differentiated and delta tracks</para></listitem>
+<listitem><para>Using a threshold to convert a track file to a label file</para></listitem>
+
 <listitem><para>making multiple input files into a single multi-channel output file</para></listitem>
-<listitem><para>making multiple input files into a single single-channel output file</para></listitem>
-<listitem><para>extracting a single channel from a multi-channel waveform</para></listitem>
-<listitem><para>scaling the amplitude of the waveform</para></listitem>
-<listitem><para>low pass and high pass filtering</para></listitem>
+<listitem><para>extracting a single channel from a multi-channel track</para></listitem>
 <listitem><para>extracting a time-delimited portion of the waveform</para></listitem>
 </itemizedlist>
 
-ch_wave is a executable program that serves as a wrap-around for the
-EST_Wave class and the basic wave manipulation functions. More
-advanced waveform processing is performed by the signal processing library.
-
-*/
+ */
 
 //@}
 
-/**@name OPTIONS
+/**@name Options
   */
 //@{
 
@@ -100,238 +96,270 @@ advanced waveform processing is performed by the signal processing library.
 //@}
 
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    EST_Wave sig, sigload;
-    EST_String in_file("-"), out_file("-"), op_file(""), test;
-    EST_Option al;
+    EST_String in_file("-"), out_file("-");
+    EST_Option al, settings;
+    EST_String fname, ftmp;
     EST_StrList files;
+    EST_Track tr;
+    EST_TrackList trlist;
     EST_Litem *p;
+ 
+    parse_command_line(
+	argc, argv, 
+	EST_String("[input file] -o [output file] [options]\n")+
+	"Summary: change/copy track files\n"
+	"use \"-\" to make input and output files stdin/out\n"
+	"-h               Options help\n"+
+	options_track_input()+ "\n"+
+	options_track_output()+	"\n"
+	"-info  Print information about file and header. \n"
+	"    This option gives useful information such as file \n"
+	"    length, file type, channel names. No output is produced\n\n"
+	"-track_names <string> \n"
+	"    File containing new names for output channels\n\n"
+	"-diff Differentiate contour. This performs simple \n"
+	"    numerical differentiation on the contour by \n"
+	"    subtracting the amplitude of the current frame \n"
+        "    from the amplitude of the next. Although quick, \n"
+	"    this technique is crude and not recommende as the \n"
+	"    estimation of the derivate is done on only one point\n\n"
+	"-delta <int> Make delta coefficients (better form of differentiate).\n"
+	"    The argument to this option is the regression length of \n"
+	"    of the delta calculation and can be between 2 and 4 \n\n"
+	"-sm <float> Length of smoothing window in seconds. Various types of \n"
+	"    smoothing are available for tracks. This options specifies \n"
+	"    length of the smooting window which effects the degree of \n"
+	"    smoothing, i.e. a longer value means more smoothing \n\n"
+	"-smtype <string>  Smooth type, median or mean\n"
+	"-style <string>  Convert track to other form.  Currently only one form \n"
+	"   \"label\" is supported. This uses a specified cut off to \n"
+	"    make a label file, with two labels, one for above the \n"
+	"    cut off (-pos) and one for below (-neg)\n\n"
+	"-t <float> threshold for track to label conversion \n"
+	"-neg <string> Name of negative label in track to label conversion \n"
+	"-pos <string> Name of positive label in track to label conversion \n"
+	"-pc <string>  Combine given tracks in parallel.  If option \n"
+	"     is longest, pad shorter tracks to longest, else if \n"
+	"     first pad/cut to match first input track \n" +
+	options_track_filetypes_long(),
+	files, al);
+
+/*redundant options
+	"-time_channel <string>\n"+
+	"		 Which track in track file holds pitchmark times\n"+
+	"-time_scale <float>    \n"+
+	"		 Scale of pitchmarks (default 0.001 = milliseconds)\n"+
+*/
 
 
-    parse_command_line
-	(argc, argv, 
-	 EST_String("[input file0] [input file1] ... -o [output file]\n")+
-	 "Summary: change/copy/combine waveform files\n"+
-	 "use \"-\" to make input and output files stdin/out\n"+
-	 "-h               Options help\n\n"+
-	 options_wave_input()+ 
-	 options_wave_output()+
-	 "-scale <float> Scaling factor. Increase or descrease the amplitude\n"
-	 "    of the whole waveform by the factor given\n\n"
-
-	 "-scaleN <float>  Scaling factor with normalization. \n"
-	 "    The waveform is scaled to its maximum level, after which \n"
-	 "    it is scaled by the factor given\n\n"
-
-	 "-lpfilter <int>  Low pass filter, with cutoff frequency in Hz \n"
-	 "    Filtering is performed by a FIR filter which is built at run \n"
-	 "    time. The order of the filter can be given by -forder. The \n"
-	 "    default value is 199\n\n"
-
-	 "-hpfilter <int>  High pass filter, with cutoff frequency in Hz \n"
-	 "    Filtering is performed by a FIR filter which is \n"
-	 "    built at run time. The order of the filter can \n"
-	 "    be given by -forder. The default value is 199.\n\n"
-
-	 "-forder <int>  Order of FIR filter used for lpfilter and \n"
-	 "    hpfilter. This must be ODD. Sensible values range \n"+
-	 "    from 19 (quick but with a shallow rolloff) to 199 \n"
-	 "    (slow but with a steep rolloff). The default is 199.\n\n"
-
-	 "-fafter Do filtering after other operations such as \n"
-	 "    resampling (default : filter before other operations)\n\n"
-
-	 "-info Print information about file and header. \n"
-	 "    This option gives useful information such as file \n"
-	 "    length, sampling rate, number of channels etc\n"
-	 "    No output is produced\n\n"
-
-	 "-add A new single channel waveform is created by adding \n"
-	 "    the corresponding sample points of each input waveform\n\n"
-
-	 "-pc <string> Combine input waveforms to form a single \n"
-	 "    multichannel waveform.  The argument to this option controls \n"
-	 "    how long the new waveform should be. If the option \n"
-	 "    is LONGEST, the output wave if the length of the \n"
-	 "    longest input wave and shorter waves are padded with \n"
-	 "    zeros at the end. If the option is FIRST, the length \n"
-	 "    of the new waveform is the length of the first file \n"
-	 "    on the command line, and subsequent waves are padded \n"
-	 "    or cut to this length\n\n"
-
-	 "-key <ifile> Label file designating subsections, for use with \n"
-	 "    -divide. The KEYLAB file is a label file which specifies \n"
-	 "    where chunks (such as individual sentences) in \n"
-	 "    a waveform begin and end. See section of wave extraction.\n\n"
-
-	 "-divide  Divide a single input waveform into multiple output \n"
-	 "    waveforms. Each output waveform is extracted from the \n"
-	 "    input waveform by using the KEYLAB file, which \n"
-	 "    specifies the start and stop times for each chunk. \n"
-	 "    The output files are named according to the filename \n"
-	 "    in the KEYLAB file, with extension given by -ext. See \n"
-	 "    section on wave extraction\n\n"
-		       
-	 "-ext <string>    File extension for divided waveforms\n\n"
-         
-         "-compress Apply Dynamic Range Compression by factor specified \n\n" 		       
-
-	 "-extract <string> Used in conjunction with -key to extract a \n"
-	 "    single section of waveform from the input \n"
-	 "    waveform. The argument is the name of a file given \n"
-	 "    in the file column of the KEYLAB file.\n",
-	 files, al);
-
+    override_lib_ops(settings, al);
     out_file = al.present("-o") ? al.val("-o") : (EST_String)"-";
 
-    // There will always be at least one (or stdin)
-    // The first is dealt specially in case its *way* big
-    if (read_wave(sig, files.first(), al) != format_ok)
+    EST_TokenStream ts;
+    
+//    ts.open(files.first());
+//    tr.load(ts);
+//    cout << tr;
+
+    if (read_TrackList(trlist, files, al) != read_ok)
+	exit(0);
+
+    if (files.length() == 0)
+    {
+	cerr << argv[0] << ": no input files specified\n";
 	exit(-1);
-    if (al.present("-info")) 
-	wave_info(sig);
-    // concat or parallelize remaining input files
-
-    if (files.length() > 1)
-    {
-	for (p= files.head()->next(); p != 0; p=p->next())
-	{
-	    if (read_wave(sigload, files(p), al) != format_ok)
-		exit(-1);
-	    if (al.present("-info")) 
-		wave_info(sigload);
-	    else if (al.present("-pc"))
-	    {
-		if ((al.val("-pc") == "longest") &&
-		    (sig.num_samples() < sigload.num_samples()))
-		    sig.resize(sigload.num_samples());
-		else /* "first" or sig is longer */
-		    sigload.resize(sig.num_samples());
-		sig |= sigload;
-	    }
-	    else if (al.present("-add"))
-		add_waves(sig, sigload);
-	    else
-		sig += sigload;
-	}
     }
 
-    if (al.present("-info")) 
-	exit(0);    // done what I've been asked to so stop
-
-    // All input files are now in a single wave called sig
-
-    // default is to filter before any resampling etc.
-    // (this may cause problems for multiplexed data !)
-    if(!al.present("-fafter")){
-	if(al.present("-lpfilter"))
-	    FIRlowpass_filter(sig,al.ival("-lpfilter"),al.ival("-forder"));
-	if(al.present("-hpfilter"))
-	    FIRhighpass_filter(sig,al.ival("-hpfilter"),al.ival("-forder"));
-    }
-
-    if (al.present("-c"))	// extract a channel from a multi-channel wave
+    if (al.present("-info"))
     {
-	EST_StrList s;
-	EST_IList il;
-	EST_Wave nsig;
-	StringtoStrList(al.val("-c"), s, " ,"); // separator can be space or comma
-	StrListtoIList(s, il);
-	extract_channels(nsig, sig, il);
-	sig = nsig;
-    }
-    
-    if (al.present("-F"))	// resample
-	sig.resample(al.ival("-F"));
-    
-    
-    if (al.present("-compress")) // Dynamic Range Compression
-    {
-        printf("Compressing");
-        //float mu = al.ival("-compress");
-        //printf(" by %f", mu);
-        float mu = 255.0;
-        float lim = 30000.0;
-        sig.compress(mu, lim);
-    }
- 
-    if (al.present("-scale"))	// rescale
-    {
-	float scale = al.fval("-scale", 0);
-	sig.rescale(scale);
-    }
-    else if (al.present("-scaleN"))	// rescale
-    {
-	float scale = al.fval("-scaleN", 0);
-	if ((scale < 0) || (scale > 1.0))
-	{
-	    cerr << "ch_wave: -scaleN must be in range 0 to 1" << endl;
-	    exit(-1);
-	}
-	sig.rescale(scale,1);
-    }
-
-    EST_Relation key;
-
-    if (al.present("-divide"))
-    {
-	EST_WaveList wl;
-	if (!al.present("-key"))
-	{
-	    cerr << "Must have key file specified when dividing waveform\n";
-	    exit (-1);
-	}
-	if (key.load(al.val("-key")) != format_ok)
-	    exit(-1);
-
-        if (wave_divide(wl, sig, key, al.val("-ext", 0)) == -1)
-	    exit(0);
-	for (p = wl.head(); p; p = p->next())
-	    wl(p).save(wl(p).name(), al.val("-otype", 0));
+	for (p = trlist.head(); p; p = p->next())
+	    track_info(trlist(p));
 	exit(0);
     }
-    else if (al.present("-extract"))
+
+    if (al.present("-pc"))       // parallelize them
+	ParallelTracks(tr, trlist, al.val("-pc"));
+
+    else if (al.val("-otype", 0) == "snns")
+    {   // sometime this will generalise for multiple input files
+	EST_TrackList inpat, outpat;
+	inpat.append(trlist.nth(0));
+	outpat.append(trlist.nth(1));
+	save_snns_pat(out_file, inpat, outpat);
+	exit(0);
+    }
+    else                         // concatenate them
     {
-	EST_Wave e;
-	if (!al.present("-key"))
+	tr.resize(0, tr.num_channels());
+	// Reorg -- fix += to resize to largest num_channels (with warning)
+	for (p = trlist.head(); p; p = p->next())
+	    tr += trlist(p);
+    }
+
+    if (al.present("-S"))
+	tr.sample(al.fval("-S"));
+    if (al.present("-sm"))
+    {
+	track_smooth(tr, al.fval("-sm"),al.val("-smtype"));
+    }
+
+    if (al.present("-diff") && al.present("-delta"))
+    {
+	cerr << "Using -diff and -delta together makes no sense !\n";
+	exit(-1);
+    }
+    if (al.present("-diff"))
+    {
+	tr = differentiate(tr);
+    }
+    if (al.present("-delta"))
+    {
+	EST_Track ntr = tr; // to copy size !;
+	delta(tr,ntr,al.ival("-delta"));
+	tr = ntr;
+    }
+ 
+
+    if (al.present("-c"))
+    {
+	EST_StrList s;
+	EST_Track ntr;
+	EST_IList il;
+	StringtoStrList(al.val("-c"), s, " ,"); // separator can be space or comma
+	StrListtoIList(s, il);
+	extract_channel(tr, ntr, il);
+	tr = ntr;
+    }
+
+    if (al.present("-start") || al.present("-end") 
+	|| al.present("-to") || al.present("-from"))
+	extract(tr, al);
+
+//    tr.assign_map(&LPCTrackMap);
+//    tr.set_space_type("VARI");
+
+
+    // optionally rename output tracks before saving
+
+    if (al.present("-track_names"))
+    {
+	EST_StrList new_names;
+	if(load_StrList(al.val("-track_names"),new_names) != format_ok)
 	{
-	    cerr << "Must have key file specified when dividing waveform\n";
-	    exit (-1);
-	}
-	if (key.load(al.val("-key")) != format_ok)
+	    cerr << "Failed to load new track names file." << endl;
 	    exit(-1);
+	}
+	/*
+	if (tr.num_channels() != new_names.length())
+	{
+	    cerr << "Number of names in output track names file (";
+	    cerr << new_names.length() << ") " << endl;
+	    cerr << " does not match number of output channels (";
+	    cerr << tr.num_channels() << ")" << endl;
+	    exit(-1);
+	}
 
-        if (wave_extract(e, sig, key, al.val("-extract")) == -1)
-	    exit (-1);
-	sig = e;
+	EST_Litem *np;
+	int ni;
+	for (np = new_names.head(),ni=0; np; np = np->next(),ni++)
+	    tr.set_channel_name(new_names(np),ni);
+	*/
+	tr.resize(EST_CURRENT, new_names);
     }
 
-    // if we are filtering after other operations
-    if(al.present("-fafter")){
-	if(al.present("-lpfilter"))
-	    FIRlowpass_filter(sig,al.ival("-lpfilter"),al.ival("-forder"));
-	if(al.present("-hpfilter"))
-	    FIRhighpass_filter(sig,al.ival("-hpfilter"),al.ival("-forder"));
-    }
+    // track_info(tr);
 
-    write_wave(sig, out_file, al);
+/*    tr.resize(EST_CURRENT, 10);
+
+    cout << "new\n";
+    track_info(tr);
+
+    EST_StrList x;
+    x.append("a");
+    x.append("c");
+    x.append("d");
+
+
+
+    cout << "new\n";
+    track_info(tr);
+*/
+
+
+    // Write out file in appropriate format
+  
+    if (al.val("-style",0) == "label")
+    {
+	EST_Relation lab;
+	if (al.present("-t"))
+	    track_to_label(tr, lab, al.fval("-t"));
+	else
+	    track_to_label(tr, lab);
+	if (al.present("-pos"))
+	    change_label(lab, "pos", al.val("-pos"));
+	if (al.present("-neg"))
+	    change_label(lab, "neg", al.val("-neg"));
+	if (lab.save(out_file) != write_ok)
+	    exit(-1);
+    }
+/*    else if (al.val("-style",0) == "pm")
+    {
+	EST_Relation lab;
+	
+	if (!al.present("-f"))
+	{
+	    cerr << "must specify sample rate (with -f) for pm style\n";
+	    exit(-1);
+	}
+	int sample_rate = al.ival("-f", 0);
+
+	track_to_pm(tr, sample_rate, lab);
+
+	if (lab.save(out_file) != write_ok)
+	    exit(-1);
+    }
+*/
+    else
+    {
+	if (tr.save(out_file, al.val("-otype")) != write_ok)
+	    exit(-1);
+    }
+    
     return 0;
 }
 
-/** @name Making multiple waves into a single wave
+void override_lib_ops(EST_Option &a_list, EST_Option &al)
+{
+    a_list.override_val("ishift", al.val("-s", 0));
+    a_list.override_val("color", al.val("-color", 0));
+    a_list.override_val("in_track_file_type", al.val("-itype", 0));
+    a_list.override_val("out_track_file_type", al.val("-otype", 0));
+    a_list.override_val("tr_to_label_thresh", al.val("-t", 0));
+    a_list.override_fval("time_scale", DEFAULT_TIME_SCALE);
+    
+    if (al.val("-style", 0) == "label")
+	a_list.override_val("lab_file_type", al.val("-otype", 0));
+    if (al.present("-time_scale"))
+	a_list.override_fval("time_scale", al.fval("-time_scale", 1));
+    if (al.present("-time_channel"))
+	a_list.override_val("time_channel", al.sval("-time_channel", 1));
+}
+
+
+/** @name Making multiple tracks into a single track
 
 If multiple input files are specified, by default they are concatenated into 
 the output file.
-</para>
 <para>
 <screen>
-$ ch_wave kdt_010.wav kdt_011.wav kdt_012.wav kdt_013.wav -o out.wav
+$ ch_track kdt_010.tr kdt_011.tr kdt_012.tr kdt_013.tr -o out.tr
 </screen>
 </para>
 <para>
-In the above example, 4 single channel input files are converted to
-one single channel output file. Multi-channel waveforms can also be
+In the above example, 4 multi channel input files are converted to
+one single channel output file. Multi-channel tracks can 
 concatenated provided they all have the same number of input channels.
 
 </para><para>
@@ -341,12 +369,12 @@ using the -pc option:
 
 </para><para>
 <screen>
-$ ch_wave kdt_010.wav kdt_011.wav kdt_012.wav kdt_013.wav -o -pc LONGEST out.wav
+$ ch_track kdt_010.tr kdt_011.tr kdt_012.tr kdt_013.tr -o -pc longest out.tr
 </screen>
 </para>
 <para>
-The argument to -pc can either be LONGEST, in which the output
-waveform is the length of the longest input file, or FIRST in which it
+The argument to -pc can either be longest, in which the output
+track is the length of the longest input file, or first in which it
 is the length of the first input file.
 
 */
@@ -354,142 +382,78 @@ is the length of the first input file.
 //@{
 //@}
 
-/** @name Extracting channels from multi-channel waves
+/** @name Extracting channels from multi-channel tracks
 
 The -c option is used to specify channels which should be extracted
-from the input.  If the input is a 4 channel wave,
+from the input.  If the input is a 4 channel track,
 </para><para>
 <screen>
-$ ch_wave kdt_m.wav -o a.wav -c "0 2"
+$ ch_track kdt_m.tr -o a.tr -c "0 2"
 </screen>
 </para>
 <para>
 will extract the 0th and 2nd channel (counting starts from 0). The
 argument to -c can be either a single number of a list of numbers
-(wrapped in quotes)
+(wrapped in quotes).
 
  */
 //@{
 //@}
 
 
-/** @name Extracting of a single region from a waveform
+/** @name Extracting of a single region from a track
 
-There are several ways of extracting a region of a waveform. The
+There are several ways of extracting a region of a track. The
 simplest way is by using the start, end, to and from commands to
-delimit a sub portion of the input wave. For example
+delimit a sub portion of the input track. For example
 </para><para>
 <screen>
-$ ch_wave kdt_010.wav -o small.wav -start 1.45 -end 1.768
+$ ch_track kdt_010.tr -o small.tr -start 1.45 -end 1.768
 </screen>
 </para>
 <para>
-extracts a subwave starting at 1.45 seconds and extending to 1.768 seconds.
-
+extracts a subtrack starting at 1.45 seconds and extending to 1.768 seconds.
 alternatively,
 </para><para>
 <screen>
-$ ch_wave kd_010.wav -o small.wav -from 5000 -to 10000
+$ ch_track kdt_010.tr -o small.tr -from 50 -to 100
 </screen>
 </para>
 <para>
-extracts a subwave starting at 5000 samples and extending to 10000
-samples. Times and samples can be mixed in sub-wave extraction. The
-output waveform will have the same number of channels as the input
-waveform.
+extracts a subtrack starting at 50 frames and extending to 100
+frames. Times and frames can be mixed in sub-track extraction. The
+output track will have the same number of channels as the input track.
 
-*/
-//@{
-//@}
 
-/** @name Extracting of a multiple regions from a waveform
-
-Multiple regions can be extracted from a waveform, but as it would be
-too complicated to specify the start and end points on the command
-line, a label file with start and end points, and file names is used.
-
-The file is called a key label file and in xwaves label format looks
-like:
-</para>
-<para>
-<screen>
-separator ;
-#
-0.308272  121 sil ;  	file kdt_010.01 ;
-0.440021  121 are ;     file kdt_010.02 ;
-0.512930  121 your ;    file kdt_010.03 ;
-0.784097  121 grades ;  file kdt_010.04 ;
-1.140969  121 higher ;  file kdt_010.05 ;
-1.258647  121 or ;      file kdt_010.06 ;
-1.577145  121 lower ;   file kdt_010.07 ;
-1.725516  121 than ;    file kdt_010.08 ;
-2.315186  121 nancy's ; file kdt_010.09 ;
-</screen>
-</para>
-<para>
-Each line represents one region. The first column is the end time of
-that region and the start time of the next. The next two columns are
-colour and an arbitrary name, and the filename in which the output
-waveform is to be stored is kept as a field called file in the last column.
-In this example, each region corresponds to a single word in the file.
-
-If the above file is called "kdt_010.words.keylab", the command:
-</para>
-<para>
-<screen>
-$ ch_wave kdt_010.wav -key kdt_010.words -ext .wav -divide
-</screen>
-</para>
-<para>
-will divide the input waveform into 9 output waveforms called
-kdt_010.01.wav, kdt_010.02.wav ... kdt_010.09.wav. The -ext option
-specifies the extension of the new waveforms, and the -divide command
-specifies that division of the entire waveform is to take place.
-
-If only a single file is required the -extract option can be used, in
-which case its argument is the filename required.
-</para>
-<para>
-<screen>
-$ ch_wave kdt_010.wav -key kdt_010.words -ext .wav -extract kdt_010.03 \
-          -o kdt_010.03.wav
-</screen>
-</para>
-<para>
-Note that an output filename should be specified with this option.
 */
 //@{
 //@}
 
 /** @name Adding headers and format conversion
 
-It is usually a good idea for all waveform files to have headers as
-this way different byte orders, sampling rates etc can be handled
-safely. ch_wave provides a means of adding headers to raw files.
+It is usually a good idea for all track files to have headers as this
+way different files can be handled safely. ch_track provides a means
+of adding headers to unheadered files. These files are assumed to
+be ascii floats with one channel per line.
 
-The following adds a header to a file of 16 bit shorts
+The following adds a header to an ascii file.
 </para>
 <para>
 <screen>
-$ ch_wave kdt_010.raw1 -o kdt_010.h1.wav -otype nist -f 16000 -itype raw
+$ ch_track kdt_010.atr -o kdt_010.h5.tr -otype est -s 0.01
 </screen>
 </para>
 <para>
-The following downsamples the input to 8 KHz
-</para>
-<para>
+ch_track can change the frame shift of a fixed frame file, or convert
+a variable frame shift file into a fixed frame shift.  At present this
+is done with a very crude resampling technique and hence the output
+file may suffer from anti-aliasing distortion.</para><para>
+
+
+Change to a frame spacing of 0.02 seconds:
+</para><para>
 <screen>
-$ ch_wave kdt_010.raw1 -o kdt_010.h2.wav -otype nist -f 16000  \
-                 -F 8000 -itype raw
-</screen>
-</para>
-<para>
-The following takes a 8K ulaw input file and produces a 16bit, 20Khz output file:
-</para>
-<para>
-<screen>
-$ ch_wave kdt_010.raw2 -o kdt_010.h3.wav -otype nist -istype ulaw \
-                  -f 8000 -F 20000 -itype raw
+$ ch_track kdt_010.tr -o kdt_010.tr2 -S 0.02
 </screen>
 */
   //@{

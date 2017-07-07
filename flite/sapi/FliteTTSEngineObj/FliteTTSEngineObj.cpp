@@ -506,7 +506,7 @@ CFliteTTSEngineObj::speak_frag()
 
         len = WideCharToMultiByte(CP_UTF8, 0, curr_frag->pTextStart, curr_frag->ulTextLen, NULL, 0, NULL, NULL);
         text = cst_alloc(char, len + 1);
-        WideCharToMultiByte(CP_UTF8, 0, curr_frag->pTextStart, curr_frag->ulTextLen, text, len, NULL, NULL);
+        // WideCharToMultiByte(CP_UTF8, 0, curr_frag->pTextStart, curr_frag->ulTextLen, text, len, NULL, NULL);
         text[len] = 0x00;
 
         /////////////////////////
@@ -515,6 +515,7 @@ CFliteTTSEngineObj::speak_frag()
 	cst_free(text);
 
 	while (!ts_eof(ts)) {
+                // Sai Krishna 14 June 2017. This needs to be modified. Earlier change to ts_getc() didnt help. 
 		token = ts_get(ts);
 		if (relation_head(tok_rel) && utt_break(ts, token, tok_rel)) {
 			get_actions_and_do_them();

@@ -1,0 +1,839 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.5.24)  29 JUN 2017 01:17
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**doc/flite.texi
+(./doc/flite.texi
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(/usr/share/texmf/tex/texinfo/texinfo.tex
+Loading texinfo [version 2016-02-05.07.deb2]:
+\outerhsize=\dimen102
+\outervsize=\dimen103
+\cornerlong=\dimen104
+\cornerthick=\dimen105
+\topandbottommargin=\dimen106
+\bindingoffset=\dimen107
+\normaloffset=\dimen108
+\pagewidth=\dimen109
+\pageheight=\dimen110
+\headlinebox=\box26
+\footlinebox=\box27
+\margin=\insert199
+\EMsimple=\toks14
+\groupbox=\box28
+\groupinvalidhelp=\toks15
+\mil=\dimen111
+\exdentamount=\skip41
+\inmarginspacing=\skip42
+\centerpenalty=\count79
+ pdf,
+\tempnum=\count80
+\lnkcount=\count81
+\filename=\toks16
+\filenamelength=\count82
+\pgn=\count83
+\toksA=\toks17
+\toksB=\toks18
+\toksC=\toks19
+\toksD=\toks20
+\boxA=\box29
+\boxB=\box30
+\countA=\count84
+\nopdfimagehelp=\toks21
+ fonts,
+\sffam=\mathgroup4
+\textleading=\dimen112
+
+! Undefined control sequence.
+\resetmathfonts ...font 2=\tensy \textfont \itfam 
+                                                  =\tenit \textfont \slfam =...
+l.2269 \definetextfontsizexi
+                            
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.2269 \definetextfontsizexi
+                            
+? 
+! Undefined control sequence.
+\resetmathfonts ...itfam =\tenit \textfont \slfam 
+                                                  =\tensl \textfont \bffam =...
+l.2269 \definetextfontsizexi
+                            
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.2269 \definetextfontsizexi
+                            
+? 
+! Undefined control sequence.
+\resetmathfonts ...slfam =\tensl \textfont \bffam 
+                                                  =\tenbf \textfont \ttfam =...
+l.2269 \definetextfontsizexi
+                            
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.2269 \definetextfontsizexi
+                            
+? 
+! Undefined control sequence.
+\resetmathfonts ...bffam =\tenbf \textfont \ttfam 
+                                                  =\tentt \textfont \sffam =...
+l.2269 \definetextfontsizexi
+                            
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.2269 \definetextfontsizexi
+                            
+? 
+markup,
+\fontdepth=\count85
+ glyphs,
+\errorbox=\box31
+ page headings,
+\titlepagetopglue=\skip43
+\titlepagebottomglue=\skip44
+\evenheadline=\toks22
+\oddheadline=\toks23
+\evenfootline=\toks24
+\oddfootline=\toks25
+
+! Undefined control sequence.
+l.3453 \headline
+                ={{\textfonts\rm \ifodd\pageno \the\oddheadline
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3453 \headline=
+                 {{\textfonts\rm \ifodd\pageno \the\oddheadline
+? 
+! Undefined control sequence.
+\resetmathfonts ...font 2=\tensy \textfont \itfam 
+                                                  =\tenit \textfont \slfam =...
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Undefined control sequence.
+\resetmathfonts ...itfam =\tenit \textfont \slfam 
+                                                  =\tensl \textfont \bffam =...
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Undefined control sequence.
+\resetmathfonts ...slfam =\tensl \textfont \bffam 
+                                                  =\tenbf \textfont \ttfam =...
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Undefined control sequence.
+\resetmathfonts ...bffam =\tenbf \textfont \ttfam 
+                                                  =\tentt \textfont \sffam =...
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3453 \headline={{\textfonts
+                             \rm \ifodd\pageno \the\oddheadline
+? 
+! Undefined control sequence.
+l.3453 \headline={{\textfonts\rm \ifodd\pageno
+                                               \the\oddheadline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.3454                             \else
+                                         \the\evenheadline \fi}}
+? 
+! Undefined control sequence.
+l.3455 \footline
+                ={{\textfonts\rm \ifodd\pageno \the\oddfootline
+? 
+! Undefined control sequence.
+\resetmathfonts ...font 2=\tensy \textfont \itfam 
+                                                  =\tenit \textfont \slfam =...
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Undefined control sequence.
+\resetmathfonts ...itfam =\tenit \textfont \slfam 
+                                                  =\tensl \textfont \bffam =...
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Undefined control sequence.
+\resetmathfonts ...slfam =\tensl \textfont \bffam 
+                                                  =\tenbf \textfont \ttfam =...
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Undefined control sequence.
+\resetmathfonts ...bffam =\tenbf \textfont \ttfam 
+                                                  =\tentt \textfont \sffam =...
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.3455 \footline={{\textfonts
+                             \rm \ifodd\pageno \the\oddfootline
+? 
+! Undefined control sequence.
+l.3455 \footline={{\textfonts\rm \ifodd\pageno
+                                               \the\oddfootline
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.3456                             \else
+                                         \the\evenfootline \fi}\HEADINGShook}
+? 
+! Undefined control sequence.
+l.3456 ...else \the\evenfootline \fi}\HEADINGShook
+                                                  }
+? 
+
+Overfull \hbox (28.5167pt too wide) in paragraph at lines 3453--3458
+[]\textrm =
+ []
+
+
+Overfull \hbox (8.5167pt too wide) in paragraph at lines 3453--3458
+\textrm = 
+ []
+
+tables,
+\tableindent=\dimen113
+\itemindent=\dimen114
+\itemmargin=\dimen115
+\itemmax=\dimen116
+\itemno=\count86
+\multitableparskip=\skip45
+\multitableparindent=\skip46
+\multitablecolspace=\dimen117
+\multitablelinespace=\skip47
+\colcount=\count87
+\everytab=\toks26
+ conditionals,
+\doignorecount=\count88
+ indexing,
+\dummybox=\box32
+\whatsitskip=\skip48
+\whatsitpenalty=\count89
+\entryrightmargin=\dimen118
+\thinshrinkable=\skip49
+\entryindexbox=\box33
+\entrylinedepth=\dimen119
+\secondaryindent=\skip50
+\partialpage=\box34
+\doublecolumnhsize=\dimen120
+\doublecolumntopgap=\dimen121
+\savedtopmark=\toks27
+\savedfirstmark=\toks28
+\balancedcolumns=\box35
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5621 \setbox\balancedcolumns=\vbox{s
+                                      houldnt see this}%
+? 
+
+Overfull \hbox (61.12338pt too wide) in paragraph at lines 5621--5621
+[]\textrm shouldnt
+ []
+
+
+Overfull \hbox (14.0525pt too wide) in paragraph at lines 5621--5621
+\textrm see
+ []
+
+
+Overfull \hbox (17.70253pt too wide) in paragraph at lines 5621--5621
+\textrm this 
+ []
+
+sectioning,
+\unnumberedno=\count90
+\chapno=\count91
+\secno=\count92
+\subsecno=\count93
+\subsubsecno=\count94
+\appendixno=\count95
+\absseclevel=\count96
+\secbase=\count97
+\chapheadingskip=\skip51
+\secheadingskip=\skip52
+\subsecheadingskip=\skip53
+ toc,
+\tocfile=\write3
+\contentsrightmargin=\skip54
+\savepageno=\count98
+\lastnegativepageno=\count99
+\tocindent=\dimen122
+ environments,
+\lispnarrowing=\skip55
+\envskipamount=\skip56
+\circthick=\dimen123
+\cartouter=\dimen124
+\cartinner=\dimen125
+\normbskip=\skip57
+\normpskip=\skip58
+\normlskip=\skip59
+\lskip=\skip60
+\rskip=\skip61
+\nonfillparindent=\dimen126
+\tabw=\dimen127
+
+! Undefined control sequence.
+\tt ->\fam =\ttfam 
+                   \setfontstyle {tt}
+l.7136 \newdimen\tabw \setbox0=\hbox{\tt
+                                        \space} \tabw=8\wd0 % tab amount
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   \def 
+l.7136 \newdimen\tabw \setbox0=\hbox{\tt
+                                        \space} \tabw=8\wd0 % tab amount
+? 
+\verbbox=\box36
+defuns,
+\defbodyindent=\skip62
+\defargsindent=\skip63
+\deflastargmargin=\skip64
+\defunpenalty=\count100
+\parencount=\count101
+\brackcount=\count102
+ macros,
+\paramno=\count103
+\macname=\toks29
+ cross references,
+\auxfile=\write4
+\savesfregister=\count104
+\toprefbox=\box37
+\printedrefnamebox=\box38
+\infofilenamebox=\box39
+\printedmanualbox=\box40
+ insertions,
+\footnoteno=\count105
+\SAVEfootins=\box41
+\SAVEmargin=\box42
+
+(/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
+This is `epsf.tex' v2.7.4 <14 February 2011>
+\epsffilein=\read1
+\epsfframemargin=\dimen128
+\epsfframethickness=\dimen129
+\epsfrsize=\dimen130
+\epsftmp=\dimen131
+\epsftsize=\dimen132
+\epsfxsize=\dimen133
+\epsfysize=\dimen134
+\pspoints=\dimen135
+)
+\noepsfhelp=\toks30
+ localization,
+\nolanghelp=\toks31
+\countUTFx=\count106
+\countUTFy=\count107
+\countUTFz=\count108
+ formatting,
+\defaultparindent=\dimen136
+ and turning on texinfo input format.)
+! Undefined control sequence.
+@resetmathfonts ...font 2=@tensy @textfont @itfam 
+                                                  =@tenit @textfont @slfam =...
+l.46 @titlepage
+               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.46 @titlepage
+               
+? 
+! Undefined control sequence.
+@resetmathfonts ...itfam =@tenit @textfont @slfam 
+                                                  =@tensl @textfont @bffam =...
+l.46 @titlepage
+               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.46 @titlepage
+               
+? 
+! Undefined control sequence.
+@resetmathfonts ...slfam =@tensl @textfont @bffam 
+                                                  =@tenbf @textfont @ttfam =...
+l.46 @titlepage
+               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.46 @titlepage
+               
+? 
+! Undefined control sequence.
+@resetmathfonts ...bffam =@tenbf @textfont @ttfam 
+                                                  =@tentt @textfont @sffam =...
+l.46 @titlepage
+               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.46 @titlepage
+               
+? 
+! Undefined control sequence.
+@resetmathfonts ...font 2=@tensy @textfont @itfam 
+                                                  =@tenit @textfont @slfam =...
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Undefined control sequence.
+@resetmathfonts ...itfam =@tenit @textfont @slfam 
+                                                  =@tensl @textfont @bffam =...
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Undefined control sequence.
+@resetmathfonts ...slfam =@tensl @textfont @bffam 
+                                                  =@tenbf @textfont @ttfam =...
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Undefined control sequence.
+@resetmathfonts ...bffam =@tenbf @textfont @ttfam 
+                                                  =@tentt @textfont @sffam =...
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 ...ite: a small, fast speech synthesis engine
+                                                  
+? 
+! Undefined control sequence.
+@resetmathfonts ...font 2=@tensy @textfont @itfam 
+                                                  =@tenit @textfont @slfam =...
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Undefined control sequence.
+@resetmathfonts ...itfam =@tenit @textfont @slfam 
+                                                  =@tensl @textfont @bffam =...
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Undefined control sequence.
+@resetmathfonts ...slfam =@tensl @textfont @bffam 
+                                                  =@tenbf @textfont @ttfam =...
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Undefined control sequence.
+@resetmathfonts ...bffam =@tenbf @textfont @ttfam 
+                                                  =@tentt @textfont @sffam =...
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   =
+l.51 @author by Alan W Black and Kevin A. Lenzo
+                                               
+? 
+! Undefined control sequence.
+@onepageout ... =@normaloffset @fi @ifodd @pageno 
+                                                  @advance @hoffset by @bind...
+l.53 @page
+          
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   @advance 
+l.53 @page
+          
+? 
+! Undefined control sequence.
+@onepageout ...me @thischaptername @ifodd @pageno 
+                                                  @getoddheadingmarks @else ...
+l.53 @page
+          
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   @relax 
+l.53 @page
+          
+? 
+! Undefined control sequence.
+@onepageout ...venheadingmarks @fi @ifodd @pageno 
+                                                  @getoddfootingmarks @else ...
+l.53 @page
+          
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   @relax 
+l.53 @page
+          
+? 
+! Use of @line doesn't match its definition.
+@makeheadline ...box to 0pt{@vskip -22.5pt @line {
+                                                  @vbox to8.5pt{}@getcolorma...
+l.53 @page
+          
+? 
+! Undefined control sequence.
+@makeheadline ...olor {@maincolor }@the @headline 
+                                                  @pdfsetcolor {@thiscolor }...
+l.53 @page
+          
+? 
+! You can't use `@pdfliteral' after @the.
+@pdfsetcolor #1->@pdfliteral 
+                             {#1 rg #1 RG}
+l.53 @page
+          
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.53 @page
+          
+? 
+
+Overfull \vbox (1.2pt too high) has occurred while \output is active []
+
+
+! Unbalanced output routine.
+@onepageout ...commmonheadfootline @makeheadline }
+                                                  @global @setbox @footlineb...
+l.53 @page
+          
+? 
+! Output routine didn't use all of @box255.
+@onepageout ... @unvbox @headlinebox @pagebody {#1
+                                                  }@ifdim @ht @footlinebox >...
+l.53 @page
+          
+? 
+The following box has been deleted: []
+
+! Extra }, or forgotten @endgroup.
+@onepageout ...@unvbox @headlinebox @pagebody {#1}
+                                                  @ifdim @ht @footlinebox > ...
+l.53 @page
+          
+? 
+! Extra }, or forgotten @endgroup.
+@onepageout ...@ewbot @hfil @ewbot }}@egroup @fi }
+                                                  }@advancepageno @ifnum @ou...
+l.53 @page
+          
+? 
+! Extra }, or forgotten @endgroup.
+@onepageout ...ewbot @hfil @ewbot }}@egroup @fi }}
+                                                  @advancepageno @ifnum @out...
+l.53 @page
+          
+? 
+! Undefined control sequence.
+@onepageout ...bot }}@egroup @fi }}@advancepageno 
+                                                  @ifnum @outputpenalty >-20...
+l.53 @page
+          
+? 
+! Undefined control sequence.
+@onepageout ...enalty >-20000 @else @dosupereject 
+                                                  @fi 
+l.53 @page
+          
+? 
+! Extra }, or forgotten @endgroup.
+<output> {@onepageout {@pagecontents @PAGE }}
+                                             
+l.53 @page
+          
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.55 C
+      opyright @copyright{} 2001-2014 Carnegie Mellon University, all rights
+? 
+
+! LaTeX Error: Command @textcopyright unavailable in encoding .
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.55 Copyright @copyright
+                         {} 2001-2014 Carnegie Mellon University, all rights
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.58 P
+      ermission is granted to make and distribute verbatim copies of
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.62 P
+      ermission is granted to copy and distribute modified versions of this
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.67 P
+      ermission is granted to copy and distribute translations of this manual
+? 
+! Undefined control sequence.
+@onepageout ... =@normaloffset @fi @ifodd @pageno 
+                                                  @advance @hoffset by @bind...
+l.71 @end titlepage
+                   
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   @advance 
+l.71 @end titlepage
+                   
+? 
+! Undefined control sequence.
+@onepageout ...me @thischaptername @ifodd @pageno 
+                                                  @getoddheadingmarks @else ...
+l.71 @end titlepage
+                   
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   @relax 
+l.71 @end titlepage
+                   
+? 
+! Undefined control sequence.
+@onepageout ...venheadingmarks @fi @ifodd @pageno 
+                                                  @getoddfootingmarks @else ...
+l.71 @end titlepage
+                   
+? 
+! Missing number, treated as zero.
+<to be read again> 
+                   @relax 
+l.71 @end titlepage
+                   
+? 
+! Use of @line doesn't match its definition.
+@makeheadline ...box to 0pt{@vskip -22.5pt @line {
+                                                  @vbox to8.5pt{}@getcolorma...
+l.71 @end titlepage
+                   
+? 
+! Undefined control sequence.
+@makeheadline ...olor {@maincolor }@the @headline 
+                                                  @pdfsetcolor {@thiscolor }...
+l.71 @end titlepage
+                   
+? 
+! You can't use `@pdfliteral' after @the.
+@pdfsetcolor #1->@pdfliteral 
+                             {#1 rg #1 RG}
+l.71 @end titlepage
+                   
+? 
+
+! LaTeX Error: Missing @begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 @end titlepage
+                   
+? 
+
+Overfull \vbox (1.2pt too high) has occurred while \output is active []
+
+
+! Unbalanced output routine.
+@onepageout ...commmonheadfootline @makeheadline }
+                                                  @global @setbox @footlineb...
+l.71 @end titlepage
+                   
+? 
+! Output routine didn't use all of @box255.
+@onepageout ... @unvbox @headlinebox @pagebody {#1
+                                                  }@ifdim @ht @footlinebox >...
+l.71 @end titlepage
+                   
+? 
+The following box has been deleted: []
+
+! Extra }, or forgotten @endgroup.
+@onepageout ...@unvbox @headlinebox @pagebody {#1}
+                                                  @ifdim @ht @footlinebox > ...
+l.71 @end titlepage
+                   
+? 
+! Extra }, or forgotten @endgroup.
+@onepageout ...@ewbot @hfil @ewbot }}@egroup @fi }
+                                                  }@advancepageno @ifnum @ou...
+l.71 @end titlepage
+                   
+? 
+! Extra }, or forgotten @endgroup.
+@onepageout ...ewbot @hfil @ewbot }}@egroup @fi }}
+                                                  @advancepageno @ifnum @out...
+l.71 @end titlepage
+                   
+? 
+! Undefined control sequence.
+@onepageout ...bot }}@egroup @fi }}@advancepageno 
+                                                  @ifnum @outputpenalty >-20...
+l.71 @end titlepage
+                   
+? 
+! Undefined control sequence.
+@onepageout ...enalty >-20000 @else @dosupereject 
+                                                  @fi 
+l.71 @end titlepage
+                   
+? 
+! Extra }, or forgotten @endgroup.
+<output> {@onepageout {@pagecontents @PAGE }}
+                                             
+l.71 @end titlepage
+                   
+? 
+! Undefined c
